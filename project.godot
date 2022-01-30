@@ -1,0 +1,86 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "PhysDot",
+"class": "CrawlDot",
+"language": "GDScript",
+"path": "res://Dots/crawl_dot.gd"
+}, {
+"base": "CrawlDot",
+"class": "CrawlFriendDot",
+"language": "GDScript",
+"path": "res://Dots/crawl_friend_dot.gd"
+}, {
+"base": "Reference",
+"class": "Dot",
+"language": "GDScript",
+"path": "res://Dots/dot.gd"
+}, {
+"base": "PhysDot",
+"class": "FoodDot",
+"language": "GDScript",
+"path": "res://Dots/food_dot.gd"
+}, {
+"base": "Dot",
+"class": "PhysDot",
+"language": "GDScript",
+"path": "res://Dots/phys_dot.gd"
+}, {
+"base": "Reference",
+"class": "SensorDot",
+"language": "GDScript",
+"path": "res://Dots/sensor_dot.gd"
+}, {
+"base": "Reference",
+"class": "TheGreatConnection",
+"language": "GDScript",
+"path": "res://the_great_connection.gd"
+}, {
+"base": "PhysDot",
+"class": "WallDot",
+"language": "GDScript",
+"path": "res://Dots/wall_dot.gd"
+} ]
+_global_script_class_icons={
+"CrawlDot": "",
+"CrawlFriendDot": "",
+"Dot": "",
+"FoodDot": "",
+"PhysDot": "",
+"SensorDot": "",
+"TheGreatConnection": "",
+"WallDot": ""
+}
+
+[application]
+
+config/name="Large Grid Evolution"
+run/main_scene="res://Sims/Sim.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Grid="*res://grid.gd"
+Converter="*res://Converter.gd"
+PDF="*res://Dots/parkers_dot_functions.gd"
+
+[display]
+
+window/size/width=1080
+window/size/height=720
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
