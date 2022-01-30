@@ -56,6 +56,8 @@ func insert_dot(dot : Dot):
 	Grid.grid[dot.position.x][dot.position.y] = dot
 	#load dot to register
 	dot_register.append(dot)
+	#update dot's grid
+	dot.grid_node = self
 
 func remove_dot(dot : Dot):
 	#if the dot is there, remove it
@@ -64,6 +66,7 @@ func remove_dot(dot : Dot):
 		var air =  Dot.new()
 		air.position = dot.position
 		Grid.grid[dot.position.x][dot.position.y] = air
+		dot.grid_node = null
 	
 	
 #draws the grid

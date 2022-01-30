@@ -2,6 +2,7 @@ extends PhysDot
 class_name LifeDot
 
 var energy = 0
+var efficency : float = 1
 var alive = true
 
 func _init():
@@ -15,22 +16,29 @@ func _init():
 func tick():
 	pass
 
+func use_energy(e):
+	energy -= e / efficency
+
 func walk(d : Vector2):
 	if(d.length() >= 2):
 		return false
-	energy-=1
+	use_energy(1)
 	if energy > 0:
 		move(d)
 	else:
 		die()
-	
 
-func jump():
-	pass
+func jump(d : Vector2):
+	use_energy(d.length_squared())
+	if energy > 0:
+		move(d)
+	else:
+		die()
 
 func die():
-	alive = false
-	post_death()
+	if alive:
+		alive = false
+		post_death()
 
 func post_death():
 	pass
