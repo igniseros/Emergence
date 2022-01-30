@@ -2,6 +2,7 @@ extends CrawlDot
 class_name CrawlFriendDot
 
 var main_direction : Vector2
+var gravity = 1
 
 func _init():
 	randomize()
@@ -23,11 +24,11 @@ func tick():
 	var directions_to_check = [Vector2(-1,0),Vector2(1,0),Vector2(0,1),Vector2(0,-1),
 	Vector2(1,-1),Vector2(-1,-1),Vector2(1,1),Vector2(-1,1)]
 	var best_d = []
-	var f_thresh = 1
+	var f_thresh = 2
 	for d in directions_to_check:
 		var favorability = check_direction(d)
 		if(favorability >= f_thresh):
-			for i in range(favorability):
+			for i in range(favorability ^ gravity):
 				best_d.append(d)
 	if(best_d.size() > 0):
 		move(best_d[floor(rand_range(0,len(best_d)))])

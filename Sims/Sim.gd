@@ -32,5 +32,5 @@ func wait_update():
 		grid_node.draw = true
 	else:
 		if(Grid.time*100/float(time+ 1) > (percent+progress_delta) and not grid_node.draw):
-			print(str(percent) + "% processed")
+			print(str(percent) + "% processed (" + str(Grid.time) + " ticks)")
 			percent = Grid.time*100 / float(time)

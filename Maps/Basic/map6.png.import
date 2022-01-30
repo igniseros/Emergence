@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/map10.png-da47d6d40cf8fe26efecf26ac8d5687d.stex"
+path="res://.import/map6.png-ee86e11e530b6f6b696b35af9f81cf9d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Maps/map10.png"
-dest_files=[ "res://.import/map10.png-da47d6d40cf8fe26efecf26ac8d5687d.stex" ]
+source_file="res://Maps/Basic/map6.png"
+dest_files=[ "res://.import/map6.png-ee86e11e530b6f6b696b35af9f81cf9d.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
