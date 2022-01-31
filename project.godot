@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "PhysDot",
+"class": "BugDot",
+"language": "GDScript",
+"path": "res://Dots/Sandys_Dots/bug_dot.gd"
+}, {
+"base": "PhysDot",
 "class": "CrawlDot",
 "language": "GDScript",
 "path": "res://Dots/Parker/Crawl/crawl_dot.gd"
@@ -50,6 +55,7 @@ _global_script_classes=[ {
 "path": "res://Dots/Basic/wall_dot.gd"
 } ]
 _global_script_class_icons={
+"BugDot": "",
 "CrawlDot": "",
 "CrawlFriendDot": "",
 "Dot": "",
@@ -72,6 +78,7 @@ Grid="*res://grid.gd"
 Converter="*res://Converter.gd"
 PDF="*res://Dots/parkers_dot_functions.gd"
 TheGreatConnection="*res://the_great_connection.gd"
+SandysConnection="*res://SandyScripts/SandysConnection.gd"
 
 [display]
 

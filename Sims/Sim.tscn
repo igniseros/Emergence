@@ -3,7 +3,7 @@
 [ext_resource path="res://simple_camera.gd" type="Script" id=1]
 [ext_resource path="res://grid_node.gd" type="Script" id=2]
 [ext_resource path="res://Sims/Sim.gd" type="Script" id=3]
-[ext_resource path="res://Maps/Parker/Life/life_001.png" type="Texture" id=4]
+[ext_resource path="res://Maps/Sandy/map12.png" type="Texture" id=4]
 [ext_resource path="res://Sims/MapViewer.gd" type="Script" id=5]
 
 [node name="Sim" type="Node2D"]
@@ -15,8 +15,8 @@ scale = Vector2( 8, 8 )
 script = ExtResource( 2 )
 image = ExtResource( 4 )
 use_img = true
-size_x = 2048
-size_y = 2048
+size_x = 1000
+size_y = 1000
 cheap_draw = true
 
 [node name="MapViewer" type="Sprite" parent="."]
@@ -27,7 +27,7 @@ script = ExtResource( 5 )
 grid_node = NodePath("../GridNode")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 258, 238 )
+position = Vector2( 71, 76 )
 current = true
 smoothing_enabled = true
 script = ExtResource( 1 )
