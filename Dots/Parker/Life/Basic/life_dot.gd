@@ -16,6 +16,9 @@ func _init():
 func tick():
 	pass
 
+func will_tick():
+	return true
+
 func use_energy(e):
 	energy -= float(e) / efficency
 

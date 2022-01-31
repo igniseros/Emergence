@@ -17,3 +17,6 @@ func tick_wrap():
 
 func tick():
 	pass
+
+func will_tick():
+	false

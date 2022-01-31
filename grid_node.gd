@@ -9,7 +9,8 @@ export var size_y = 256
 export var draw = true
 export var cheap_draw = false
 export var draw_per = 1
-var dot_register = []
+var dot_register = [] #all dots
+var tick_registrer = [] #dots that tick
 var starred_dots = []
 
 func _ready():
@@ -59,12 +60,16 @@ func insert_dot(dot : Dot):
 	Grid.grid[dot.position.x][dot.position.y] = dot
 	#load dot to register
 	dot_register.append(dot)
+	if(dot.will_tick()):
+		tick_registrer.append(dot)
 	#update dot's grid
 	dot.grid_node = self
 
 func remove_dot(dot : Dot):
 	#if the dot is there, remove it
 	if(dot_register.has(dot)): 
+		if(dot.will_tick()):
+			tick_registrer.remove(tick_registrer.find(dot))
 		dot_register.remove(dot_register.find(dot))
 		Grid.grid[dot.position.x][dot.position.y] = 0
 		dot.grid_node = null
@@ -91,7 +96,7 @@ func _draw():
 #ticks the grid
 func tick():
 	Grid.time += 1
-	for dot in dot_register:
+	for dot in tick_registrer:
 		if(dot is Dot):
-			(dot as Dot).tick()
+			(dot as Dot).tick_wrap()
 	if Grid.time % draw_per == 0: update()

@@ -36,7 +36,7 @@ func wait_update():
 	else:
 		if(Grid.time*100/float(time+ 1) >= (percent+progress_delta) and not grid_node.draw):
 			percent = Grid.time*100 / float(time)
-			print(str(percent) + "% processed (" + str(Grid.time) + " ticks " + str(grid_node.dot_register.size()) + " dots)")
+			print(str(percent) + "% processed (" + str(Grid.time) + " ticks " + str(grid_node.tick_registrer.size()) + " ticking dots)")
 
 func _input(event):
 	if event is InputEventKey:

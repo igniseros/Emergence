@@ -11,6 +11,9 @@ func _init():
 	color_two = Color(1,.5,0)
 	color_three = Color(1,1,0)
 
+func will_tick():
+	return true
+
 func tick():
 	var box_around = PDF.box_around_self(1)
 	#for each dot in a box sized 2 around self
