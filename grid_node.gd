@@ -10,6 +10,7 @@ export var draw = true
 export var cheap_draw = false
 export var draw_per = 1
 var dot_register = []
+var starred_dots = []
 
 func _ready():
 	set_up()
@@ -22,6 +23,8 @@ func set_up():
 		print("loading image")
 		var bag_of_dots = Converter.do_the_thing(image.get_data()) #converter does the thing
 		for dot in bag_of_dots: #empty bag of dots onto grid
+			if dot is EvolvingLifeDot:
+				starred_dots.append(dot)
 			insert_dot(dot)
 
 #makes a new grid
@@ -63,9 +66,7 @@ func remove_dot(dot : Dot):
 	#if the dot is there, remove it
 	if(dot_register.has(dot)): 
 		dot_register.remove(dot_register.find(dot))
-		var air =  Dot.new()
-		air.position = dot.position
-		Grid.grid[dot.position.x][dot.position.y] = air
+		Grid.grid[dot.position.x][dot.position.y] = 0
 		dot.grid_node = null
 	
 	
