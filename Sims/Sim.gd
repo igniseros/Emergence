@@ -1,6 +1,7 @@
 extends Node2D
 
 export var use_timer = false
+var paused = false
 
 onready var grid_node = $GridNode
 
@@ -10,10 +11,12 @@ func _ready():
 	wait_ready()
 
 func _on_TickTimer_timeout():
+	if paused: return
 	if(use_timer):
 		grid_node.tick()
 
 func _process(delta):
+	if paused: return
 	wait_update()
 	pass
 
@@ -31,6 +34,13 @@ func wait_update():
 		print("100% processed")
 		grid_node.draw = true
 	else:
-		if(Grid.time*100/float(time+ 1) > (percent+progress_delta) and not grid_node.draw):
-			print(str(percent) + "% processed (" + str(Grid.time) + " ticks)")
+		if(Grid.time*100/float(time+ 1) >= (percent+progress_delta) and not grid_node.draw):
 			percent = Grid.time*100 / float(time)
+			print(str(percent) + "% processed (" + str(Grid.time) + " ticks " + str(grid_node.dot_register.size()) + " dots)")
+
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed and event.scancode == KEY_TAB:
+			paused = not paused
+			
+		

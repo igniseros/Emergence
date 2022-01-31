@@ -1,7 +1,7 @@
 extends PhysDot
 class_name LifeDot
 
-var energy = 0
+var energy : float = 0
 var efficency : float = 1
 var alive = true
 
@@ -17,7 +17,7 @@ func tick():
 	pass
 
 func use_energy(e):
-	energy -= e / efficency
+	energy -= float(e) / efficency
 
 func walk(d : Vector2):
 	if(d.length() >= 2):

@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "Behavior",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Behavioral/Behavior.gd"
+}, {
 "base": "PhysDot",
 "class": "CrawlDot",
 "language": "GDScript",
@@ -24,10 +29,35 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dots/Basic/dot.gd"
 }, {
+"base": "LifeDot",
+"class": "EvolvingLifeDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Life/Evolution 1/evolving_life_dot.gd"
+}, {
 "base": "PhysDot",
 "class": "FoodDot",
 "language": "GDScript",
 "path": "res://Dots/Parker/Life/Basic/food_dot.gd"
+}, {
+"base": "PhysDot",
+"class": "GeneratorFoodDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Environment/generator_food_dot.gd"
+}, {
+"base": "CrawlDot",
+"class": "KillerCrawlDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Crawl/killer_crawl_dot.gd"
+}, {
+"base": "KillerCrawlDot",
+"class": "KillerCrawlFriendDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Crawl/killer_crawl_friend_dot.gd"
+}, {
+"base": "PhysDot",
+"class": "KillerWallDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Environment/killer_wall.gd"
 }, {
 "base": "PhysDot",
 "class": "LifeDot",
@@ -44,19 +74,61 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dots/Basic/phys_dot.gd"
 }, {
+"base": "Reference",
+"class": "Step",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Behavioral/Step.gd"
+}, {
+"base": "Step",
+"class": "StepAttack",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Behavioral/Steps/attack_step.gd"
+}, {
+"base": "Step",
+"class": "StepEat",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Behavioral/Steps/eat_step.gd"
+}, {
+"base": "Step",
+"class": "StepRandomJump",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Behavioral/Steps/random_jump_step.gd"
+}, {
+"base": "Step",
+"class": "StepRandomWalk",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Behavioral/Steps/random_walk_step.gd"
+}, {
+"base": "Step",
+"class": "StepWait",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Behavioral/Steps/wait_step.gd"
+}, {
 "base": "PhysDot",
 "class": "WallDot",
 "language": "GDScript",
 "path": "res://Dots/Basic/wall_dot.gd"
 } ]
 _global_script_class_icons={
+"Behavior": "",
 "CrawlDot": "",
 "CrawlFriendDot": "",
 "Dot": "",
+"EvolvingLifeDot": "",
 "FoodDot": "",
+"GeneratorFoodDot": "",
+"KillerCrawlDot": "",
+"KillerCrawlFriendDot": "",
+"KillerWallDot": "",
 "LifeDot": "",
 "NativeLifeDot": "",
 "PhysDot": "",
+"Step": "",
+"StepAttack": "",
+"StepEat": "",
+"StepRandomJump": "",
+"StepRandomWalk": "",
+"StepWait": "",
 "WallDot": ""
 }
 
