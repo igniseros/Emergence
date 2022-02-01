@@ -1,6 +1,8 @@
 extends Sprite
 
 export var grid_node : NodePath
+export var stats : NodePath
+var node
 
 func _ready():
 	set_process(true)
@@ -8,7 +10,7 @@ func _ready():
 func _process(delta):
 	if get_node(grid_node).draw:
 		texture = null
-		set_process(false)
+	update_label()
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -16,27 +18,46 @@ func _input(event):
 		var my = get_local_mouse_position().y
 		mx = floor(mx )
 		my = floor(my)
-		print(Vector2(mx,my))
 		
-		var node = Grid.get_at(Vector2(mx,my))
-		if node is Dot : 
-			print(node.name)
-			$Stats.set_position(node.position + Vector2(0,-1))
-			$Stats.text = node.name
+		node = Grid.get_at(Vector2(mx,my))
+
+func update_label():
+	if node is Dot: 
+			var Stats = get_node(stats) as Label
+			Stats.text = node.name
+			stats_new_line()
 			if(node is EvolvingLifeDot):
 				addEvolvingLifeInfo(node)
 			if(node is FoodDot):
 				addFoodInfo(node)
 
+func add_stat(name, data):
+	var Stats = get_node(stats) as Label	
+	Stats.text += str(name) + ": " + str(data) + "  "
+
+func stats_new_line():
+	var Stats = get_node(stats) as Label	
+	Stats.text += "\n"
+
 func addEvolvingLifeInfo(node : EvolvingLifeDot):
 	node = node as EvolvingLifeDot
-	$Stats.set_position(node.position + Vector2(0,-3 - node.behavior.steps.size()))	
-	$Stats.text += ", energy: " + str(node.energy) + "\n Generation: " + str(node.generation)  + " Age: " + str(node.time) + "\n Mutations: " + str(node.mutations)
+	add_stat("Generation", node.generation)
+	add_stat("Mutations", node.mutations)
+	add_stat("Energy", node.energy)
+	stats_new_line()
+	add_stat("[Reproduction] Cost:", node.reproduction_cost)
+	add_stat("Chance: ", node.reproduction_chance)
+	stats_new_line()
+	add_stat("[Mutation] Scale P", node.mutation_scale_p)
+	add_stat("Scale S", node.mutation_scale_s)
+	add_stat("Chance", node.mutation_chance)
 	for i in range(node.behavior.steps.size()):
 		var step = node.behavior.steps[i] as Step
-		$Stats.text += "\n " + str(node.behavior.steps[i].name)
+		stats_new_line()
+		var p_string = "[ "
 		for p in step.get_parameters():
-			$Stats.text += " [" + str(p) + "] "
-
+			p_string += str(p) + " "
+		add_stat(step.get_name(), p_string + "] ")
+		
 func addFoodInfo(node: FoodDot):
-	$Stats.text += ": " + str(node.nutrition)
+	add_stat("Nutrition", node.nutrition)

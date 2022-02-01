@@ -17,18 +17,7 @@ texture = ExtResource( 4 )
 centered = false
 script = ExtResource( 5 )
 grid_node = NodePath("../GridNode")
-
-[node name="Stats" type="Label" parent="MapViewer"]
-margin_right = 40.0
-margin_bottom = 14.0
-rect_scale = Vector2( 0.06, 0.06 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 0
-text = "<Name>"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+stats = NodePath("../CanvasLayer/Stats")
 
 [node name="GridNode" type="Node2D" parent="."]
 scale = Vector2( 8, 8 )
@@ -39,10 +28,9 @@ use_img = true
 size_x = 2048
 size_y = 2048
 cheap_draw = true
-draw_per = 20
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 1607, 2909 )
+position = Vector2( 1713, 2489 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
 smoothing_enabled = true
@@ -52,5 +40,18 @@ speed = 256
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Stats" type="Label" parent="CanvasLayer"]
+margin_right = 54.0
+margin_bottom = 14.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+text = "<Name>"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_TickTimer_timeout"]

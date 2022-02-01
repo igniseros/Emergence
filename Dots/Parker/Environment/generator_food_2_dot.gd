@@ -1,9 +1,9 @@
 extends PhysDot
 class_name GeneratorFood2Dot
 
-var food_nutrition = 10
+var food_nutrition = 2
 #in food per turn
-var production_chance = .0005
+var production_chance = .01
 
 func _init():
 	#set name

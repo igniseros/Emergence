@@ -9,6 +9,12 @@ func step(dot : LifeDot):
 	s.play(dot)
 	spot = (spot + 1) % steps.size()
 
+func do(dot : LifeDot):
+	for i in range(steps.size()):
+		if(not dot.alive): break
+		var s = steps[i] as Step
+		s.play(dot)
+
 func mutate_parameters(delta):
 	for step in steps:
 		step = step as Step

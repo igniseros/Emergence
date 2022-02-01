@@ -1,8 +1,11 @@
 class_name Step
 
-var name = "step"
+func get_name():
+	return "Step"
 
-func _init():
+func _init(p = []):
+	if(p.size() > 0):
+		set_parameters(p)
 	return self
 
 func get_parameters() -> Array:
@@ -17,3 +20,11 @@ func play(dot : LifeDot):
 
 func get_color_mod():
 	return Color(0,0,0)
+
+func duplicate():
+	var ret = self.get_script().new()
+	var params = []
+	for p in get_parameters():
+		params.append(p)
+	ret.set_parameters(params)
+	return ret

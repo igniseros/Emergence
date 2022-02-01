@@ -7,8 +7,8 @@ var efficency = .25
 #repeats[1,10] and damage[1-15]
 var p = [0.2, 0.2]
 
-func _init():
-	name = "Attack"
+func get_name():
+	return "Attack"
 
 func get_parameters():
 	return p

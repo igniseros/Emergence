@@ -2,8 +2,8 @@ extends Step
 class_name StepWait
 
 var p = []
-func _init():
-	name = "Wait"
+func get_name():
+	return "Wait"
 
 func get_parameters():
 	return p

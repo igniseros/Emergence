@@ -80,18 +80,15 @@ func _draw():
 	if not draw:
 		return
 	
-	for line in Grid.grid:
-		for dot in line:
-			if(dot is Dot):
-				dot = dot as Dot
-				if not dot.name == "Dot":
-					var square1 = Rect2(Vector2(dot.position.x,dot.position.y),Vector2(1,1))
-					draw_rect(square1,dot.color_one)
-					if(not cheap_draw):
-						var square2 = Rect2(Vector2(dot.position.x + .16,dot.position.y + .16),Vector2(.66,.66))
-						var square3 = Rect2(Vector2(dot.position.x + .45,dot.position.y + .45),Vector2(.1,.1))
-						draw_rect(square2,dot.color_two)
-						draw_rect(square3,dot.color_three)
+	for dot in dot_register:
+		if not dot.name == "Dot":
+			var square1 = Rect2(Vector2(dot.position.x,dot.position.y),Vector2(1,1))
+			draw_rect(square1,dot.color_one)
+			if(not cheap_draw):
+				var square2 = Rect2(Vector2(dot.position.x + .16,dot.position.y + .16),Vector2(.66,.66))
+				var square3 = Rect2(Vector2(dot.position.x + .45,dot.position.y + .45),Vector2(.1,.1))
+				draw_rect(square2,dot.color_two)
+				draw_rect(square3,dot.color_three)
 
 #ticks the grid
 func tick():

@@ -1,11 +1,11 @@
 extends Step
 class_name StepRandomJump
 
-var scale = 2
+var scale = 4
 
 var p = [0.5,0.5]
-func _init():
-	name = "Random Jump"
+func get_name():
+	return "Random Jump"
 
 func get_parameters():
 	return p

@@ -2,8 +2,8 @@ extends Step
 class_name StepEat
 
 var p = []
-func _init():
-	name = "Eat"
+func get_name():
+	return "Eat"
 
 func get_parameters():
 	return p

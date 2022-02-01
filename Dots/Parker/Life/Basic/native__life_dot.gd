@@ -1,9 +1,9 @@
 extends LifeDot
 class_name NativeLifeDot
 
-var reproduction_energy_thresh = .4
-var reproduction_cost = .2
-var death_efficeny = .1
+var reproduction_energy_thresh = 2
+var reproduction_cost = .5
+var death_efficeny = .25
 
 func _init():
 	#set name
@@ -13,8 +13,8 @@ func _init():
 	color_two = Color(1,1,1)
 	color_three = Color(0,1,0)
 	
-	energy = .1
-	efficency = 300
+	energy = reproduction_cost
+	efficency = 160
 
 func tick():
 	var choice = floor(randf()*3)

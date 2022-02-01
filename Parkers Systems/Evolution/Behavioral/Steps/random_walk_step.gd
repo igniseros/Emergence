@@ -2,8 +2,8 @@ extends Step
 class_name StepRandomWalk
 
 var p = []
-func _init():
-	name = "Random Walk"
+func get_name():
+	return "Random Walk"
 
 func get_parameters():
 	return p
