@@ -1,7 +1,7 @@
 extends Node2D
 
 export var use_timer = false
-var paused = false
+export var paused = false
 
 onready var grid_node = $GridNode
 
@@ -42,5 +42,4 @@ func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_TAB:
 			paused = not paused
-			
-		
+			grid_node.update()

@@ -2,14 +2,16 @@ extends LifeDot
 class_name EvolvingLifeDot
 
 var behavior : Behavior
-var reproduction_energy_thresh = 15
-var reproduction_cost = 7
+var reproduction_energy_thresh = 2.5
+var reproduction_cost = 2
 var death_efficeny = .5
 var reproduction_chance = .5
-var mutation_scale_p = .15
-var mutation_scale_s = 10
+var mutation_scale_p = .1
+var mutation_scale_s = .2
+var mutation_chance = .7
 var generation = 0
-var possible_step_list = [StepEat,StepEat,StepWait,StepRandomWalk,StepRandomJump,StepAttack]
+var mutations = 0
+var possible_step_list = [StepEat,StepAttack,StepRandomWalk,StepRandomJump]
 var children = []
 
 func _init():
@@ -22,14 +24,15 @@ func _init():
 	color_three = Color(0,0,0)
 	
 	energy = reproduction_cost
-	efficency = 2
+	efficency = 50
 	
 	behavior = Behavior.new()
-	behavior.steps.append_array([StepRandomWalk.new(),StepEat.new()])
+	behavior.steps.append_array([StepEat.new(),StepRandomWalk.new()])
 	
-func tick():
+func life_tick():
 	if energy > reproduction_energy_thresh and randf() < reproduction_chance:
-		reproduce()
+		while energy > reproduction_energy_thresh:
+			if not reproduce(): break
 	else:
 		behavior.step(self)
 
@@ -40,22 +43,23 @@ func reproduce():
 	for dot in in_box:
 		#find empty spot
 		if not dot is Dot:
+			energy -= reproduction_cost	
 			var child = get_script().new() as EvolvingLifeDot
+			child.generation += 1 + generation
+			var newBegavior = Behavior.new()
+			newBegavior.steps =  behavior.steps.duplicate()
+			child.behavior = newBegavior
 			#set postion
 			child.position = position + PDF.box_around[i]
-			child.generation += 1 + generation
-			child.behavior.mutate_steps(mutation_scale_s,possible_step_list)
-			child.behavior.mutate_parameters(mutation_scale_p)
-			child.mutation_scale_s += rand_range(-1*mutation_scale_p,mutation_scale_p) * mutation_scale_p
-			child.mutation_scale_p += rand_range(-1*mutation_scale_p,mutation_scale_p) * mutation_scale_p
-			child.reproduction_chance += rand_range(-1*mutation_scale_p,mutation_scale_p) * mutation_scale_p
-			child.reproduction_cost += rand_range(-1*mutation_scale_p,mutation_scale_p) * mutation_scale_p
-			child.reproduction_energy_thresh *= 1 + rand_range(-1*mutation_scale_p,mutation_scale_p) * mutation_scale_p
-			child.color_one += Color(rand_range(0,.1),rand_range(0,.1),rand_range(0,.1))
+			#possibly mutate
+			if randf() <= mutation_chance:
+				child = mutate_child(child)
+			#set color
+			for step in child.behavior.steps:
+				child.color_one += step.get_color_mod() / child.behavior.steps.size()
 			#add him to the grid
 			grid_node.insert_dot(child)
 			children.append(child)
-			energy -= reproduction_cost
 			
 			#return
 			return true
@@ -63,10 +67,19 @@ func reproduce():
 	
 	return false
 
-func post_death():
-	var g = grid_node
-	grid_node.remove_dot(self)
+func post_death(g):
 	var food = FoodDot.new()
 	food.position = position
 	food.nutrition = reproduction_cost + (energy * death_efficeny)
 	g.insert_dot(food)
+
+func mutate_child(child):
+	child.mutations = mutations + 1
+	child.behavior.mutate_steps(mutation_scale_s,possible_step_list)
+	child.behavior.mutate_parameters(mutation_scale_p)
+	child.mutation_scale_s += rand_range(-1*mutation_scale_p,mutation_scale_p) * mutation_scale_p
+	child.mutation_scale_p += rand_range(-1*mutation_scale_p,mutation_scale_p) * mutation_scale_p
+	child.reproduction_chance += rand_range(-1*mutation_scale_p,mutation_scale_p) * mutation_scale_p
+	child.reproduction_cost += rand_range(-1*mutation_scale_p,mutation_scale_p) * mutation_scale_p
+	child.reproduction_energy_thresh *= 1 + rand_range(-1*mutation_scale_p,mutation_scale_p) * mutation_scale_p
+	return child

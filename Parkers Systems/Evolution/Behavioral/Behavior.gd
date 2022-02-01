@@ -4,6 +4,7 @@ var steps : Array = []
 var spot = 0
 
 func step(dot : LifeDot):
+	spot = spot % steps.size()
 	var s = steps[spot] as Step
 	s.play(dot)
 	spot = (spot + 1) % steps.size()
@@ -24,8 +25,8 @@ func mutate_steps(scale, step_list : Array):
 	#scale just means more edits
 	while i >= 1:
 		i-=1
-		var choice = floor(rand_range(-4,3))
-		var insert_spot = floor(rand_range(0,steps.size()))
+		var choice = floor(rand_range(0,4))
+		var insert_spot = floor(rand_range(1,steps.size()))
 		#choice one is insertrandom step
 		if choice <= 0:
 			steps.append(step_list[floor(rand_range(0,step_list.size()))].new())
@@ -34,6 +35,6 @@ func mutate_steps(scale, step_list : Array):
 			steps.remove(insert_spot)
 			steps.insert(insert_spot,step_list[floor(rand_range(0,step_list.size()))].new())
 		#random remove
-		if choice == 3 and steps.size() > 1:
+		if choice >= 3 and steps.size() > 1:
 			steps.remove(insert_spot)
 

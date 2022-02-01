@@ -24,12 +24,19 @@ func _input(event):
 			$Stats.set_position(node.position + Vector2(0,-1))
 			$Stats.text = node.name
 			if(node is EvolvingLifeDot):
-				node = node as EvolvingLifeDot
-				$Stats.set_position(node.position + Vector2(0,-3 + node.behavior.steps.size()))
-				$Stats.text += "\n Generation: " + str(node.generation) 
-				for i in range(node.behavior.steps.size()):
-					var step = node.behavior.steps[i] as Step
-					$Stats.text += "\n " + str(node.behavior.steps[i].name)
-					for p in step.get_parameters():
-						$Stats.text += " [" + str(p) + "] "
-		
+				addEvolvingLifeInfo(node)
+			if(node is FoodDot):
+				addFoodInfo(node)
+
+func addEvolvingLifeInfo(node : EvolvingLifeDot):
+	node = node as EvolvingLifeDot
+	$Stats.set_position(node.position + Vector2(0,-3 - node.behavior.steps.size()))	
+	$Stats.text += ", energy: " + str(node.energy) + "\n Generation: " + str(node.generation)  + " Age: " + str(node.time) + "\n Mutations: " + str(node.mutations)
+	for i in range(node.behavior.steps.size()):
+		var step = node.behavior.steps[i] as Step
+		$Stats.text += "\n " + str(node.behavior.steps[i].name)
+		for p in step.get_parameters():
+			$Stats.text += " [" + str(p) + "] "
+
+func addFoodInfo(node: FoodDot):
+	$Stats.text += ": " + str(node.nutrition)

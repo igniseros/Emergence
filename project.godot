@@ -40,6 +40,11 @@ _global_script_classes=[ {
 "path": "res://Dots/Parker/Life/Basic/food_dot.gd"
 }, {
 "base": "PhysDot",
+"class": "GeneratorFood2Dot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Environment/generator_food_2_dot.gd"
+}, {
+"base": "PhysDot",
 "class": "GeneratorFoodDot",
 "language": "GDScript",
 "path": "res://Dots/Parker/Environment/generator_food_dot.gd"
@@ -116,6 +121,7 @@ _global_script_class_icons={
 "Dot": "",
 "EvolvingLifeDot": "",
 "FoodDot": "",
+"GeneratorFood2Dot": "",
 "GeneratorFoodDot": "",
 "KillerCrawlDot": "",
 "KillerCrawlFriendDot": "",
@@ -180,4 +186,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/default_clear_color=Color( 0.172549, 0.172549, 0.172549, 1 )
 environment/default_environment="res://default_env.tres"

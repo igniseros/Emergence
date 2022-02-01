@@ -62,9 +62,7 @@ func reproduce():
 	
 	return false
 
-func post_death():
-	var g = grid_node
-	grid_node.remove_dot(self)
+func post_death(g):
 	var food = FoodDot.new()
 	food.position = position
 	food.nutrition = 0.1 + (energy * death_efficeny)

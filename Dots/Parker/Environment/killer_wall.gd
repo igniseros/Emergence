@@ -1,7 +1,7 @@
 extends PhysDot
 class_name KillerWallDot
 
-var chance = .2
+var chance = .5
 
 func _init():
 	#set name

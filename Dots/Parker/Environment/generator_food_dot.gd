@@ -1,7 +1,7 @@
 extends PhysDot
 class_name GeneratorFoodDot
 
-var food_nutrition = 100
+var food_nutrition = 1
 
 func _init():
 	#set name
