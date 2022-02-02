@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "PhysDot",
+"base": "CrawlDot",
 "class": "BugDot",
 "language": "GDScript",
 "path": "res://Dots/Sandys_Dots/bug_dot.gd"

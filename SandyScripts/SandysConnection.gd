@@ -1,4 +1,5 @@
 extends Node
 
 func _ready():
-	TheGreatConnection.add_color_connection(Color8(52, 79, 105), BugDot)
+	# map pixel art color in map to the corrisponding dot
+	TheGreatConnection.add_color_connection(Color8(105, 52, 52), BugDot)
