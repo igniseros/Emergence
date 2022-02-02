@@ -14,8 +14,7 @@ func move( direction : Vector2 ):
 	return false
 
 func set_position( pos : Vector2):
-	var replacement = Dot.new()
-	replacement.position = position
+	var replacement = 0
 	Grid.grid[position.x][position.y] = replacement
 	position = pos
 	Grid.grid[position.x][position.y] = self

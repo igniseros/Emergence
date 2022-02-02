@@ -9,7 +9,9 @@ export var size_y = 256
 export var draw = true
 export var cheap_draw = false
 export var draw_per = 1
-var dot_register = []
+var dot_register = [] #all dots
+var tick_registrer = [] #dots that tick
+var starred_dots = []
 
 func _ready():
 	set_up()
@@ -22,6 +24,8 @@ func set_up():
 		print("loading image")
 		var bag_of_dots = Converter.do_the_thing(image.get_data()) #converter does the thing
 		for dot in bag_of_dots: #empty bag of dots onto grid
+			if dot is EvolvingLifeDot:
+				starred_dots.append(dot)
 			insert_dot(dot)
 
 #makes a new grid
@@ -56,16 +60,18 @@ func insert_dot(dot : Dot):
 	Grid.grid[dot.position.x][dot.position.y] = dot
 	#load dot to register
 	dot_register.append(dot)
+	if(dot.will_tick()):
+		tick_registrer.append(dot)
 	#update dot's grid
 	dot.grid_node = self
 
 func remove_dot(dot : Dot):
 	#if the dot is there, remove it
 	if(dot_register.has(dot)): 
+		if(dot.will_tick()):
+			tick_registrer.remove(tick_registrer.find(dot))
 		dot_register.remove(dot_register.find(dot))
-		var air =  Dot.new()
-		air.position = dot.position
-		Grid.grid[dot.position.x][dot.position.y] = air
+		Grid.grid[dot.position.x][dot.position.y] = 0
 		dot.grid_node = null
 	
 	
@@ -74,23 +80,20 @@ func _draw():
 	if not draw:
 		return
 	
-	for line in Grid.grid:
-		for dot in line:
-			if(dot is Dot):
-				dot = dot as Dot
-				if not dot.name == "Dot":
-					var square1 = Rect2(Vector2(dot.position.x,dot.position.y),Vector2(1,1))
-					draw_rect(square1,dot.color_one)
-					if(not cheap_draw):
-						var square2 = Rect2(Vector2(dot.position.x + .16,dot.position.y + .16),Vector2(.66,.66))
-						var square3 = Rect2(Vector2(dot.position.x + .45,dot.position.y + .45),Vector2(.1,.1))
-						draw_rect(square2,dot.color_two)
-						draw_rect(square3,dot.color_three)
+	for dot in dot_register:
+		if not dot.name == "Dot":
+			var square1 = Rect2(Vector2(dot.position.x,dot.position.y),Vector2(1,1))
+			draw_rect(square1,dot.color_one)
+			if(not cheap_draw):
+				var square2 = Rect2(Vector2(dot.position.x + .16,dot.position.y + .16),Vector2(.66,.66))
+				var square3 = Rect2(Vector2(dot.position.x + .45,dot.position.y + .45),Vector2(.1,.1))
+				draw_rect(square2,dot.color_two)
+				draw_rect(square3,dot.color_three)
 
 #ticks the grid
 func tick():
 	Grid.time += 1
-	for dot in dot_register:
+	for dot in tick_registrer:
 		if(dot is Dot):
-			(dot as Dot).tick()
+			(dot as Dot).tick_wrap()
 	if Grid.time % draw_per == 0: update()

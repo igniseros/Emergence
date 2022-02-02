@@ -1,9 +1,10 @@
 extends PhysDot
 class_name LifeDot
 
-var energy = 0
+var energy : float = 0
 var efficency : float = 1
 var alive = true
+var basil_metabolic_rate = 1
 
 func _init():
 	#set name
@@ -14,10 +15,20 @@ func _init():
 	color_three = Color(0,1,0)
 
 func tick():
+	use_energy(basil_metabolic_rate)
+	if(alive):
+		life_tick()
+
+func life_tick():
 	pass
 
-func use_energy(e):
-	energy -= e / efficency
+func will_tick():
+	return true
+
+func use_energy(e, killed = false):
+	energy -= float(e) / efficency
+	if(energy < 0):
+		die(killed)
 
 func walk(d : Vector2):
 	if(d.length() >= 2):
@@ -35,10 +46,13 @@ func jump(d : Vector2):
 	else:
 		die()
 
-func die():
+func die(killed = false):
 	if alive:
 		alive = false
-		post_death()
+		var g = grid_node
+		grid_node.remove_dot(self)
+		if not killed:
+			post_death(g)
 
-func post_death():
+func post_death(g):
 	pass

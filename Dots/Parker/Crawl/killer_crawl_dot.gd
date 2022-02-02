@@ -1,14 +1,14 @@
-extends PhysDot
-class_name CrawlDot
+extends CrawlDot
+class_name KillerCrawlDot
 
-var direction : Vector2
+var chance = .5
 
 func _init():
 	randomize()
 	#set name
-	name = "Crawl"
+	name = "Killer Crawl"
 	#set clors
-	color_one = Color(.75,0,.75)
+	color_one = Color(.85,0,.55)
 	color_two = Color(.50,0,.50)
 	color_three = Color(.75,0,.25)
 	
@@ -22,6 +22,12 @@ func tick():
 	if (not move(direction)):
 		direction = rand_direction()
 		move(direction)
-
-func will_tick():
-	return true
+	
+	var state = randf()
+	
+	if state < chance:
+		var box_around = PDF.box_around_self(2)
+		#for each dot in a box sized 2 around self
+		for dot in PDF.look_at_array(self, box_around):
+			if dot is LifeDot:
+				dot.die()
