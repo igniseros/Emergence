@@ -2,6 +2,8 @@ extends Node2D
 
 export var use_timer = false
 export var paused = false
+var total = 0
+var ticks = 0
 
 onready var grid_node = $GridNode
 
@@ -13,10 +15,11 @@ func _ready():
 func _on_TickTimer_timeout():
 	if paused: return
 	if(use_timer):
+		grid_node.draw = true
 		grid_node.tick()
 
 func _process(delta):
-	if paused: return
+	if paused or use_timer: return
 	wait_update()
 	pass
 
@@ -29,6 +32,7 @@ func wait_ready():
 	grid_node.draw = false
 
 func wait_update():
+	
 	grid_node.tick()
 	if(Grid.time > time and not grid_node.draw):
 		print("100% processed")

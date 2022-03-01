@@ -14,7 +14,7 @@ func _init():
 	color_three = Color(0,1,0)
 	
 	energy = reproduction_cost
-	efficency = 160
+	efficency = 1
 
 func tick():
 	var choice = floor(randf()*3)

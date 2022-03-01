@@ -9,6 +9,21 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "PushableDot",
+"class": "AttachableDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Structure/Attachables/attachable_dot.gd"
+}, {
+"base": "AttachableDot",
+"class": "AttachableFollowerDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Structure/Attachables/attachable_follower_dot.gd"
+}, {
+"base": "AttachableDot",
+"class": "AttachableMasterDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Structure/Attachables/attachable_master_dot.gd"
+}, {
 "base": "Reference",
 "class": "Behavior",
 "language": "GDScript",
@@ -42,7 +57,7 @@ _global_script_classes=[ {
 "base": "PhysDot",
 "class": "FoodDot",
 "language": "GDScript",
-"path": "res://Dots/Parker/Life/Basic/food_dot.gd"
+"path": "res://Dots/Parker/Environment/food_dot.gd"
 }, {
 "base": "PhysDot",
 "class": "GeneratorFood2Dot",
@@ -53,6 +68,11 @@ _global_script_classes=[ {
 "class": "GeneratorFoodDot",
 "language": "GDScript",
 "path": "res://Dots/Parker/Environment/generator_food_dot.gd"
+}, {
+"base": "AttachableDot",
+"class": "GlueDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Structure/Attachables/glue_dot.gd"
 }, {
 "base": "EvolvingLifeDot",
 "class": "HerbavoreEvolvingLifeDot",
@@ -79,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dots/Parker/Life/Basic/life_dot.gd"
 }, {
+"base": "Reference",
+"class": "Matrix",
+"language": "GDScript",
+"path": "res://Parkers Systems/Matrix Math/matrix.gd"
+}, {
 "base": "LifeDot",
 "class": "NativeLifeDot",
 "language": "GDScript",
@@ -88,6 +113,11 @@ _global_script_classes=[ {
 "class": "PhysDot",
 "language": "GDScript",
 "path": "res://Dots/Basic/phys_dot.gd"
+}, {
+"base": "PhysDot",
+"class": "PushableDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Structure/pushable_dot.gd"
 }, {
 "base": "Reference",
 "class": "Step",
@@ -119,12 +149,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Parkers Systems/Evolution/Behavioral/Steps/wait_step.gd"
 }, {
+"base": "Reference",
+"class": "Vector",
+"language": "GDScript",
+"path": "res://Parkers Systems/Matrix Math/vector.gd"
+}, {
 "base": "PhysDot",
 "class": "WallDot",
 "language": "GDScript",
 "path": "res://Dots/Basic/wall_dot.gd"
 } ]
 _global_script_class_icons={
+"AttachableDot": "",
+"AttachableFollowerDot": "",
+"AttachableMasterDot": "",
 "Behavior": "",
 "CarnivoreEvolvingLifeDot": "",
 "CrawlDot": "",
@@ -134,19 +172,23 @@ _global_script_class_icons={
 "FoodDot": "",
 "GeneratorFood2Dot": "",
 "GeneratorFoodDot": "",
+"GlueDot": "",
 "HerbavoreEvolvingLifeDot": "",
 "KillerCrawlDot": "",
 "KillerCrawlFriendDot": "",
 "KillerWallDot": "",
 "LifeDot": "",
+"Matrix": "",
 "NativeLifeDot": "",
 "PhysDot": "",
+"PushableDot": "",
 "Step": "",
 "StepAttack": "",
 "StepEat": "",
 "StepRandomJump": "",
 "StepRandomWalk": "",
 "StepWait": "",
+"Vector": "",
 "WallDot": ""
 }
 
@@ -160,7 +202,7 @@ config/icon="res://icon.png"
 
 Grid="*res://grid.gd"
 Converter="*res://Converter.gd"
-PDF="*res://Dots/parkers_dot_functions.gd"
+PDF="*res://Parkers Systems/parkers_dot_functions.gd"
 TheGreatConnection="*res://the_great_connection.gd"
 
 [display]

@@ -13,9 +13,12 @@ func set_parameters(x):
 
 #plays the step, parameters must be correct amount and be floats between 0 and 1
 func play(dot : LifeDot):
-	#dot.use_energy(.1)
+	dot.use_energy(dot.basil_metabolic_rate)
+	if not dot.alive : return
+	
 	#look at the box around myself	
 	var in_box = PDF.look_at_array(dot,PDF.box_around)
+	
 	for ndot in in_box:
 		#if i find food
 		if ndot is FoodDot:
@@ -26,6 +29,6 @@ func play(dot : LifeDot):
 			dot.grid_node.remove_dot(ndot)
 			#end turn
 			return
-
+	
 func get_color_mod():
 	return Color(.5,1,0)

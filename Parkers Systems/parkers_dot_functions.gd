@@ -17,6 +17,12 @@ func look_at_array(sender : Dot, directions : Array):
 func rand_direction():
 	return Vector2(ceil(rand_range(-2,1)),ceil(rand_range(-2,1)))
 
+func rand_direction_not_zero():
+	var ret = rand_direction()
+	while ret == Vector2(0,0):
+		ret = rand_direction()
+	return ret
+
 #box_around_self
 func box_around_self(size):
 	var box = []

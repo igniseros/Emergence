@@ -7,6 +7,10 @@ var color_two : Color = Color(0,0,0)
 var color_three : Color = Color(0,0,0)
 var time = 0 #should sync between everyone
 var grid_node : Node2D
+var _first_time = true
+
+func pre_first_tick():
+	pass
 
 func isEmpty():
 	return true
@@ -20,3 +24,6 @@ func tick():
 
 func will_tick():
 	false
+
+func _to_string():
+	return name + " @" + str(position)

@@ -24,9 +24,11 @@ func set_up():
 		print("loading image")
 		var bag_of_dots = Converter.do_the_thing(image.get_data()) #converter does the thing
 		for dot in bag_of_dots: #empty bag of dots onto grid
-			if dot is EvolvingLifeDot:
-				starred_dots.append(dot)
 			insert_dot(dot)
+	
+	#call prefirsttick()
+	for dot in dot_register:
+		dot.pre_first_tick()
 
 #makes a new grid
 func flush_grid():
@@ -36,7 +38,7 @@ func flush_grid():
 		Grid.grid.append([])
 		for _y in range(size_y):
 #			var dot = Dot.new()
-			Grid.grid[x].append(0)
+			Grid.grid[x].append(null)
 
 #loads a grid from file
 func load_grid():
@@ -82,7 +84,7 @@ func _draw():
 	
 	for dot in dot_register:
 		if not dot.name == "Dot":
-			var square1 = Rect2(Vector2(dot.position.x,dot.position.y),Vector2(1,1))
+			var square1 = Rect2(dot.position,Vector2(1,1))
 			draw_rect(square1,dot.color_one)
 			if(not cheap_draw):
 				var square2 = Rect2(Vector2(dot.position.x + .16,dot.position.y + .16),Vector2(.66,.66))
@@ -94,6 +96,5 @@ func _draw():
 func tick():
 	Grid.time += 1
 	for dot in tick_registrer:
-		if(dot is Dot):
-			(dot as Dot).tick_wrap()
+		(dot as Dot).tick_wrap()
 	if Grid.time % draw_per == 0: update()

@@ -2,6 +2,7 @@ extends Sprite
 
 export var grid_node : NodePath
 export var stats : NodePath
+export var grid_stats : NodePath
 var node
 
 func _ready():
@@ -11,6 +12,7 @@ func _process(delta):
 	if get_node(grid_node).draw:
 		texture = null
 	update_label()
+	get_node(grid_stats).text = str(Grid.time)
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -41,12 +43,15 @@ func stats_new_line():
 
 func addEvolvingLifeInfo(node : EvolvingLifeDot):
 	node = node as EvolvingLifeDot
+	add_stat("Team", node.team)
+	stats_new_line()
 	add_stat("Generation", node.generation)
 	add_stat("Mutations", node.mutations)
 	add_stat("Energy", node.energy)
 	stats_new_line()
 	add_stat("[Reproduction] Cost:", node.reproduction_cost)
 	add_stat("Chance: ", node.reproduction_chance)
+	add_stat("Threshhold: ", node.reproduction_energy_thresh)
 	stats_new_line()
 	add_stat("[Mutation] Scale P", node.mutation_scale_p)
 	add_stat("Scale S", node.mutation_scale_s)

@@ -32,7 +32,7 @@ func mutate_steps(scale, step_list : Array):
 	while i >= 1:
 		i-=1
 		var choice = floor(rand_range(0,4))
-		var insert_spot = floor(rand_range(1,steps.size()))
+		var insert_spot = floor(rand_range(0,steps.size()))
 		#choice one is insertrandom step
 		if choice <= 0:
 			steps.append(step_list[floor(rand_range(0,step_list.size()))].new())
