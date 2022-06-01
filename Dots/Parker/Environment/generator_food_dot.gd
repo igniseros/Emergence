@@ -15,7 +15,7 @@ func will_tick():
 	return true
 
 func tick():
-	var box_around = PDF.box_around_self(1)
+	var box_around = PDF.box_around_self(3)
 	#for each dot in a box sized 2 around self
 	var i=0
 	for dot in PDF.look_at_array(self, box_around):

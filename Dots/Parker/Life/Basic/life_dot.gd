@@ -1,13 +1,13 @@
 extends PhysDot
 class_name LifeDot
 
+var health : float = 5
 var energy : float = 0
 var efficency : float = 1
-const _e_scale = 50
 var alive = true
 const basil_metabolic_rate = .5
 var team : String= ""
-var max_age = 500
+var max_age = 20000
 const walk_energy = 1
 
 func _init():
@@ -32,12 +32,17 @@ func will_tick():
 	return true
 
 func get_true_efficency():
-	return efficency * _e_scale
+	return efficency
 
-func use_energy(e, killed = false):
-	energy -= float(e) / (efficency * _e_scale)
+func use_energy(e , true_use : bool = false, killed = false):
+	energy -= float(e) / (1 if true_use else efficency)
 	if(energy < 0):
 		die(killed)
+
+func take_damage(d):
+	health -= d
+	if health <= 0:
+		die()
 
 func walk(d : Vector2):
 	if(d.length() >= 2):
@@ -58,8 +63,8 @@ func jump(d : Vector2):
 func die(killed = false):
 	if alive:
 		alive = false
-		var g = grid_node
-		grid_node.remove_dot(self)
+		var g = Grid
+		Grid.remove_dot(self)
 		if not killed:
 			post_death(g)
 

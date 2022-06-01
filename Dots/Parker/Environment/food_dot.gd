@@ -3,9 +3,9 @@ class_name FoodDot
 
 var nutrition = 5
 #how much less per turn
-const decay_rate_l = .01
+const decay_rate_l = 0
 #how ratio per turn
-const decay_rate_e = .99
+const decay_rate_e = 1
 
 func _init():
 	#set name
@@ -23,4 +23,4 @@ func tick():
 	nutrition -= decay_rate_l
 	nutrition *= decay_rate_e
 	if nutrition < 0:
-		grid_node.remove_dot(self)
+		Grid.remove_dot(self)

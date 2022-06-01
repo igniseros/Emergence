@@ -13,7 +13,6 @@ func set_parameters(x):
 
 #plays the step, parameters must be correct amount and be floats between 0 and 1
 func play(dot : LifeDot):
-	dot.use_energy(dot.basil_metabolic_rate)
 	if not dot.alive : return
 	
 	#look at the box around myself	

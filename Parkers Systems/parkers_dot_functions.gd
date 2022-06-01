@@ -24,10 +24,15 @@ func rand_direction_not_zero():
 	return ret
 
 #box_around_self
-func box_around_self(size):
+func box_around_self(size) -> Array:
 	var box = []
-	for x in range(size*2+2):
-		for y in range(size*2+2):
-			if(x != 0 and y != 0):
-				box.append(Vector2(x-size-1,y-size-1))
+	for x in range(size*2+1):
+		for y in range(size*2+1):
+			if not (x-size == 0 and y-size == 0):
+				box.append(Vector2(x-size,y-size))
 	return box
+
+func float2dir(xf,yf) -> Vector2:
+	var x = round(xf * 2) - 1
+	var y = round(yf * 2) - 1 
+	return Vector2(x,y)

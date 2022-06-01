@@ -1,10 +1,10 @@
 extends PhysDot
 class_name GeneratorFood2Dot
 
-var food_nutrition = 200000
+var food_nutrition = 1
 #in food per turn
-var production_chance = 1.0/25000
-var preproduce = 100
+var production_chance = 1/10000.0
+var preproduce = 1000
 
 func _init():
 	#set name
@@ -32,14 +32,14 @@ func makefood(chance):
 	for dot in PDF.look_at_array(self, box_around):
 		if randf() < chance:
 			if dot is Dot and dot.name == "Dot":
-				grid_node.remove_dot(dot)
+				Grid.remove_dot(dot)
 				var food = FoodDot.new()
 				food.position = position + box_around[i]
 				food.nutrition = food_nutrition
-				grid_node.insert_dot(food)
+				Grid.insert_dot(food)
 			if not dot is Dot:
 				var food = FoodDot.new()
 				food.position = position + box_around[i]
 				food.nutrition = food_nutrition
-				grid_node.insert_dot(food)
+				Grid.insert_dot(food)
 		i+=1

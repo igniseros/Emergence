@@ -29,10 +29,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Parkers Systems/Evolution/Behavioral/Behavior.gd"
 }, {
-"base": "EvolvingLifeDot",
-"class": "CarnivoreEvolvingLifeDot",
+"base": "Dot",
+"class": "ColorDot",
 "language": "GDScript",
-"path": "res://Dots/Parker/Life/Evolution 1/carnivor_elife_dot.gd"
+"path": "res://Dots/Parker/Single Use/color_dot.gd"
+}, {
+"base": "ComplexMemoryBrain",
+"class": "ComplexBatchMemoryBrain",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Brains/ComplexBatchMemoryBrain.gd"
+}, {
+"base": "Reference",
+"class": "ComplexBrain",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Brains/MultiStageBrain.gd"
+}, {
+"base": "Reference",
+"class": "ComplexMemoryBrain",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Brains/ComplexMemoryBrain.gd"
 }, {
 "base": "PhysDot",
 "class": "CrawlDot",
@@ -45,14 +60,19 @@ _global_script_classes=[ {
 "path": "res://Dots/Parker/Crawl/crawl_friend_dot.gd"
 }, {
 "base": "Reference",
+"class": "DisplayItem",
+"language": "GDScript",
+"path": "res://Dots/Parker/UI/DisplayItem.gd"
+}, {
+"base": "PhysDot",
+"class": "DodgingBrainDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Brains/DodgingBrainDot.gd"
+}, {
+"base": "Reference",
 "class": "Dot",
 "language": "GDScript",
 "path": "res://Dots/Basic/dot.gd"
-}, {
-"base": "LifeDot",
-"class": "EvolvingLifeDot",
-"language": "GDScript",
-"path": "res://Dots/Parker/Life/Evolution 1/evolving_life_dot.gd"
 }, {
 "base": "PhysDot",
 "class": "FoodDot",
@@ -74,11 +94,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dots/Parker/Structure/Attachables/glue_dot.gd"
 }, {
-"base": "EvolvingLifeDot",
-"class": "HerbavoreEvolvingLifeDot",
-"language": "GDScript",
-"path": "res://Dots/Parker/Life/Evolution 1/herbavor_elife_dot.gd"
-}, {
 "base": "CrawlDot",
 "class": "KillerCrawlDot",
 "language": "GDScript",
@@ -98,6 +113,11 @@ _global_script_classes=[ {
 "class": "LifeDot",
 "language": "GDScript",
 "path": "res://Dots/Parker/Life/Basic/life_dot.gd"
+}, {
+"base": "ReproducingLifeDot",
+"class": "LifeWithBrain",
+"language": "GDScript",
+"path": "res://Dots/Parker/Life/Life 2.0/life_with_brain.gd"
 }, {
 "base": "Reference",
 "class": "Matrix",
@@ -119,6 +139,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dots/Parker/Structure/pushable_dot.gd"
 }, {
+"base": "LifeDot",
+"class": "ReproducingLifeDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Life/Basic/reproducing_life_dot.gd"
+}, {
+"base": "Reference",
+"class": "SimpleBrain",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Brains/Simple_Brain.gd"
+}, {
+"base": "SimpleBrain",
+"class": "SimpleMemoryBrain",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Brains/SimpleMemoryBrain.gd"
+}, {
 "base": "Reference",
 "class": "Step",
 "language": "GDScript",
@@ -135,19 +170,14 @@ _global_script_classes=[ {
 "path": "res://Parkers Systems/Evolution/Behavioral/Steps/eat_step.gd"
 }, {
 "base": "Step",
-"class": "StepRandomJump",
-"language": "GDScript",
-"path": "res://Parkers Systems/Evolution/Behavioral/Steps/random_jump_step.gd"
-}, {
-"base": "Step",
-"class": "StepRandomWalk",
-"language": "GDScript",
-"path": "res://Parkers Systems/Evolution/Behavioral/Steps/random_walk_step.gd"
-}, {
-"base": "Step",
 "class": "StepWait",
 "language": "GDScript",
 "path": "res://Parkers Systems/Evolution/Behavioral/Steps/wait_step.gd"
+}, {
+"base": "Step",
+"class": "StepWalk",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Behavioral/Steps/walk_step.gd"
 }, {
 "base": "Reference",
 "class": "Vector",
@@ -164,30 +194,36 @@ _global_script_class_icons={
 "AttachableFollowerDot": "",
 "AttachableMasterDot": "",
 "Behavior": "",
-"CarnivoreEvolvingLifeDot": "",
+"ColorDot": "",
+"ComplexBatchMemoryBrain": "",
+"ComplexBrain": "",
+"ComplexMemoryBrain": "",
 "CrawlDot": "",
 "CrawlFriendDot": "",
+"DisplayItem": "",
+"DodgingBrainDot": "",
 "Dot": "",
-"EvolvingLifeDot": "",
 "FoodDot": "",
 "GeneratorFood2Dot": "",
 "GeneratorFoodDot": "",
 "GlueDot": "",
-"HerbavoreEvolvingLifeDot": "",
 "KillerCrawlDot": "",
 "KillerCrawlFriendDot": "",
 "KillerWallDot": "",
 "LifeDot": "",
+"LifeWithBrain": "",
 "Matrix": "",
 "NativeLifeDot": "",
 "PhysDot": "",
 "PushableDot": "",
+"ReproducingLifeDot": "",
+"SimpleBrain": "",
+"SimpleMemoryBrain": "",
 "Step": "",
 "StepAttack": "",
 "StepEat": "",
-"StepRandomJump": "",
-"StepRandomWalk": "",
 "StepWait": "",
+"StepWalk": "",
 "Vector": "",
 "WallDot": ""
 }

@@ -3,7 +3,7 @@
 [ext_resource path="res://simple_camera.gd" type="Script" id=1]
 [ext_resource path="res://grid_node.gd" type="Script" id=2]
 [ext_resource path="res://Sims/Sim.gd" type="Script" id=3]
-[ext_resource path="res://Maps/Parker/Life/life_015_tubes.png" type="Texture" id=4]
+[ext_resource path="res://Maps/Basic/map11.png" type="Texture" id=4]
 [ext_resource path="res://Sims/MapViewer.gd" type="Script" id=5]
 
 [node name="Sim" type="Node2D"]
@@ -17,7 +17,6 @@ texture = ExtResource( 4 )
 centered = false
 script = ExtResource( 5 )
 grid_node = NodePath("../GridNode")
-stats = NodePath("../CanvasLayer/Stats")
 grid_stats = NodePath("../CanvasLayer/GridStats")
 
 [node name="GridNode" type="Node2D" parent="."]
@@ -25,42 +24,25 @@ scale = Vector2( 8, 8 )
 z_index = -1
 script = ExtResource( 2 )
 image = ExtResource( 4 )
-use_img = true
-size_x = 2048
-size_y = 2048
 cheap_draw = true
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2( 2014, 2225 )
+position = Vector2( 249, 235 )
 current = true
 smoothing_enabled = true
 script = ExtResource( 1 )
 speed = 256
 
 [node name="TickTimer" type="Timer" parent="."]
-wait_time = 0.125
+wait_time = 10.0
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Stats" type="Label" parent="CanvasLayer"]
-margin_right = 54.0
-margin_bottom = 14.0
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 0
-text = "<Name>"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GridStats" type="Label" parent="CanvasLayer"]
 margin_left = 440.0
 margin_right = 480.0
 margin_bottom = 14.0
 text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_TickTimer_timeout"]
