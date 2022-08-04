@@ -1,7 +1,6 @@
 extends Node2D
 
 #starting variables
-export var image : Texture
 export var draw = true
 export var cheap_draw = false
 export var draw_per = 1
@@ -9,8 +8,8 @@ var starred_dots = []
 
 func _ready():
 	Grid.connect("_on_tick",self,"_on_tick")
+	Grid.set_gridnode(self)
 	randomize()
-	Grid.load_image(image)
 	
 	
 #draws the grid
@@ -32,11 +31,12 @@ func _on_tick():
 	update()
 
 func _input(event):
-	if event is InputEventMouseButton and event.is_action_released("left_mouse"):
-		var mx = get_local_mouse_position().x
-		var my = get_local_mouse_position().y
-		mx = floor(mx )
-		my = floor(my)
-		
-		var node = Grid.get_at(Vector2(mx,my))
-		if node is Dot : node._on_click()
+	pass
+#	if event is InputEventMouseButton and event.is_action_released("left_mouse"):
+#		var mx = get_local_mouse_position().x
+#		var my = get_local_mouse_position().y
+#		mx = floor(mx )
+#		my = floor(my)
+#
+#		var node = Grid.get_at(Vector2(mx,my))
+#		if node is Dot : node._on_click()

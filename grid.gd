@@ -6,8 +6,28 @@ var tick_registrer = [] #dots that tick
 var time = 0
 var size_x = 2024
 var size_y = 2024
+var grid_node : Node2D
+
+var paused = true
+var using_timer = false
+var elapsed_since_last_tick = 0
+var timer_per_tick = .25
 
 signal _on_tick
+
+func _ready():
+	set_process(true)
+
+func _process(delta):
+	if not paused:
+		if not using_timer:
+			tick()
+		if using_timer:
+			if elapsed_since_last_tick > timer_per_tick:
+				tick()
+				elapsed_since_last_tick = 0
+			else:
+				elapsed_since_last_tick += delta
 
 func get_at(pos : Vector2):
 	if good_pos(pos):
@@ -77,3 +97,6 @@ func load_image(image):
 	#call prefirsttick()
 	for dot in Grid.dot_register:
 		dot.pre_first_tick()
+
+func set_gridnode(node):
+	grid_node = node

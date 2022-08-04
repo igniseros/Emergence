@@ -19,8 +19,9 @@ func _file_selected(path):
 		gptb.text = path
 		TheGreatConnection.load_sim(path)
 		TheGreatConnection.grid_has_path = true
-	else:
+	if path.split('.')[-1] == "png":
 		gptb.text = "no-path"
 		var image : Texture = load(path)
 		Grid.load_image(image)
 		TheGreatConnection.grid_has_path = false
+	Grid.grid_node.update()
