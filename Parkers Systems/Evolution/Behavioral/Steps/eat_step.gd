@@ -25,9 +25,9 @@ func play(dot : LifeDot):
 			#add energy
 			dot.energy += ndot.nutrition
 			#remove dot
-			dot.grid_node.remove_dot(ndot)
+			Grid.remove_dot(ndot)
 			#end turn
 			return
 	
 func get_color_mod():
-	return Color(.5,1,0)
+	return Color(0,1,0)

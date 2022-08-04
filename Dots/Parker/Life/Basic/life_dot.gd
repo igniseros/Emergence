@@ -9,6 +9,7 @@ const basil_metabolic_rate = .5
 var team : String= ""
 var max_age = 20000
 const walk_energy = 1
+var death_threshhold = .5
 
 func _init():
 	#set name
@@ -36,7 +37,7 @@ func get_true_efficency():
 
 func use_energy(e , true_use : bool = false, killed = false):
 	energy -= float(e) / (1 if true_use else efficency)
-	if(energy < 0):
+	if(energy < death_threshhold):
 		die(killed)
 
 func take_damage(d):

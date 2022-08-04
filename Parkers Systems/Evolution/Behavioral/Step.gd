@@ -28,3 +28,6 @@ func duplicate():
 		params.append(p)
 	ret.set_parameters(params)
 	return ret
+
+func _to_string():
+	return get_name()

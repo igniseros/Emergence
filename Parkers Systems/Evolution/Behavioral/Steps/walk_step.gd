@@ -13,7 +13,8 @@ func set_parameters(x):
 
 #plays the step, parameters must be correct amount and be floats between 0 and 1
 func play(dot : LifeDot):
-	dot.walk(PDF.float2dir(p[0],p[1]))
+	
+	dot.walk(PDF.float2dir(randf(),randf()))
 
 func get_color_mod():
-	return Color(0,0,0.05)
+	return Color(0,0,1)

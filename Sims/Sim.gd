@@ -12,8 +12,6 @@ func _ready():
 	set_process(false)
 	if not use_timer: set_process(true)
 	wait_ready()
-	print("gonna hope")
-	TheGreatConnection.load_sim("user://sim.grid")
 	
 
 func _on_TickTimer_timeout():
@@ -25,8 +23,6 @@ func _on_TickTimer_timeout():
 func _process(delta):
 	if paused or use_timer: return
 	wait_update()
-#	if Grid.time == 15:
-#		TheGreatConnection.save_sim("user://sim.grid")
 
 export var time = 0
 export var progress_delta = 0.01

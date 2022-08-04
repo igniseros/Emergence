@@ -1,7 +1,7 @@
 extends PhysDot
 class_name FoodDot
 
-var nutrition = 5
+var nutrition = 1
 #how much less per turn
 const decay_rate_l = 0
 #how ratio per turn
@@ -22,5 +22,6 @@ func will_tick():
 func tick():
 	nutrition -= decay_rate_l
 	nutrition *= decay_rate_e
+	color_one = Color(nutrition/200 + .5,nutrition/200 + .5,0)
 	if nutrition < 0:
 		Grid.remove_dot(self)

@@ -10,18 +10,7 @@ var starred_dots = []
 func _ready():
 	Grid.connect("_on_tick",self,"_on_tick")
 	randomize()
-	print("loading image")
-	var bag_of_dots = Converter.do_the_thing(image.get_data()) #converter does the thing
-	Grid.flush_grid()
-	var _id = 0
-	for dot in bag_of_dots: #empty bag of dots onto grid
-		dot.ID = _id
-		Grid.insert_dot(dot)
-		_id += 1
-	
-	#call prefirsttick()
-	for dot in Grid.dot_register:
-		dot.pre_first_tick()
+	Grid.load_image(image)
 	
 	
 #draws the grid
@@ -41,3 +30,13 @@ func _draw():
 
 func _on_tick():
 	update()
+
+func _input(event):
+	if event is InputEventMouseButton and event.is_action_released("left_mouse"):
+		var mx = get_local_mouse_position().x
+		var my = get_local_mouse_position().y
+		mx = floor(mx )
+		my = floor(my)
+		
+		var node = Grid.get_at(Vector2(mx,my))
+		if node is Dot : node._on_click()

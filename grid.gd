@@ -4,8 +4,8 @@ var grid = []
 var dot_register = [] #all dots
 var tick_registrer = [] #dots that tick
 var time = 0
-var size_x = 1024
-var size_y = 1024
+var size_x = 2024
+var size_y = 2024
 
 signal _on_tick
 
@@ -56,7 +56,6 @@ func remove_dot(dot : Dot):
 			tick_registrer.remove(tick_registrer.find(dot))
 		dot_register.remove(dot_register.find(dot))
 		Grid.grid[dot.position.x][dot.position.y] = 0
-		dot.grid_node = null
 
 #ticks the grid
 func tick():
@@ -64,3 +63,17 @@ func tick():
 	for dot in tick_registrer:
 		(dot as Dot).tick_wrap()
 	emit_signal("_on_tick")
+
+func load_image(image):
+	print("loading image")
+	var bag_of_dots = Converter.do_the_thing(image.get_data()) #converter does the thing
+	flush_grid()
+	var _id = 0
+	for dot in bag_of_dots: #empty bag of dots onto grid
+		dot.ID = _id
+		Grid.insert_dot(dot)
+		_id += 1
+	
+	#call prefirsttick()
+	for dot in Grid.dot_register:
+		dot.pre_first_tick()

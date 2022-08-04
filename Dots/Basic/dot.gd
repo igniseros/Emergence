@@ -33,7 +33,7 @@ func _to_string():
 	return name + " @" + str(position)
 
 func _on_click():
-	pass
+	print(name)
 
 func store_info(info : String):
 	TheGreatConnection.store_data("DOT_DATA," + str(ID) + "," + str(position.x) + "," + str(position.y) + \

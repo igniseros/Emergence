@@ -14,7 +14,13 @@ func set_parameters(x):
 
 #plays the step, parameters must be correct amount and be floats between 0 and 1
 func play(dot : LifeDot):
-	pass
+	dot.use_energy(5)
+	var dir = PDF.float2dir(randf(), randf())
+	while dir == Vector2(0,0): dir = PDF.float2dir(randf(), randf())
+	var victim = Grid.get_at(dot.position + dir)
+	if victim is LifeDot:
+		dot.energy += .25
+		victim.energy -= .5
 
 func get_color_mod():
 	return Color(1,0,0)
