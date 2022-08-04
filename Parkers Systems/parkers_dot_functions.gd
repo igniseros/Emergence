@@ -16,3 +16,23 @@ func look_at_array(sender : Dot, directions : Array):
 #returns a random direction
 func rand_direction():
 	return Vector2(ceil(rand_range(-2,1)),ceil(rand_range(-2,1)))
+
+func rand_direction_not_zero():
+	var ret = rand_direction()
+	while ret == Vector2(0,0):
+		ret = rand_direction()
+	return ret
+
+#box_around_self
+func box_around_self(size) -> Array:
+	var box = []
+	for x in range(size*2+1):
+		for y in range(size*2+1):
+			if not (x-size == 0 and y-size == 0):
+				box.append(Vector2(x-size,y-size))
+	return box
+
+func float2dir(xf,yf) -> Vector2:
+	var x = round(xf * 2) - 1
+	var y = round(yf * 2) - 1 
+	return Vector2(x,y)

@@ -7,5 +7,4 @@ func _ready():
 
 func _process(delta):
 	if get_node(grid_node).draw:
-		visible = false
-		set_process(false)
+		texture = null

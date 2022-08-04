@@ -9,6 +9,46 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "PushableDot",
+"class": "AttachableDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Structure/Attachables/attachable_dot.gd"
+}, {
+"base": "AttachableDot",
+"class": "AttachableFollowerDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Structure/Attachables/attachable_follower_dot.gd"
+}, {
+"base": "AttachableDot",
+"class": "AttachableMasterDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Structure/Attachables/attachable_master_dot.gd"
+}, {
+"base": "Reference",
+"class": "Behavior",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Behavioral/Behavior.gd"
+}, {
+"base": "Dot",
+"class": "ColorDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Single Use/color_dot.gd"
+}, {
+"base": "ComplexMemoryBrain",
+"class": "ComplexBatchMemoryBrain",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Brains/ComplexBatchMemoryBrain.gd"
+}, {
+"base": "Reference",
+"class": "ComplexBrain",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Brains/MultiStageBrain.gd"
+}, {
+"base": "Reference",
+"class": "ComplexMemoryBrain",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Brains/ComplexMemoryBrain.gd"
+}, {
 "base": "PhysDot",
 "class": "CrawlDot",
 "language": "GDScript",
@@ -20,19 +60,74 @@ _global_script_classes=[ {
 "path": "res://Dots/Parker/Crawl/crawl_friend_dot.gd"
 }, {
 "base": "Reference",
+"class": "DisplayItem",
+"language": "GDScript",
+"path": "res://Dots/Parker/UI/DisplayItem.gd"
+}, {
+"base": "PhysDot",
+"class": "DodgingBrainDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Brains/DodgingBrainDot.gd"
+}, {
+"base": "Reference",
 "class": "Dot",
 "language": "GDScript",
 "path": "res://Dots/Basic/dot.gd"
 }, {
+"base": "LifeDot",
+"class": "EvolvingLifeDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Life/Evolution 1/evolving_life_dot.gd"
+}, {
 "base": "PhysDot",
 "class": "FoodDot",
 "language": "GDScript",
-"path": "res://Dots/Parker/Life/Basic/food_dot.gd"
+"path": "res://Dots/Parker/Environment/food_dot.gd"
+}, {
+"base": "PhysDot",
+"class": "GeneratorFood2Dot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Environment/generator_food_2_dot.gd"
+}, {
+"base": "PhysDot",
+"class": "GeneratorFoodDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Environment/generator_food_dot.gd"
+}, {
+"base": "AttachableDot",
+"class": "GlueDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Structure/Attachables/glue_dot.gd"
+}, {
+"base": "CrawlDot",
+"class": "KillerCrawlDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Crawl/killer_crawl_dot.gd"
+}, {
+"base": "KillerCrawlDot",
+"class": "KillerCrawlFriendDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Crawl/killer_crawl_friend_dot.gd"
+}, {
+"base": "PhysDot",
+"class": "KillerWallDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Environment/killer_wall.gd"
 }, {
 "base": "PhysDot",
 "class": "LifeDot",
 "language": "GDScript",
 "path": "res://Dots/Parker/Life/Basic/life_dot.gd"
+}, {
+"base": "ReproducingLifeDot",
+"class": "LifeWithBrain",
+"language": "GDScript",
+"path": "res://Dots/Parker/Life/Life 2.0/life_with_brain.gd"
+}, {
+"base": "Reference",
+"class": "Matrix",
+"language": "GDScript",
+"path": "res://Parkers Systems/Matrix Math/matrix.gd"
 }, {
 "base": "LifeDot",
 "class": "NativeLifeDot",
@@ -45,18 +140,97 @@ _global_script_classes=[ {
 "path": "res://Dots/Basic/phys_dot.gd"
 }, {
 "base": "PhysDot",
+"class": "PushableDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Structure/pushable_dot.gd"
+}, {
+"base": "LifeDot",
+"class": "ReproducingLifeDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Life/Basic/reproducing_life_dot.gd"
+}, {
+"base": "Reference",
+"class": "SimpleBrain",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Brains/Simple_Brain.gd"
+}, {
+"base": "SimpleBrain",
+"class": "SimpleMemoryBrain",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Brains/SimpleMemoryBrain.gd"
+}, {
+"base": "Reference",
+"class": "Step",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Behavioral/Step.gd"
+}, {
+"base": "Step",
+"class": "StepAttack",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Behavioral/Steps/attack_step.gd"
+}, {
+"base": "Step",
+"class": "StepEat",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Behavioral/Steps/eat_step.gd"
+}, {
+"base": "Step",
+"class": "StepWait",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Behavioral/Steps/wait_step.gd"
+}, {
+"base": "Step",
+"class": "StepWalk",
+"language": "GDScript",
+"path": "res://Parkers Systems/Evolution/Behavioral/Steps/walk_step.gd"
+}, {
+"base": "Reference",
+"class": "Vector",
+"language": "GDScript",
+"path": "res://Parkers Systems/Matrix Math/vector.gd"
+}, {
+"base": "PhysDot",
 "class": "WallDot",
 "language": "GDScript",
 "path": "res://Dots/Basic/wall_dot.gd"
 } ]
 _global_script_class_icons={
+"AttachableDot": "",
+"AttachableFollowerDot": "",
+"AttachableMasterDot": "",
+"Behavior": "",
+"ColorDot": "",
+"ComplexBatchMemoryBrain": "",
+"ComplexBrain": "",
+"ComplexMemoryBrain": "",
 "CrawlDot": "",
 "CrawlFriendDot": "",
+"DisplayItem": "",
+"DodgingBrainDot": "",
 "Dot": "",
+"EvolvingLifeDot": "",
 "FoodDot": "",
+"GeneratorFood2Dot": "",
+"GeneratorFoodDot": "",
+"GlueDot": "",
+"KillerCrawlDot": "",
+"KillerCrawlFriendDot": "",
+"KillerWallDot": "",
 "LifeDot": "",
+"LifeWithBrain": "",
+"Matrix": "",
 "NativeLifeDot": "",
 "PhysDot": "",
+"PushableDot": "",
+"ReproducingLifeDot": "",
+"SimpleBrain": "",
+"SimpleMemoryBrain": "",
+"Step": "",
+"StepAttack": "",
+"StepEat": "",
+"StepWait": "",
+"StepWalk": "",
+"Vector": "",
 "WallDot": ""
 }
 
@@ -70,13 +244,17 @@ config/icon="res://icon.png"
 
 Grid="*res://grid.gd"
 Converter="*res://Converter.gd"
-PDF="*res://Dots/parkers_dot_functions.gd"
+PDF="*res://Parkers Systems/parkers_dot_functions.gd"
 TheGreatConnection="*res://the_great_connection.gd"
 
 [display]
 
 window/size/width=1080
 window/size/height=720
+
+[global]
+
+scale=false
 
 [importer_defaults]
 
@@ -102,10 +280,19 @@ texture={
 "svg/scale": 1.0
 }
 
+[input]
+
+left_mouse={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
 [physics]
 
 common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/default_clear_color=Color( 0.172549, 0.172549, 0.172549, 1 )
 environment/default_environment="res://default_env.tres"

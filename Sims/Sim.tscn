@@ -1,40 +1,29 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://simple_camera.gd" type="Script" id=1]
 [ext_resource path="res://grid_node.gd" type="Script" id=2]
 [ext_resource path="res://Sims/Sim.gd" type="Script" id=3]
-[ext_resource path="res://Maps/Parker/Life/life_001.png" type="Texture" id=4]
-[ext_resource path="res://Sims/MapViewer.gd" type="Script" id=5]
+[ext_resource path="res://Interface/UI.tscn" type="PackedScene" id=6]
 
 [node name="Sim" type="Node2D"]
 script = ExtResource( 3 )
-progress_delta = 1.0
 
 [node name="GridNode" type="Node2D" parent="."]
-scale = Vector2( 8, 8 )
+z_index = -1
 script = ExtResource( 2 )
-image = ExtResource( 4 )
-use_img = true
-size_x = 2048
-size_y = 2048
 cheap_draw = true
 
-[node name="MapViewer" type="Sprite" parent="."]
-scale = Vector2( 8, 8 )
-texture = ExtResource( 4 )
-centered = false
-script = ExtResource( 5 )
-grid_node = NodePath("../GridNode")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 258, 238 )
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 540, 361 )
 current = true
 smoothing_enabled = true
 script = ExtResource( 1 )
 speed = 256
 
 [node name="TickTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.25
 autostart = true
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 6 )]
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_TickTimer_timeout"]

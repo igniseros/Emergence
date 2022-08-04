@@ -22,3 +22,6 @@ func tick():
 	if (not move(direction)):
 		direction = rand_direction()
 		move(direction)
+
+func will_tick():
+	return true
