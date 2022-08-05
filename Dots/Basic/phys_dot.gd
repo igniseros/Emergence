@@ -7,6 +7,8 @@ func isEmpty():
 
 func move( direction : Vector2 ):
 	var landing_spot = position + direction
+	if not Grid.good_pos(landing_spot):
+		return false
 	landing_spot.x = int(landing_spot.x) % Grid.grid.size()
 	landing_spot.y = int(landing_spot.y) % Grid.grid[0].size()
 	var landing_dot = Grid.get_at(landing_spot)

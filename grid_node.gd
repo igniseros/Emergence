@@ -17,6 +17,8 @@ func _draw():
 	if not draw:
 		return
 	
+	draw_rect(Rect2(Vector2(Grid.size_x *-1, Grid.size_y*-1), Vector2(Grid.size_x*2, Grid.size_y*2)), Color(1,1,1,1), false)
+	
 	for dot in Grid.dot_register:
 		if not dot.name == "Dot":
 			var square1 = Rect2(dot.position,Vector2(1,1))
