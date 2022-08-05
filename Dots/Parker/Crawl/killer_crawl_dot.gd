@@ -6,11 +6,11 @@ var chance = .5
 func _init():
 	randomize()
 	#set name
-	name = "Killer Crawl"
+	name = StringAttribute.new("Name","Killer Crawl")
 	#set clors
-	color_one = Color(.85,0,.55)
-	color_two = Color(.50,0,.50)
-	color_three = Color(.75,0,.25)
+	color_one = ColorAttribute.new("Color 1", Color(.85,0,.55))
+	color_two = ColorAttribute.new("Color 1", Color(.50,0,.50))
+	color_three = ColorAttribute.new("Color 1", Color(.75,0,.25))
 	
 	#set var
 	direction =  rand_direction()

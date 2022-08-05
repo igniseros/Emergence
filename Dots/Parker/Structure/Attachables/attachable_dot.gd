@@ -6,7 +6,7 @@ var attachments : Array = []
 
 func _init():
 	#set name
-	name = "Attachable Dot"
+	name = StringAttribute.new("Name","Attachable Dot")
 	#set clors
 	color_one = Color(0,0,.75)
 	color_two = Color(0,0,.50)

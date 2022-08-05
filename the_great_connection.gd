@@ -3,8 +3,7 @@ extends Node2D
 var XD = {"dot" : Dot, "wall" : WallDot, "food" : FoodDot, "crawl" : CrawlDot}
 var COLOR : Dictionary = {Color("#757574") : WallDot, Color("#ffff00") : FoodDot, Color("#ff00ff") : CrawlDot, Color("#f087f3") : CrawlFriendDot,
 Color("#ffb41e"): GeneratorFood2Dot, Color("ff0080") : KillerCrawlDot, Color("ff6c80"): KillerCrawlFriendDot,
-Color("#1b00ff") : AttachableMasterDot, Color("#ffffff") : AttachableFollowerDot,
-Color("#fffffe") : ColorDot, Color("#79fffe") : DodgingBrainDot, Color("#000000") : EvolvingLifeDot}
+Color("#fffffe") : ColorDot, Color("#000000") : EvolvingLifeDot}
 
 var grid_has_path : bool = false
 

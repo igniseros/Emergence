@@ -35,7 +35,7 @@ func will_tick():
 
 func _init():
 	#set name
-	name = "Dodging Brain"
+	name = StringAttribute.new("Dodging Brain")
 	#set clors
 	color_one = Color(.25,.55,1)
 	color_two = Color(.25,.55,1)

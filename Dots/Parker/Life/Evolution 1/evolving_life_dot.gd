@@ -17,11 +17,11 @@ var possible_step_list = [StepEat,StepAttack,StepWalk,StepWait]
 func _init():
 	randomize()
 	#set name
-	name = "Evolving Life"
+	name = StringAttribute.new("Name","Evolving Life")
 	#set clors
-	color_one = Color(0,0,0)
-	color_two = Color(0,0,0)
-	color_three = Color(0,0,0)
+	color_one = ColorAttribute.new("Color 1", Color(0,0,0))
+	color_two = ColorAttribute.new("Color 2", Color(0,0,0))
+	color_three =ColorAttribute.new("Color 3",  Color(0,0,0))
 
 	energy = reproduction_cost
 	death_threshhold = reproduction_cost / 8
@@ -52,7 +52,7 @@ func reproduce():
 					mutate_child(child)
 				#set color
 				for step in child.behavior.steps:
-					child.color_one += step.get_color_mod() / child.behavior.steps.size()
+					child.color_one.set_value(step.get_color_mod() / child.behavior.steps.size())
 				#add him to the grid
 				Grid.insert_dot(child)
 				#return

@@ -3,7 +3,7 @@ class_name AttachableFollowerDot
 
 func _init():
 	#set name
-	name = "Attachable Follower Dot"
+	name = StringAttribute.new("Attachable Follower Dot")
 	#set clors
 	color_one = Color(.55,.35,.25)
 	color_two = Color(0,0,.50)

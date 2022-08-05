@@ -69,6 +69,7 @@ func insert_dot(dot : Dot):
 		return
 	#add dot to grid
 	Grid.grid[dot.position.x][dot.position.y] = dot
+	dot.add_attributes()
 	#load dot to register
 	dot_register.append(dot)
 	if(dot.will_tick()):
