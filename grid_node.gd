@@ -11,9 +11,9 @@ func _ready():
 	Grid.set_gridnode(self)
 	randomize()
 	
-	
 #draws the grid
 func _draw():
+	
 	if not draw:
 		return
 	
@@ -26,17 +26,14 @@ func _draw():
 				var square3 = Rect2(Vector2(dot.position.x + .45,dot.position.y + .45),Vector2(.1,.1))
 				draw_rect(square2,dot.color_two)
 				draw_rect(square3,dot.color_three)
+	
+	
+	UIMouse.draw_mouse(self)
 
 func _on_tick():
 	update()
 
 func _input(event):
-	pass
-#	if event is InputEventMouseButton and event.is_action_released("left_mouse"):
-#		var mx = get_local_mouse_position().x
-#		var my = get_local_mouse_position().y
-#		mx = floor(mx )
-#		my = floor(my)
-#
-#		var node = Grid.get_at(Vector2(mx,my))
-#		if node is Dot : node._on_click()
+	if event is InputEventMouse:
+		UIMouse.mouse_pos = get_local_mouse_position().ceil() + Vector2(-1,-1)
+		update()

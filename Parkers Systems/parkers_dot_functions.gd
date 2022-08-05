@@ -13,6 +13,12 @@ func look_at_array(sender : Dot, directions : Array):
 		seen.append(Grid.get_at(sender.position + d))
 	return seen
 
+func get_at_array(directions : Array):
+	var seen = []
+	for d in directions:
+		seen.append(Grid.get_at(d))
+	return seen
+
 #returns a random direction
 func rand_direction():
 	return Vector2(ceil(rand_range(-2,1)),ceil(rand_range(-2,1)))

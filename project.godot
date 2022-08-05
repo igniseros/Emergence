@@ -246,6 +246,7 @@ Grid="*res://grid.gd"
 Converter="*res://Converter.gd"
 PDF="*res://Parkers Systems/parkers_dot_functions.gd"
 TheGreatConnection="*res://the_great_connection.gd"
+UIMouse="*res://Parkers Systems/ui_mouse.gd"
 
 [display]
 
