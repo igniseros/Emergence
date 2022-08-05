@@ -18,6 +18,7 @@ var insert = true
 var dot_class = WallDot
 var dot_color : Color = WallDot.new().color_one - Color(0,0,0,.30)
 
+var mouse_on_grid = false
 
 func draw_mouse(from : Node2D):
 	from.draw_circle(mouse_pos + Vector2(.5,.5), 1.25, Color(1,1,1,.25))
@@ -55,8 +56,8 @@ func get_spots_at_mouse():
 			bucket.append(spot)
 	return bucket
 
-func clicked():
-	if Input.is_action_pressed("left_mouse"):
+func _process(delta):
+	if Input.is_action_pressed("left_mouse") and mouse_on_grid:
 		if mode == MODE.SELECT:
 				select()
 		elif insert:

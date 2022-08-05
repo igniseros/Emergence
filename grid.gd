@@ -66,9 +66,7 @@ func flush_grid():
 
 func insert_dot(dot : Dot):
 	if not good_pos(dot.position):
-		print("bad pos")
 		return
-	print("good pos" + str(dot.position))
 	#add dot to grid
 	Grid.grid[dot.position.x][dot.position.y] = dot
 	#load dot to register
