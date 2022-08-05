@@ -25,8 +25,6 @@ func _on_Line_toggled(button_pressed):
 		
 	if not are_any_pressed(MouseTypes):
 		$Line.pressed = true
-	$Line/LineSize.visible = button_pressed
-	$Line/LineSizeLabel.visible = button_pressed
 	
 
 
@@ -40,8 +38,6 @@ func _on_Circle_toggled(button_pressed):
 		
 	if not are_any_pressed(MouseTypes):
 		$Circle.pressed = true
-	$Circle/CircleSize.visible = button_pressed
-	$Circle/CircleSizeLabel.visible = button_pressed
 
 
 func _on_Pencil_toggled(button_pressed):
@@ -97,11 +93,13 @@ func _on_DotChoice_item_selected(index):
 
 func _on_CircleSize_value_changed(value):
 	$Circle/CircleSizeLabel.text = str(value)
+	$Circle.pressed = true
 	UIMouse.size = value
 
 
 func _on_LineSize_value_changed(value):
 	$Line/LineSizeLabel.text = str(value)
+	$Line.pressed = true
 	UIMouse.size = value
 
 

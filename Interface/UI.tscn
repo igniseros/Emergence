@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Interface/TickLable.gd" type="Script" id=1]
 [ext_resource path="res://Interface/LoadButton.gd" type="Script" id=2]
@@ -12,84 +12,15 @@
 [ext_resource path="res://Interface/FancyDrawCheckBox.gd" type="Script" id=10]
 [ext_resource path="res://Interface/Edit.gd" type="Script" id=11]
 [ext_resource path="res://Interface/OptionButton.gd" type="Script" id=12]
+[ext_resource path="res://Interface/Panel.gd" type="Script" id=13]
 
 [node name="UI" type="CanvasLayer"]
 
-[node name="SimSettings" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="TickLable" type="Label" parent="SimSettings"]
-margin_left = 48.0
-margin_top = 5.0
-margin_right = 89.0
-margin_bottom = 19.0
-text = "Tick: 0"
-script = ExtResource( 1 )
-
-[node name="TickButton" type="Button" parent="SimSettings"]
-margin_left = 8.0
-margin_top = 5.0
-margin_right = 45.0
-margin_bottom = 25.0
-focus_mode = 0
-text = "Tick"
-script = ExtResource( 6 )
-
-[node name="PlayButton" type="Button" parent="SimSettings"]
-margin_left = 8.0
-margin_top = 25.0
-margin_right = 58.0
-margin_bottom = 45.0
-focus_mode = 0
-text = "Play"
-script = ExtResource( 7 )
-
-[node name="PlauseButton" type="Button" parent="SimSettings"]
-margin_left = 58.0
-margin_top = 25.0
-margin_right = 108.0
-margin_bottom = 45.0
-focus_mode = 0
-text = "Pause"
-script = ExtResource( 8 )
-
-[node name="UseTimerCheckBox" type="CheckBox" parent="SimSettings"]
-margin_left = 8.0
-margin_top = 45.0
-margin_right = 102.0
-margin_bottom = 69.0
-focus_mode = 0
-text = "Use Timer"
-script = ExtResource( 3 )
-label = NodePath("TimeLabel")
-time = NodePath("TimeSpinBox")
-
-[node name="TimeSpinBox" type="SpinBox" parent="SimSettings/UseTimerCheckBox"]
-visible = false
-margin_left = 192.0
-margin_right = 266.0
-margin_bottom = 24.0
-step = 0.01
-value = 0.25
-script = ExtResource( 9 )
-
-[node name="TimeLabel" type="Label" parent="SimSettings/UseTimerCheckBox"]
-visible = false
-margin_left = 100.0
-margin_top = 5.0
-margin_right = 192.0
-margin_bottom = 19.0
-text = "Time per tick: "
-
-[node name="FancyDrawCheckBox" type="CheckBox" parent="SimSettings"]
-margin_left = 8.0
-margin_top = 69.0
-margin_right = 108.0
-margin_bottom = 93.0
-focus_mode = 0
-text = "Fancy Draw"
-script = ExtResource( 10 )
+[node name="SimSettings" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.25 )
+margin_right = 1920.0
+margin_bottom = 1080.0
+script = ExtResource( 13 )
 
 [node name="Save and load" type="Control" parent="."]
 anchor_top = 1.0
@@ -166,11 +97,11 @@ dialog_text = "Grid must have a path! Use 'Save As...'"
 anchor_bottom = 1.0
 margin_top = 227.0
 margin_right = 1.0
-margin_bottom = -492.0
+margin_bottom = 187.0
 script = ExtResource( 11 )
 
 [node name="MouseLabel" type="Label" parent="Edit"]
-margin_right = 40.0
+margin_right = 47.0
 margin_bottom = 14.0
 text = "Mouse:"
 
@@ -198,7 +129,6 @@ focus_mode = 0
 text = "Line"
 
 [node name="LineSizeLabel" type="Label" parent="Edit/Line"]
-visible = false
 margin_left = 72.0
 margin_top = 5.0
 margin_right = 119.0
@@ -206,7 +136,6 @@ margin_bottom = 19.0
 text = "1"
 
 [node name="LineSize" type="HSlider" parent="Edit/Line"]
-visible = false
 margin_left = 97.0
 margin_top = 5.0
 margin_right = 353.0
@@ -225,7 +154,6 @@ focus_mode = 0
 text = "Circle"
 
 [node name="CircleSizeLabel" type="Label" parent="Edit/Circle"]
-visible = false
 margin_left = 71.0
 margin_top = 4.0
 margin_right = 118.0
@@ -233,7 +161,6 @@ margin_bottom = 18.0
 text = "1"
 
 [node name="CircleSize" type="HSlider" parent="Edit/Circle"]
-visible = false
 margin_left = 96.0
 margin_top = 4.0
 margin_right = 352.0
@@ -280,7 +207,6 @@ focus_mode = 0
 text = "Delete"
 
 [node name="Mask" type="CheckBox" parent="Edit/Mode"]
-visible = false
 margin_left = 71.0
 margin_top = 38.0
 margin_right = 142.0
@@ -303,13 +229,78 @@ margin_right = 20.0
 margin_bottom = 82.0
 color = Color( 0.458824, 0.458824, 0.454902, 1 )
 
-[connection signal="pressed" from="SimSettings/TickButton" to="SimSettings/TickButton" method="_on_TickButton_pressed"]
-[connection signal="pressed" from="SimSettings/PlayButton" to="SimSettings/PlayButton" method="_on_PlayButton_pressed"]
-[connection signal="pressed" from="SimSettings/PlauseButton" to="SimSettings/PlauseButton" method="_on_PlauseButton_pressed"]
-[connection signal="toggled" from="SimSettings/UseTimerCheckBox" to="SimSettings/UseTimerCheckBox" method="_on_UseTimerCheckBox_toggled"]
-[connection signal="changed" from="SimSettings/UseTimerCheckBox/TimeSpinBox" to="SimSettings/UseTimerCheckBox/TimeSpinBox" method="_on_TimeSpinBox_changed"]
-[connection signal="value_changed" from="SimSettings/UseTimerCheckBox/TimeSpinBox" to="SimSettings/UseTimerCheckBox/TimeSpinBox" method="_on_TimeSpinBox_value_changed"]
-[connection signal="toggled" from="SimSettings/FancyDrawCheckBox" to="SimSettings/FancyDrawCheckBox" method="_on_FancyDrawCheckBox_toggled"]
+[node name="TickLable" type="Label" parent="."]
+margin_left = 48.0
+margin_top = 5.0
+margin_right = 89.0
+margin_bottom = 19.0
+text = "Tick: 0"
+script = ExtResource( 1 )
+
+[node name="TickButton" type="Button" parent="."]
+margin_left = 8.0
+margin_top = 5.0
+margin_right = 45.0
+margin_bottom = 25.0
+focus_mode = 0
+text = "Tick"
+script = ExtResource( 6 )
+
+[node name="PlayButton" type="Button" parent="."]
+margin_left = 8.0
+margin_top = 25.0
+margin_right = 58.0
+margin_bottom = 45.0
+focus_mode = 0
+text = "Play"
+script = ExtResource( 7 )
+
+[node name="PlauseButton" type="Button" parent="."]
+margin_left = 58.0
+margin_top = 25.0
+margin_right = 108.0
+margin_bottom = 45.0
+focus_mode = 0
+text = "Pause"
+script = ExtResource( 8 )
+
+[node name="UseTimerCheckBox" type="CheckBox" parent="."]
+margin_left = 8.0
+margin_top = 45.0
+margin_right = 102.0
+margin_bottom = 69.0
+focus_mode = 0
+text = "Use Timer"
+script = ExtResource( 3 )
+label = NodePath("TimeLabel")
+time = NodePath("TimeSpinBox")
+
+[node name="TimeSpinBox" type="SpinBox" parent="UseTimerCheckBox"]
+margin_left = 192.0
+margin_right = 266.0
+margin_bottom = 24.0
+step = 0.01
+value = 0.25
+script = ExtResource( 9 )
+
+[node name="TimeLabel" type="Label" parent="UseTimerCheckBox"]
+margin_left = 100.0
+margin_top = 5.0
+margin_right = 192.0
+margin_bottom = 19.0
+text = "Time per tick: "
+
+[node name="FancyDrawCheckBox" type="CheckBox" parent="."]
+margin_left = 8.0
+margin_top = 69.0
+margin_right = 108.0
+margin_bottom = 93.0
+focus_mode = 0
+text = "Fancy Draw"
+script = ExtResource( 10 )
+
+[connection signal="mouse_entered" from="SimSettings" to="SimSettings" method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="SimSettings" to="SimSettings" method="_on_Panel_mouse_exited"]
 [connection signal="pressed" from="Save and load/LoadButton" to="Save and load/LoadButton" method="_on_LoadButton_pressed"]
 [connection signal="pressed" from="Save and load/SaveButton" to="Save and load/SaveButton" method="_on_SaveButton_pressed"]
 [connection signal="pressed" from="Save and load/SaveAsButton" to="Save and load/SaveAsButton" method="_on_SaveAsButton_pressed"]
@@ -324,3 +315,10 @@ color = Color( 0.458824, 0.458824, 0.454902, 1 )
 [connection signal="toggled" from="Edit/Mode/Delete" to="Edit" method="_on_Delete_toggled"]
 [connection signal="toggled" from="Edit/Mode/Mask" to="Edit" method="_on_Mask_toggled"]
 [connection signal="item_selected" from="Edit/Mode/DotChoice" to="Edit" method="_on_DotChoice_item_selected"]
+[connection signal="pressed" from="TickButton" to="TickButton" method="_on_TickButton_pressed"]
+[connection signal="pressed" from="PlayButton" to="PlayButton" method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="PlauseButton" to="PlauseButton" method="_on_PlauseButton_pressed"]
+[connection signal="toggled" from="UseTimerCheckBox" to="UseTimerCheckBox" method="_on_UseTimerCheckBox_toggled"]
+[connection signal="changed" from="UseTimerCheckBox/TimeSpinBox" to="UseTimerCheckBox/TimeSpinBox" method="_on_TimeSpinBox_changed"]
+[connection signal="value_changed" from="UseTimerCheckBox/TimeSpinBox" to="UseTimerCheckBox/TimeSpinBox" method="_on_TimeSpinBox_value_changed"]
+[connection signal="toggled" from="FancyDrawCheckBox" to="FancyDrawCheckBox" method="_on_FancyDrawCheckBox_toggled"]

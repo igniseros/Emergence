@@ -16,6 +16,7 @@ var timer_per_tick = .25
 signal _on_tick
 
 func _ready():
+	flush_grid()
 	set_process(true)
 
 func _process(delta):
@@ -43,6 +44,10 @@ func set_at(pos : Vector2, dot : Dot):
 
 
 func good_pos(pos : Vector2):
+	if pos.x <= -1*size_x or pos.x >= size_x:
+		return false
+	if pos.y <= -1*size_y or pos.y >= size_y:
+		return false
 	return true
 
 
@@ -60,6 +65,10 @@ func flush_grid():
 			
 
 func insert_dot(dot : Dot):
+	if not good_pos(dot.position):
+		print("bad pos")
+		return
+	print("good pos" + str(dot.position))
 	#add dot to grid
 	Grid.grid[dot.position.x][dot.position.y] = dot
 	#load dot to register
@@ -69,6 +78,8 @@ func insert_dot(dot : Dot):
 	#update dot's grid
 
 func remove_dot(dot : Dot):
+	if not good_pos(dot.position):
+		return
 	#if the dot is there, remove it
 	if(dot_register.has(dot)): 
 		if(dot.will_tick()):
