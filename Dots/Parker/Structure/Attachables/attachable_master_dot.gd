@@ -4,7 +4,7 @@ class_name AttachableMasterDot
 
 func _init():
 	#set name
-	name = "Attachable Master Dot"
+	name = StringAttribute.new("Attachable Master Dot")
 	#set clors
 	color_one = Color(.75,.35,.25)
 	color_two = Color(0,0,.50)

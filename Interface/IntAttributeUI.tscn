@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Interface/IntAttributeUI.gd" type="Script" id=1]
+
+[node name="IntAttributeUI" type="Control"]
+margin_right = 239.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 128, 32 )
+script = ExtResource( 1 )
+
+[node name="SpinBox" type="SpinBox" parent="."]
+margin_right = 121.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="."]
+margin_left = 138.0
+margin_right = 178.0
+margin_bottom = 14.0
+
+[connection signal="gui_input" from="SpinBox" to="." method="_on_SpinBox_gui_input"]
+[connection signal="value_changed" from="SpinBox" to="." method="_on_SpinBox_value_changed"]

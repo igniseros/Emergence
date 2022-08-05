@@ -13,11 +13,11 @@ var death_threshhold = .5
 
 func _init():
 	#set name
-	name = "Life"
+	name = StringAttribute.new("Name","Life")
 	#set clors
-	color_one = Color(1,1,1)
-	color_two = Color(1,1,1)
-	color_three = Color(0,1,0)
+	color_one = ColorAttribute.new("Color 1", Color(1,1,1))
+	color_two = ColorAttribute.new("Color 1", Color(1,1,1))
+	color_three = ColorAttribute.new("Color 1", Color(0,1,0))
 
 func tick():
 	use_energy(basil_metabolic_rate)

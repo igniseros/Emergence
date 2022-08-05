@@ -7,11 +7,11 @@ var gravity = 1
 func _init():
 	randomize()
 	#set name
-	name = "Killer Crawl Friend"
+	name = StringAttribute.new("Name","Killer Crawl Friend")
 	#set clors
-	color_one = Color(.85,.4,.55)
-	color_two = Color(.75,0,.75)
-	color_three = Color(.75,0,.25)
+	color_one = ColorAttribute.new("Color 1", Color(.85,.4,.55))
+	color_two = ColorAttribute.new("Color 1", Color(.75,0,.75))
+	color_three = ColorAttribute.new("Color 1", Color(.75,0,.25))
 	
 	#set var
 	main_direction =  Vector2(0,0)

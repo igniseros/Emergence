@@ -1,13 +1,21 @@
 class_name Dot
 
-var name = "Dot"
+var name : StringAttribute = StringAttribute.new("Name","Dot")
 var position : Vector2
-var color_one : Color = Color(1,1,1)
-var color_two : Color = Color(0,0,0)
-var color_three : Color = Color(0,0,0)
+var color_one : ColorAttribute = ColorAttribute.new("Color 1", Color(1,1,1))
+var color_two : ColorAttribute = ColorAttribute.new("Color 2", Color(0,0,0))
+var color_three : ColorAttribute = ColorAttribute.new("Color 3", Color(0,0,0))
 var time = 0 #should sync between everyone
 var _first_time = true
 var ID : int = -1
+
+var attributes : Array = []
+
+func add_attributes():
+	attributes.append_array([name])
+
+func get_color_attributes():
+	return  [color_one, color_two, color_three]
 
 #returns an array of display items
 func get_display() -> Array:
@@ -30,7 +38,7 @@ func will_tick():
 	false
 
 func _to_string():
-	return name + " @" + str(position)
+	return name.get_value() + " @" + str(position)
 
 func _on_click():
 	print(name)

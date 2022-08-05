@@ -6,11 +6,11 @@ var direction : Vector2
 func _init():
 	randomize()
 	#set name
-	name = "Crawl"
+	name = StringAttribute.new("Name","Crawl")
 	#set clors
-	color_one = Color(.75,0,.75)
-	color_two = Color(.50,0,.50)
-	color_three = Color(.75,0,.25)
+	color_one = ColorAttribute.new("Color 1", Color(.75,0,.75))
+	color_two = ColorAttribute.new("Color 2", Color(.50,0,.50))
+	color_three = ColorAttribute.new("Color 3", Color(.75,0,.25))
 	
 	#set var
 	direction =  rand_direction()
