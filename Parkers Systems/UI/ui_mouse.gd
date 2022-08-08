@@ -147,9 +147,6 @@ func _input(event):
 
 var size_scale = .4
 func make_line():
-	print(line_start.distance_to(line_end))
-	print(size)
-	print(line_start.distance_to(line_end) * size * 2)
 	if line_start.distance_to(line_end) * size * 2 > limit_area_thresh:
 		return
 	var direction = line_start.direction_to(line_end)
@@ -160,7 +157,6 @@ func make_line():
 		if insert: insert()
 		else: delete()
 		draw_pos += direction * size * size_scale
-		print(draw_pos.distance_to(line_end))
 	
 	mouse_pos = quantize(Grid.grid_node.get_local_mouse_position())
 	if insert: insert()
