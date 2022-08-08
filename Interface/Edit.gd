@@ -9,7 +9,7 @@ func _on_Select_toggled(button_pressed):
 		$Line.pressed = false
 		$Circle.pressed = false
 		$Pencil.pressed = false
-		UIMouse.mode = UIMouse.MODE.SELECT
+		UIMouse.switch_to_select()
 	$Mode.visible = not button_pressed
 	if not are_any_pressed(MouseTypes):
 		$Select.pressed = true
@@ -20,7 +20,7 @@ func _on_Line_toggled(button_pressed):
 		$Select.pressed = false
 		$Circle.pressed = false
 		$Pencil.pressed = false
-		UIMouse.mode = UIMouse.MODE.LINE
+		UIMouse.switch_to_line()
 		UIMouse.size = $Line/LineSize.value
 		
 	if not are_any_pressed(MouseTypes):
@@ -33,7 +33,7 @@ func _on_Circle_toggled(button_pressed):
 		$Select.pressed = false
 		$Line.pressed = false
 		$Pencil.pressed = false
-		UIMouse.mode = UIMouse.MODE.CIRCLE
+		UIMouse.switch_to_circle()
 		UIMouse.size = $Circle/CircleSize.value
 		
 	if not are_any_pressed(MouseTypes):
@@ -45,7 +45,7 @@ func _on_Pencil_toggled(button_pressed):
 		$Select.pressed = false
 		$Line.pressed = false
 		$Circle.pressed = false
-		UIMouse.mode = UIMouse.MODE.PENCIL
+		UIMouse.switch_to_pencil()
 	if not are_any_pressed(MouseTypes):
 		$Pencil.pressed = true
 
@@ -89,6 +89,9 @@ func _on_DotChoice_item_selected(index):
 	$Mode/DotColor.color = TheGreatConnection.COLOR.keys()[index]
 	UIMouse.dot_class = TheGreatConnection.COLOR.values()[index]
 	UIMouse.dot_color = TheGreatConnection.COLOR.keys()[index] - Color(0,0,0,.30)
+	var nqueued_dot = UIMouse.dot_class.new()
+	nqueued_dot.add_attributes()
+	UIMouse.change_queued_dot(nqueued_dot)
 
 
 func _on_CircleSize_value_changed(value):
@@ -96,12 +99,10 @@ func _on_CircleSize_value_changed(value):
 	$Circle.pressed = true
 	UIMouse.size = value
 
-
 func _on_LineSize_value_changed(value):
 	$Line/LineSizeLabel.text = str(value)
 	$Line.pressed = true
 	UIMouse.size = value
-
 
 func _on_Override_toggled(button_pressed):
 	UIMouse.override = button_pressed

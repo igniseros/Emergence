@@ -20,7 +20,7 @@ func play(dot : LifeDot):
 	var victim = Grid.get_at(dot.position + dir)
 	if victim is LifeDot:
 		dot.energy += .25
-		victim.energy -= .5
+		victim.use_energy(.5, true)
 
 func get_color_mod():
 	return Color(1,0,0)

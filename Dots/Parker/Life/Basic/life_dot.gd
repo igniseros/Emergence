@@ -61,13 +61,12 @@ func jump(d : Vector2):
 	else:
 		die()
 
-func die(killed = false):
+func die(override_post_death = false):
 	if alive:
 		alive = false
-		var g = Grid
 		Grid.remove_dot(self)
-		if not killed:
-			post_death(g)
+		if not override_post_death:
+			post_death()
 
-func post_death(g):
+func post_death():
 	pass

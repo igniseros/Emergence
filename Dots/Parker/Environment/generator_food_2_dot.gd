@@ -40,11 +40,11 @@ func makefood(chance):
 				Grid.remove_dot(dot)
 				var food = FoodDot.new()
 				food.position = position + box_around[i]
-				food.nutrition = food_nutrition.get_value()
+				food.nutrition.set_value(food_nutrition.get_value())
 				Grid.insert_dot(food)
 			if not dot is Dot:
 				var food = FoodDot.new()
 				food.position = position + box_around[i]
-				food.nutrition = food_nutrition.get_value()
+				food.nutrition.set_value(food_nutrition.get_value())
 				Grid.insert_dot(food)
 		i+=1
