@@ -12,7 +12,7 @@ var mutation_scale_p = .33
 var mutation_scale_s = 5
 var generation = 0
 var mutations = 0
-var possible_step_list = [StepEat,StepAttack,StepWalk,StepWait]
+var possible_step_list = [StepEat, StepWalk, StepAttack]
 
 func _init():
 	randomize()
@@ -28,13 +28,15 @@ func _init():
 	efficency = 100
 
 	behavior = Behavior.new()
-	behavior.steps.append_array([StepEat.new(),StepWalk.new(),StepAttack.new(),StepWalk.new(),StepEat.new(),StepWalk.new()])
+	behavior.steps.append_array([StepEat.new(), StepWalk.new()])
 
 func life_tick():
 	if energy > (reproduction_cost + reproduction_energy_thresh) and randf() < reproduction_chance:
 		reproduce()
 	else:
-		behavior.step(self)
+		var input_color = behavior.step(self).get_color_mod()
+		var old_color = color_one.get_value()
+		color_one.set_value(input_color * .1 + old_color * .9)
 
 func reproduce():
 	#look at the box around myself
@@ -44,7 +46,7 @@ func reproduce():
 		var dot = in_box[i]
 		#find empty spot
 		if not dot is PhysDot:
-			use_energy(reproduction_cost * get_true_efficency())
+			use_energy(reproduction_cost, true)
 			if alive:
 				var child = create_child(position + PDF.box_around_self(3)[i])
 				#possibly mutate
@@ -58,17 +60,18 @@ func reproduce():
 				#return
 				return true
 			else:
-				return
+				return false
 		i+=1
 
 	return false
 
-func post_death(g):
-	var food = FoodDot.new()
-	food.position = position
-	food.nutrition = (energy + reproduction_cost) * death_efficeny
-	if(food.nutrition > 0):
-		g.insert_dot(food)
+func post_death():
+	var energy_left = (energy) * death_efficeny
+	if(energy_left > 0):
+		var food = FoodDot.new()
+		food.position = position
+		food.nutrition.set_value(energy_left)
+		Grid.insert_dot(food)
 
 func mutate_child(child : LifeDot):
 	var newBegavior = Behavior.new()

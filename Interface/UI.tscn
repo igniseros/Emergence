@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Interface/TickLable.gd" type="Script" id=1]
 [ext_resource path="res://Interface/LoadButton.gd" type="Script" id=2]
@@ -14,88 +14,19 @@
 [ext_resource path="res://Interface/OptionButton.gd" type="Script" id=12]
 [ext_resource path="res://Interface/Panel.gd" type="Script" id=13]
 [ext_resource path="res://Interface/SpawnSpot.gd" type="Script" id=14]
+[ext_resource path="res://Interface/UI_Main.gd" type="Script" id=15]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0, 0, 0.0980392 )
+bg_color = Color( 0, 0, 0, 0 )
 
 [node name="UI" type="CanvasLayer"]
+script = ExtResource( 15 )
 
 [node name="GridPad" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.25098 )
 margin_right = 1920.0
 margin_bottom = 1080.0
 script = ExtResource( 13 )
-
-[node name="Save and load" type="Control" parent="."]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -59.0
-margin_right = 40.0
-
-[node name="LoadButton" type="Button" parent="Save and load"]
-margin_left = 122.0
-margin_top = 33.0
-margin_right = 164.0
-margin_bottom = 53.0
-rect_pivot_offset = Vector2( 30, 10 )
-focus_mode = 0
-text = "Load"
-script = ExtResource( 2 )
-file_dialogue = NodePath("../OpenFile")
-gridPathTextBox = NodePath("../GridPath")
-
-[node name="SaveButton" type="Button" parent="Save and load"]
-margin_left = 8.0
-margin_top = 33.0
-margin_right = 49.0
-margin_bottom = 53.0
-rect_pivot_offset = Vector2( 40, 10 )
-focus_mode = 0
-text = "Save"
-script = ExtResource( 5 )
-mustHavePathDialogue = NodePath("../MustHavePath!")
-gridPathTextBox = NodePath("../GridPath")
-
-[node name="SaveAsButton" type="Button" parent="Save and load"]
-margin_left = 49.0
-margin_top = 33.0
-margin_right = 122.0
-margin_bottom = 53.0
-rect_pivot_offset = Vector2( 40, 10 )
-focus_mode = 0
-text = "Save As..."
-script = ExtResource( 4 )
-file_dialogue = NodePath("../SaveFile")
-gridPathTextBox = NodePath("../GridPath")
-
-[node name="GridPath" type="TextEdit" parent="Save and load"]
-margin_left = 8.0
-margin_right = 423.0
-margin_bottom = 28.0
-focus_mode = 0
-text = "no-path"
-readonly = true
-
-[node name="OpenFile" type="FileDialog" parent="Save and load"]
-margin_left = 156.0
-margin_top = 226.0
-margin_right = 750.0
-margin_bottom = 581.0
-window_title = "Open a File"
-mode = 0
-filters = PoolStringArray( "*.png", "*.grid" )
-
-[node name="SaveFile" type="FileDialog" parent="Save and load"]
-margin_left = 156.0
-margin_top = 226.0
-margin_right = 750.0
-margin_bottom = 583.0
-
-[node name="MustHavePath!" type="AcceptDialog" parent="Save and load"]
-margin_top = -664.0
-margin_right = 261.0
-margin_bottom = -606.0
-dialog_text = "Grid must have a path! Use 'Save As...'"
 
 [node name="Edit" type="Control" parent="."]
 anchor_left = 1.0
@@ -257,7 +188,14 @@ margin_bottom = 113.0
 
 [node name="Color Helper" type="Panel" parent="Sim Settings"]
 modulate = Color( 1, 1, 1, 0.501961 )
-margin_right = 334.0
+margin_right = 125.0
+margin_bottom = 112.0
+
+[node name="Color Helper2" type="Panel" parent="Sim Settings"]
+visible = false
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = 125.0
+margin_right = 274.0
 margin_bottom = 112.0
 
 [node name="TickLable" type="Label" parent="Sim Settings"]
@@ -305,8 +243,10 @@ text = "Use Timer"
 script = ExtResource( 3 )
 label = NodePath("TimeLabel")
 time = NodePath("TimeSpinBox")
+color_helper = NodePath("../Color Helper2")
 
 [node name="TimeSpinBox" type="SpinBox" parent="Sim Settings/UseTimerCheckBox"]
+visible = false
 margin_left = 192.0
 margin_right = 266.0
 margin_bottom = 24.0
@@ -315,6 +255,7 @@ value = 0.25
 script = ExtResource( 9 )
 
 [node name="TimeLabel" type="Label" parent="Sim Settings/UseTimerCheckBox"]
+visible = false
 margin_left = 100.0
 margin_top = 5.0
 margin_right = 192.0
@@ -350,19 +291,87 @@ text = "Dot Attributes:"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Dot Attributes"]
 margin_left = -10.0
-margin_top = 12.0
-margin_right = 437.0
-margin_bottom = 670.0
+margin_top = 16.0
+margin_right = 429.0
+margin_bottom = 663.0
 custom_styles/bg = SubResource( 1 )
 
 [node name="SpawnSpot" type="VBoxContainer" parent="Dot Attributes/ScrollContainer"]
 script = ExtResource( 14 )
 
+[node name="Save and load" type="Control" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -59.0
+margin_right = 40.0
+
+[node name="LoadButton" type="Button" parent="Save and load"]
+margin_left = 122.0
+margin_top = 33.0
+margin_right = 164.0
+margin_bottom = 53.0
+rect_pivot_offset = Vector2( 30, 10 )
+focus_mode = 0
+text = "Load"
+script = ExtResource( 2 )
+file_dialogue = NodePath("../OpenFile")
+gridPathTextBox = NodePath("../GridPath")
+
+[node name="SaveButton" type="Button" parent="Save and load"]
+margin_left = 8.0
+margin_top = 33.0
+margin_right = 49.0
+margin_bottom = 53.0
+rect_pivot_offset = Vector2( 40, 10 )
+focus_mode = 0
+text = "Save"
+script = ExtResource( 5 )
+mustHavePathDialogue = NodePath("../MustHavePath!")
+gridPathTextBox = NodePath("../GridPath")
+
+[node name="SaveAsButton" type="Button" parent="Save and load"]
+margin_left = 49.0
+margin_top = 33.0
+margin_right = 122.0
+margin_bottom = 53.0
+rect_pivot_offset = Vector2( 40, 10 )
+focus_mode = 0
+text = "Save As..."
+script = ExtResource( 4 )
+file_dialogue = NodePath("../SaveFile")
+gridPathTextBox = NodePath("../GridPath")
+
+[node name="GridPath" type="TextEdit" parent="Save and load"]
+margin_left = 8.0
+margin_right = 423.0
+margin_bottom = 28.0
+focus_mode = 0
+text = "no-path"
+readonly = true
+
+[node name="OpenFile" type="FileDialog" parent="Save and load"]
+margin_left = 156.0
+margin_top = 226.0
+margin_right = 750.0
+margin_bottom = 581.0
+window_title = "Open a File"
+mode = 0
+filters = PoolStringArray( "*.png", "*.grid" )
+
+[node name="SaveFile" type="FileDialog" parent="Save and load"]
+margin_left = 156.0
+margin_top = 226.0
+margin_right = 750.0
+margin_bottom = 583.0
+
+[node name="MustHavePath!" type="AcceptDialog" parent="Save and load"]
+margin_top = -664.0
+margin_right = 261.0
+margin_bottom = -606.0
+dialog_text = "Grid must have a path! Use 'Save As...'"
+
 [connection signal="mouse_entered" from="GridPad" to="GridPad" method="_on_Panel_mouse_entered"]
 [connection signal="mouse_exited" from="GridPad" to="GridPad" method="_on_Panel_mouse_exited"]
-[connection signal="pressed" from="Save and load/LoadButton" to="Save and load/LoadButton" method="_on_LoadButton_pressed"]
-[connection signal="pressed" from="Save and load/SaveButton" to="Save and load/SaveButton" method="_on_SaveButton_pressed"]
-[connection signal="pressed" from="Save and load/SaveAsButton" to="Save and load/SaveAsButton" method="_on_SaveAsButton_pressed"]
 [connection signal="toggled" from="Edit/Select" to="Edit" method="_on_Select_toggled"]
 [connection signal="toggled" from="Edit/Pencil" to="Edit" method="_on_Pencil_toggled"]
 [connection signal="toggled" from="Edit/Line" to="Edit" method="_on_Line_toggled"]
@@ -381,3 +390,6 @@ script = ExtResource( 14 )
 [connection signal="changed" from="Sim Settings/UseTimerCheckBox/TimeSpinBox" to="Sim Settings/UseTimerCheckBox/TimeSpinBox" method="_on_TimeSpinBox_changed"]
 [connection signal="value_changed" from="Sim Settings/UseTimerCheckBox/TimeSpinBox" to="Sim Settings/UseTimerCheckBox/TimeSpinBox" method="_on_TimeSpinBox_value_changed"]
 [connection signal="toggled" from="Sim Settings/FancyDrawCheckBox" to="Sim Settings/FancyDrawCheckBox" method="_on_FancyDrawCheckBox_toggled"]
+[connection signal="pressed" from="Save and load/LoadButton" to="Save and load/LoadButton" method="_on_LoadButton_pressed"]
+[connection signal="pressed" from="Save and load/SaveButton" to="Save and load/SaveButton" method="_on_SaveButton_pressed"]
+[connection signal="pressed" from="Save and load/SaveAsButton" to="Save and load/SaveAsButton" method="_on_SaveAsButton_pressed"]

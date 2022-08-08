@@ -23,7 +23,7 @@ func play(dot : LifeDot):
 		if ndot is FoodDot:
 			ndot = ndot as FoodDot
 			#add energy
-			dot.energy += ndot.nutrition
+			dot.energy += ndot.nutrition.get_value()
 			#remove dot
 			Grid.remove_dot(ndot)
 			#end turn

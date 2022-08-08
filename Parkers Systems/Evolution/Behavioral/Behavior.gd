@@ -8,6 +8,7 @@ func step(dot : LifeDot):
 	var s = steps[spot] as Step
 	s.play(dot)
 	spot = (spot + 1) % steps.size()
+	return s
 
 func do(dot : LifeDot):
 	for i in range(steps.size()):

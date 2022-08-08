@@ -3,7 +3,7 @@ extends Node2D
 var XD = {"dot" : Dot, "wall" : WallDot, "food" : FoodDot, "crawl" : CrawlDot}
 var COLOR : Dictionary = {Color("#757574") : WallDot, Color("#ffff00") : FoodDot, Color("#ff00ff") : CrawlDot, Color("#f087f3") : CrawlFriendDot,
 Color("#ffb41e"): GeneratorFood2Dot, Color("ff0080") : KillerCrawlDot, Color("ff6c80"): KillerCrawlFriendDot,
-Color("#fffffe") : ColorDot, Color("#000000") : EvolvingLifeDot}
+Color("#fffffe") : ColorDot, Color("#000000") : EvolvingLifeDot, Color("#111111") : PushableWallDot, Color("#AA00FF") : PushableCrawlDot}
 
 var grid_has_path : bool = false
 
@@ -31,7 +31,7 @@ func save_sim(file_path : String):
 	file.store_var(Grid.size_x)
 	file.store_var(Grid.size_y)
 	file.store_var("START OF DOTS")
-	for dot in Grid.dot_register:
+	for dot in Grid.dot_register.values():
 		dot = dot as Dot
 		file.store_var(dot.save_dot())
 	

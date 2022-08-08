@@ -17,9 +17,9 @@ func _draw():
 	if not draw:
 		return
 	
-	draw_rect(Rect2(Vector2(Grid.size_x *-1, Grid.size_y*-1), Vector2(Grid.size_x*2, Grid.size_y*2)), Color(1,1,1,1), false)
+	draw_rect(Rect2(Vector2(0,0), Vector2(Grid.size_x, Grid.size_y)), Color(.3,.3,.3,1), false)
 	
-	for dot in Grid.dot_register:
+	for dot in Grid.dot_register.values():
 		if not dot.name.get_value() == "Dot":
 			var square1 = Rect2(dot.position,Vector2(1,1))
 			draw_rect(square1,dot.color_one.get_value())
@@ -37,5 +37,5 @@ func _on_tick():
 
 func _input(event):
 	if event is InputEventMouse:
-		UIMouse.mouse_pos = get_local_mouse_position().ceil() + Vector2(-1,-1)
+		UIMouse.mouse_pos = UIMouse.quantize(get_local_mouse_position())
 		update()

@@ -4,7 +4,6 @@ var attribute : FloatAttribute
 var height = 470
 
 func set_attribute(a : FloatAttribute):
-	print(a.get_value())
 	attribute = a
 	$SpinBox.value = a.get_value()
 	$SpinBox.min_value = a.minimum
