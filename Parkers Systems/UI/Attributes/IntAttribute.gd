@@ -1,10 +1,10 @@
 extends Attribute
 class_name IntAttribute
 
-var minimum = -100000
-var maximum = 100000
+var minimum = -1* (2<<61)
+var maximum = 2<<61
 
-func _init(name : String, value, mini, maxi).(name, value):
+func _init(name : String, value, mini = -1* (2<<61), maxi = 2<<62).(name, value):
 	minimum = mini
 	maximum = maxi
 

@@ -26,10 +26,6 @@ func copy_attribute_values_from(dot : Dot):
 func get_color_attributes():
 	return  [color_one, color_two, color_three]
 
-#returns an array of display items
-func get_display() -> Array:
-	return []
-
 func pre_first_tick():
 	pass
 
@@ -39,12 +35,7 @@ func isEmpty():
 func tick_wrap():
 	time+=1
 	
-	var to_be_removed = false
-	if not _active:
-		to_be_removed = true
 	if not Grid.is_legit_dot(self):
-		to_be_removed = true
-	if to_be_removed:
 		Grid.remove_dot(self)
 	else:
 		tick()
@@ -81,7 +72,10 @@ static func create_and_load(package):
 	return dot
 
 func is_this_class(obj):
-	if obj is Object and obj.is_class(get_class()):
+	if obj is Object and obj.is_class(self.get_class()):
 		return true
 	else:
 		return false
+
+func draw_on_selected(from : Node2D):
+	pass

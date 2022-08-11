@@ -54,3 +54,6 @@ func empty(rows : int, cols : int):
 	for r in range(rows):
 		crude_matrix.append(Vector.new([]).empty(cols))
 	return get_script().new(crude_matrix)
+
+func get_elem(x : int, y : int):
+	return rows[x].get_elem(y)

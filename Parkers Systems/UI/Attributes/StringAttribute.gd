@@ -1,7 +1,7 @@
 extends Attribute
 class_name StringAttribute
 
-func _init(name : String, value).(name, value):
+func _init(name : String, value : String).(name, value):
 	pass
 
 func set_value(value):

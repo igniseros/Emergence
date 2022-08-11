@@ -1,20 +1,18 @@
 extends Control
 
-var attribute : StringAttribute
+var attribute : Attribute
 var height = 27
 
-func set_attribute(a : StringAttribute):
+func set_attribute(a : Attribute):
 	attribute = a
-	$LineEdit.text = a.get_value()
+	$LineEdit.text = str(a.get_value())
 	$Label.text = a.get_name()
+	a.connect("value_changed", self, "_on_value_changed")
 
-
-
-
-func _on_LineEdit_text_changed(new_text):
-	attribute.set_value(new_text)
-
+func _on_value_changed(old_val, new_val):
+	$LineEdit.text = new_val
 
 func _on_LineEdit_text_entered(new_text):
+	attribute.set_value(new_text)
 	$LineEdit.hide()
 	$LineEdit.visible = true

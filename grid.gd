@@ -79,9 +79,10 @@ func is_dot_actually_in_grid(dot):
 	return false
 
 func is_legit_dot(dot : Dot):
-	if dot is Dot and good_pos(dot.position) and is_dot_actually_in_grid(dot) and dot._active:
+	if dot is Dot and dot._active and good_pos(dot.position) and is_dot_actually_in_grid(dot) and dot_register.has(dot.ID):
 		return true
 	else:
+		if dot is Dot: Grid.remove_dot(dot)
 		return false
 
 #makes a new grid

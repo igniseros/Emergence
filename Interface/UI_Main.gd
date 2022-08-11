@@ -52,17 +52,18 @@ func _input(event):
 				is_size_down_pressed = false
 				elapsed_time = 0
 			if event.is_action_pressed("ui_right"):
-				var next_item = ($Edit/Mode/DotChoice.selected + 1) % $Edit/Mode/DotChoice.get_item_count()
-				$Edit/Mode/DotChoice.select(next_item)
-				$Edit/Mode/DotChoice.emit_signal("item_selected", next_item)
-				
+				if UIMouse.mode != UIMouse.MODE.SELECT:
+					var next_item = ($Edit/Mode/DotChoice.selected + 1) % $Edit/Mode/DotChoice.get_item_count()
+					$Edit/Mode/DotChoice.select(next_item)
+					$Edit/Mode/DotChoice.emit_signal("item_selected", next_item)
 			if event.is_action_pressed("ui_left"):
-				var next_num = $Edit/Mode/DotChoice.selected - 1
-				if next_num < 0:
-					next_num = $Edit/Mode/DotChoice.get_item_count() - 1
-				var next_item = (next_num) % $Edit/Mode/DotChoice.get_item_count()
-				$Edit/Mode/DotChoice.select(next_item)
-				$Edit/Mode/DotChoice.emit_signal("item_selected", next_item)
+				if UIMouse.mode != UIMouse.MODE.SELECT:
+					var next_num = $Edit/Mode/DotChoice.selected - 1
+					if next_num < 0:
+						next_num = $Edit/Mode/DotChoice.get_item_count() - 1
+					var next_item = (next_num) % $Edit/Mode/DotChoice.get_item_count()
+					$Edit/Mode/DotChoice.select(next_item)
+					$Edit/Mode/DotChoice.emit_signal("item_selected", next_item)
 			if event.is_action_pressed("load"):
 				$"Save and load/LoadButton"._on_LoadButton_pressed()
 			if event.is_action_pressed("save as"):
@@ -73,12 +74,23 @@ func _input(event):
 				UIMouse.line_time = true
 			if event.is_action_released("linetime"):
 				UIMouse.line_time = false
-	
+			if event.is_action_pressed("copy"):
+				if not $"Dot Attributes/CopyDotAttributesButton".disabled:
+					$"Dot Attributes/CopyDotAttributesButton"._on_CopyDotAttributesButton_pressed()
+			if event.is_action_pressed("paste"):
+				if not $"Dot Attributes/PasteDotAttributesButton".disabled:
+					$"Dot Attributes/PasteDotAttributesButton"._on_PasteDotAttributesButton_pressed()
+			if event.is_action_pressed("track"):
+				if not $"Dot Attributes/TrackDotButton".disabled:
+					$"Dot Attributes/TrackDotButton"._on_TrackDotButton_pressed()
+
+
 func _process(delta):
 	if is_size_up_pressed:
 		change_size(delta, +1)
 	if is_size_down_pressed:
 		change_size(delta, -1)
+
 
 func change_size(delta, amount):
 	elapsed_time += delta

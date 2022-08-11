@@ -1,6 +1,7 @@
 extends PhysDot
 class_name GeneratorFood2Dot
 
+var actively_producing = BooleanAttribute.new("Actively Producing", true)
 var food_nutrition = FloatAttribute.new("Food Nutrition", 1, -100000, 100000)
 #in food per turn
 var production_chance = FloatAttribute.new("Production chance", 1/100.0, 0, 1)
@@ -17,7 +18,7 @@ func _init():
 
 func add_attributes():
 	.add_attributes()
-	attributes.append_array([food_nutrition,size,production_chance,preproduce])
+	attributes.append_array([actively_producing, food_nutrition,size,production_chance,preproduce])
 
 func will_tick():
 	return true
@@ -26,7 +27,8 @@ func tick():
 	if time == 1:
 		makefood(production_chance.get_value() * preproduce.get_value())
 	
-	makefood(production_chance.get_value())
+	if actively_producing.get_value():
+		makefood(production_chance.get_value())
 	
 	
 
@@ -48,3 +50,7 @@ func makefood(chance):
 				food.nutrition.set_value(food_nutrition.get_value())
 				Grid.insert_dot(food)
 		i+=1
+
+func draw_on_selected(from : Node2D):
+	var s = size.get_value()
+	from.draw_rect(Rect2(position - Vector2(s,s), Vector2((s)*2 + 1, (s)*2 + 1)), color_one.get_value() - Color(0,0,0,.6))

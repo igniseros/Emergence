@@ -10,6 +10,7 @@ func _on_Select_toggled(button_pressed):
 		$Circle.pressed = false
 		$Pencil.pressed = false
 		UIMouse.switch_to_select()
+		Grid.grid_node.update()
 	$Mode.visible = not button_pressed
 	if not are_any_pressed(MouseTypes):
 		$Select.pressed = true
@@ -21,6 +22,7 @@ func _on_Line_toggled(button_pressed):
 		$Circle.pressed = false
 		$Pencil.pressed = false
 		UIMouse.switch_to_line()
+		Grid.grid_node.update()
 		UIMouse.size = $Line/LineSize.value
 		
 	if not are_any_pressed(MouseTypes):
@@ -34,6 +36,7 @@ func _on_Circle_toggled(button_pressed):
 		$Line.pressed = false
 		$Pencil.pressed = false
 		UIMouse.switch_to_circle()
+		Grid.grid_node.update()
 		UIMouse.size = $Circle/CircleSize.value
 		
 	if not are_any_pressed(MouseTypes):
@@ -45,6 +48,7 @@ func _on_Pencil_toggled(button_pressed):
 		$Select.pressed = false
 		$Line.pressed = false
 		$Circle.pressed = false
+		Grid.grid_node.update()
 		UIMouse.switch_to_pencil()
 	if not are_any_pressed(MouseTypes):
 		$Pencil.pressed = true
@@ -92,17 +96,20 @@ func _on_DotChoice_item_selected(index):
 	var nqueued_dot = UIMouse.dot_class.new()
 	nqueued_dot.add_attributes()
 	UIMouse.change_queued_dot(nqueued_dot)
+	Grid.grid_node.update()
 
 
 func _on_CircleSize_value_changed(value):
 	$Circle/CircleSizeLabel.text = str(value)
 	$Circle.pressed = true
 	UIMouse.size = value
+	Grid.grid_node.update()
 
 func _on_LineSize_value_changed(value):
 	$Line/LineSizeLabel.text = str(value)
 	$Line.pressed = true
 	UIMouse.size = value
+	Grid.grid_node.update()
 
 func _on_Override_toggled(button_pressed):
 	UIMouse.override = button_pressed

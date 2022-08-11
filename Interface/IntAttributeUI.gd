@@ -5,11 +5,14 @@ var height = 470
 
 func set_attribute(a : IntAttribute):
 	attribute = a
-	$SpinBox.value = a.get_value()
 	$SpinBox.min_value = a.minimum
 	$SpinBox.max_value = a.maximum
+	$SpinBox.value = a.get_value()
 	$Label.text = a.get_name()
+	a.connect("value_changed", self, "_on_value_changed")
 
+func _on_value_changed(old_val, new_val):
+	$SpinBox.value = new_val
 
 
 

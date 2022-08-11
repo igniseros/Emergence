@@ -1,19 +1,20 @@
-extends PhysDot
+extends PushableDot
 class_name FoodDot
 
-var nutrition : FloatAttribute = FloatAttribute.new("Nutrition", 1, -100,100)
+var nutrition : FloatAttribute = FloatAttribute.new("Nutrition", 10)
 #how much less per turn
 const decay_rate_l = 0
 #how ratio per turn
 const decay_rate_e = 1
 
-func _init():
+func _init(nutrients = 10):
 	#set name
 	name = StringAttribute.new("Name","Food")
+	nutrition.set_value(nutrients)
 	#set clors
-	color_one = ColorAttribute.new("Color 1", Color(1,1,0))
-	color_two = ColorAttribute.new("Color 2", Color(1,.5,0))
-	color_three = ColorAttribute.new("Color 3", Color(1,1,0))
+	color_one.set_value(Color(get_nutrition()/400 + .75,get_nutrition()/400 + .75,0))
+	color_two.set_value(Color(get_nutrition()/400 + .75,get_nutrition()/400 + .70,0))
+	color_three.set_value(Color(get_nutrition()/400 + .75,get_nutrition()/400 + .60,0))
 
 func add_attributes():
 	.add_attributes()
@@ -29,6 +30,8 @@ func tick():
 	nutrition.set_value(get_nutrition() - decay_rate_l)
 	nutrition.set_value(get_nutrition() * decay_rate_e)
 	color_one.set_value(Color(get_nutrition()/400 + .75,get_nutrition()/400 + .75,0))
+	color_two.set_value(Color(get_nutrition()/400 + .75,get_nutrition()/400 + .70,0))
+	color_three.set_value(Color(get_nutrition()/400 + .75,get_nutrition()/400 + .60,0))
 	if _active == false:
 		color_one.set_value(Color(1,0,1))
 	if get_nutrition() < 0:

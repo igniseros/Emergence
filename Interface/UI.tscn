@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Interface/TickLable.gd" type="Script" id=1]
 [ext_resource path="res://Interface/LoadButton.gd" type="Script" id=2]
@@ -15,6 +15,9 @@
 [ext_resource path="res://Interface/Panel.gd" type="Script" id=13]
 [ext_resource path="res://Interface/SpawnSpot.gd" type="Script" id=14]
 [ext_resource path="res://Interface/UI_Main.gd" type="Script" id=15]
+[ext_resource path="res://Interface/TrackDotButton.gd" type="Script" id=16]
+[ext_resource path="res://Interface/CopyDotAttributesButton.gd" type="Script" id=17]
+[ext_resource path="res://Interface/PasteDotAttributesButton.gd" type="Script" id=18]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0 )
@@ -88,6 +91,7 @@ text = "1"
 margin_left = -256.0
 margin_top = 5.0
 margin_bottom = 21.0
+focus_mode = 0
 min_value = 1.0
 max_value = 32.0
 value = 1.0
@@ -98,7 +102,7 @@ margin_left = -78.0
 margin_top = 86.0
 margin_right = -11.0
 margin_bottom = 110.0
-hint_tooltip = "Circle (C) - Draw with circles!"
+hint_tooltip = "Circle (R) - Draw with circles!"
 focus_mode = 0
 text = "Circle"
 
@@ -114,12 +118,14 @@ margin_left = -257.0
 margin_top = 4.0
 margin_right = -1.0
 margin_bottom = 20.0
+focus_mode = 0
 min_value = 1.0
 max_value = 32.0
 value = 1.0
 exp_edit = true
 
 [node name="Mode" type="Control" parent="Edit"]
+visible = false
 margin_left = -78.0
 margin_top = 139.0
 margin_right = -38.0
@@ -310,13 +316,40 @@ text = "Dot Attributes:"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Dot Attributes"]
 margin_left = -10.0
-margin_top = 16.0
+margin_top = 26.0
 margin_right = 429.0
 margin_bottom = 663.0
 custom_styles/bg = SubResource( 1 )
 
 [node name="SpawnSpot" type="VBoxContainer" parent="Dot Attributes/ScrollContainer"]
 script = ExtResource( 14 )
+
+[node name="TrackDotButton" type="Button" parent="Dot Attributes"]
+margin_left = 372.0
+margin_right = 417.0
+margin_bottom = 20.0
+hint_tooltip = "Track (CTRL-B) - highlights a dot for easier tracking"
+disabled = true
+text = "Track"
+script = ExtResource( 16 )
+
+[node name="CopyDotAttributesButton" type="Button" parent="Dot Attributes"]
+margin_left = 274.0
+margin_right = 319.0
+margin_bottom = 20.0
+hint_tooltip = "Copy (CTRL-C) - copies a dot's attributes"
+disabled = true
+text = "Copy"
+script = ExtResource( 17 )
+
+[node name="PasteDotAttributesButton" type="Button" parent="Dot Attributes"]
+margin_left = 322.0
+margin_right = 369.0
+margin_bottom = 20.0
+hint_tooltip = "Paste (CTRL-V) - attempts to paste attributes into the currently selected dot"
+disabled = true
+text = "Paste"
+script = ExtResource( 18 )
 
 [node name="Save and load" type="Control" parent="."]
 anchor_top = 1.0
@@ -412,6 +445,9 @@ dialog_text = "Grid must have a path! Use 'Save As...'"
 [connection signal="changed" from="Sim Settings/UseTimerCheckBox/TimeSpinBox" to="Sim Settings/UseTimerCheckBox/TimeSpinBox" method="_on_TimeSpinBox_changed"]
 [connection signal="value_changed" from="Sim Settings/UseTimerCheckBox/TimeSpinBox" to="Sim Settings/UseTimerCheckBox/TimeSpinBox" method="_on_TimeSpinBox_value_changed"]
 [connection signal="toggled" from="Sim Settings/FancyDrawCheckBox" to="Sim Settings/FancyDrawCheckBox" method="_on_FancyDrawCheckBox_toggled"]
+[connection signal="pressed" from="Dot Attributes/TrackDotButton" to="Dot Attributes/TrackDotButton" method="_on_TrackDotButton_pressed"]
+[connection signal="pressed" from="Dot Attributes/CopyDotAttributesButton" to="Dot Attributes/CopyDotAttributesButton" method="_on_CopyDotAttributesButton_pressed"]
+[connection signal="pressed" from="Dot Attributes/PasteDotAttributesButton" to="Dot Attributes/PasteDotAttributesButton" method="_on_PasteDotAttributesButton_pressed"]
 [connection signal="pressed" from="Save and load/LoadButton" to="Save and load/LoadButton" method="_on_LoadButton_pressed"]
 [connection signal="pressed" from="Save and load/SaveButton" to="Save and load/SaveButton" method="_on_SaveButton_pressed"]
 [connection signal="pressed" from="Save and load/SaveAsButton" to="Save and load/SaveAsButton" method="_on_SaveAsButton_pressed"]

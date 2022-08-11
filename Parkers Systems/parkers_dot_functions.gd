@@ -1,6 +1,6 @@
 extends Node
 
-var box_around = [Vector2(-1,0),Vector2(-1,1),Vector2(0,1),Vector2(1,1),Vector2(1,0),Vector2(1,-1),Vector2(0,-1),Vector2(-1,-1)]
+var box_around : Array = [Vector2(-1,0),Vector2(-1,1),Vector2(0,1),Vector2(1,1),Vector2(1,0),Vector2(1,-1),Vector2(0,-1),Vector2(-1,-1)]
 
 #looks at one position
 func look_at(sender : Dot, direction : Vector2):

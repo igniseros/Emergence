@@ -1,10 +1,10 @@
 extends Attribute
 class_name FloatAttribute
 
-var minimum = -100000
-var maximum = 100000
+var minimum= -1.79769e308
+var maximum= 1.79769e308
 
-func _init(name : String, value, mini, maxi).(name, value):
+func _init(name : String, value, mini = -1.79769e308, maxi = 1.79769e308).(name, value):
 	minimum = mini
 	maximum = maxi
 

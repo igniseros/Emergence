@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "Action",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Action.gd"
+}, {
 "base": "PushableDot",
 "class": "AttachableDot",
 "language": "GDScript",
@@ -24,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dots/Parker/Structure/Attachables/attachable_master_dot.gd"
 }, {
+"base": "Action",
+"class": "AttackAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/AttackAction.gd"
+}, {
 "base": "Reference",
 "class": "Attribute",
 "language": "GDScript",
@@ -33,6 +43,11 @@ _global_script_classes=[ {
 "class": "Behavior",
 "language": "GDScript",
 "path": "res://Parkers Systems/Evolution/Behavioral/Behavior.gd"
+}, {
+"base": "Attribute",
+"class": "BooleanAttribute",
+"language": "GDScript",
+"path": "res://Parkers Systems/UI/Attributes/BooleanAttribute.gd"
 }, {
 "base": "Attribute",
 "class": "ColorAttribute",
@@ -84,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dots/Basic/dot.gd"
 }, {
+"base": "Action",
+"class": "EatAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/EatAction.gd"
+}, {
 "base": "LifeDot",
 "class": "EvolvingLifeDot",
 "language": "GDScript",
@@ -94,7 +114,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Parkers Systems/UI/Attributes/FloatAttribute.gd"
 }, {
-"base": "PhysDot",
+"base": "PushableDot",
 "class": "FoodDot",
 "language": "GDScript",
 "path": "res://Dots/Parker/Environment/food_dot.gd"
@@ -113,6 +133,11 @@ _global_script_classes=[ {
 "class": "GlueDot",
 "language": "GDScript",
 "path": "res://Dots/Parker/Structure/Attachables/glue_dot.gd"
+}, {
+"base": "Reference",
+"class": "Habit",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Habit.gd"
 }, {
 "base": "Attribute",
 "class": "IntAttribute",
@@ -134,20 +159,50 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dots/Parker/Environment/killer_wall.gd"
 }, {
+"base": "Reference",
+"class": "LifeBrain",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/LifeBrain.gd"
+}, {
+"base": "MutableAttribute",
+"class": "LifeBrainAttribute",
+"language": "GDScript",
+"path": "res://Parkers Systems/UI/Attributes/LifeBrainAttribute.gd"
+}, {
 "base": "PhysDot",
 "class": "LifeDot",
 "language": "GDScript",
 "path": "res://Dots/Parker/Life/Basic/life_dot.gd"
 }, {
-"base": "ReproducingLifeDot",
-"class": "LifeWithBrain",
+"base": "PushableDot",
+"class": "LifePlusBaseDot",
 "language": "GDScript",
-"path": "res://Dots/Parker/Life/Life 2.0/life_with_brain.gd"
+"path": "res://Dots/Parker/Life 2.0/life_plus_base_dot.gd"
+}, {
+"base": "LifePlusBaseDot",
+"class": "LifePlusBasicDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Life 2.0/Basic/life_plus_basic.gd"
+}, {
+"base": "LifePlusBaseDot",
+"class": "LifePlusBrainDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Life 2.0/Basic/life_plus_basic_brain_dot.gd"
 }, {
 "base": "Reference",
 "class": "Matrix",
 "language": "GDScript",
 "path": "res://Parkers Systems/Matrix Math/matrix.gd"
+}, {
+"base": "Attribute",
+"class": "MutableAttribute",
+"language": "GDScript",
+"path": "res://Parkers Systems/UI/Attributes/MutableAttribute.gd"
+}, {
+"base": "MutableAttribute",
+"class": "MutableFloatAttribute",
+"language": "GDScript",
+"path": "res://Parkers Systems/UI/Attributes/MutableFloatAttribute.gd"
 }, {
 "base": "LifeDot",
 "class": "NativeLifeDot",
@@ -178,6 +233,11 @@ _global_script_classes=[ {
 "class": "PushableWallDot",
 "language": "GDScript",
 "path": "res://Dots/Parker/Structure/Examples/PushableWall.gd"
+}, {
+"base": "Action",
+"class": "RandomWalkAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/RandomWalkAction.gd"
 }, {
 "base": "LifeDot",
 "class": "ReproducingLifeDot",
@@ -235,11 +295,14 @@ _global_script_classes=[ {
 "path": "res://Dots/Basic/wall_dot.gd"
 } ]
 _global_script_class_icons={
+"Action": "",
 "AttachableDot": "",
 "AttachableFollowerDot": "",
 "AttachableMasterDot": "",
+"AttackAction": "",
 "Attribute": "",
 "Behavior": "",
+"BooleanAttribute": "",
 "ColorAttribute": "",
 "ColorDot": "",
 "ComplexBatchMemoryBrain": "",
@@ -250,25 +313,34 @@ _global_script_class_icons={
 "DisplayItem": "",
 "DodgingBrainDot": "",
 "Dot": "",
+"EatAction": "",
 "EvolvingLifeDot": "",
 "FloatAttribute": "",
 "FoodDot": "",
 "GeneratorFood2Dot": "",
 "GeneratorFoodDot": "",
 "GlueDot": "",
+"Habit": "",
 "IntAttribute": "",
 "KillerCrawlDot": "",
 "KillerCrawlFriendDot": "",
 "KillerWallDot": "",
+"LifeBrain": "",
+"LifeBrainAttribute": "",
 "LifeDot": "",
-"LifeWithBrain": "",
+"LifePlusBaseDot": "",
+"LifePlusBasicDot": "",
+"LifePlusBrainDot": "",
 "Matrix": "",
+"MutableAttribute": "",
+"MutableFloatAttribute": "",
 "NativeLifeDot": "",
 "PhysDot": "",
 "PushableBaseDot": "",
 "PushableCrawlDot": "",
 "PushableDot": "",
 "PushableWallDot": "",
+"RandomWalkAction": "",
 "ReproducingLifeDot": "",
 "SimpleBrain": "",
 "SimpleMemoryBrain": "",
@@ -295,6 +367,7 @@ Converter="*res://Converter.gd"
 PDF="*res://Parkers Systems/parkers_dot_functions.gd"
 TheGreatConnection="*res://the_great_connection.gd"
 UIMouse="*res://Parkers Systems/UI/ui_mouse.gd"
+Utils="*res://Parkers Systems/Utils.gd"
 
 [display]
 
@@ -360,7 +433,7 @@ tick={
 }
 circle={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":67,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":82,"unicode":0,"echo":false,"script":null)
  ]
 }
 pencil={
@@ -436,6 +509,21 @@ delete={
 linetime={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777240,"unicode":0,"echo":false,"script":null)
+ ]
+}
+copy={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":0,"physical_scancode":67,"unicode":0,"echo":false,"script":null)
+ ]
+}
+paste={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":0,"physical_scancode":86,"unicode":0,"echo":false,"script":null)
+ ]
+}
+track={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":0,"physical_scancode":66,"unicode":0,"echo":false,"script":null)
  ]
 }
 
