@@ -16,6 +16,7 @@ var brain : LifeBrainAttribute = LifeBrainAttribute.new("Brain", null, 1)
 var habits = []
 var allowed_actions = [EatAction, RandomWalkAction, AttackAction]
 var default_habit = [EatAction.new(),RandomWalkAction.new()]
+var max_actions_per_habbit : IntAttribute = IntAttribute.new("Max Habbits", 25,0)
 
 func _init(_is_child = false, _parent = null).(_is_child, _parent):
 	name.set_value("Life Plus Brain")
@@ -44,11 +45,11 @@ func calc_color() -> Color:
 
 func build_habbits():
 	for i in range(output_count):
-		habits.append(Habit.new(default_habit))
+		habits.append(Habit.new(default_habit, max_actions_per_habbit.get_value()))
 
 func add_attributes():
 	.add_attributes()
-	attributes.append(basel_metabolic_rate)
+	attributes.append_array([basel_metabolic_rate, max_actions_per_habbit])
 
 func add_mutable_attributes():
 	.add_mutable_attributes()

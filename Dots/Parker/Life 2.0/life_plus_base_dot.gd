@@ -12,7 +12,7 @@ var alive : BooleanAttribute = BooleanAttribute.new("Alive", true)
 
 #mutations
 var mutable_attributes = []
-var mutation_chance : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Chance", 2, ALMOST_ZERO, 100)
+var mutation_chance : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Chance", 2, ALMOST_ZERO, 15)
 var mutation_scale : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Scale", 1.20, ALMOST_ZERO, 10)
 
 #children
