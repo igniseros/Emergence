@@ -20,7 +20,9 @@ func add_attributes():
 func copy_attribute_values_from(dot : Dot):
 	var i = 0
 	for a in attributes:
+		print(str(a.get_value()) + " -> " + str(dot.attributes[i].get_value()))
 		(a as Attribute).set_value(dot.attributes[i].get_value())
+		print(str(a.get_value()) + " = " + str(dot.attributes[i].get_value()))
 		i+=1
 
 func get_color_attributes():

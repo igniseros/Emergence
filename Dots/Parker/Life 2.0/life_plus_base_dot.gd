@@ -13,7 +13,7 @@ var alive : BooleanAttribute = BooleanAttribute.new("Alive", true)
 #mutations
 var mutable_attributes = []
 var mutation_chance : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Chance", 2, ALMOST_ZERO, 15)
-var mutation_scale : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Scale", 1.20, ALMOST_ZERO, 10)
+var mutation_scale : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Scale", 2, ALMOST_ZERO, 10)
 
 #children
 var parent : LifePlusBaseDot
@@ -71,6 +71,7 @@ func reproduce(child_energy_ratio : float = .5):
 #creates a child
 func assemble_child(child_energy) -> LifePlusBaseDot:
 	var child = get_script().new(true, self)
+	child.add_attributes()
 	child.copy_attribute_values_from(self)
 	child.energy.set_value(child_energy)
 	child.connect("died", self, "_on_child_died")
