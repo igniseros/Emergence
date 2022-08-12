@@ -193,13 +193,13 @@ func make_line():
 	var draw_pos = line_start
 
 	while draw_pos.distance_to(line_end) > .5 * size:
-		mouse_pos = quantize(draw_pos)
+		mouse_pos = Utils.quantize(draw_pos)
 		if insert: insert()
 		else: delete()
 		direction = draw_pos.direction_to(line_end)
 		draw_pos += direction * size * size_scale
 	
-	mouse_pos = quantize(Grid.grid_node.get_local_mouse_position())
+	mouse_pos = Utils.quantize(Grid.grid_node.get_local_mouse_position())
 	if insert: insert()
 	else: delete()
 
@@ -244,9 +244,6 @@ func delete():
 
 func set_attribute_spawn_spot(ss):
 	attribute_spawn_spot = ss
-
-func quantize(pos : Vector2 ) -> Vector2:
-	return pos.floor()
 
 func clear_display():
 	for c in attribute_spawn_spot.get_children():

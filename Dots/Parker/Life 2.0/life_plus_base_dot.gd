@@ -12,12 +12,12 @@ var alive : BooleanAttribute = BooleanAttribute.new("Alive", true)
 
 #mutations
 var mutable_attributes = []
-var mutation_chance : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Chance", 2, ALMOST_ZERO, 15)
-var mutation_scale : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Scale", 2, ALMOST_ZERO, 10)
+var mutation_chance : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Chance", 2, .5, 15)
+var mutation_scale : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Scale", 2, 1.01, 10)
 
 #children
 var parent : LifePlusBaseDot
-var children = []
+var children : Array = []
 var is_child = false
 
 signal died(who_died)
@@ -77,7 +77,6 @@ func assemble_child(child_energy) -> LifePlusBaseDot:
 	child.connect("died", self, "_on_child_died")
 	
 	var heatindex = child.mutation_chance.get_value() * abs(child.mutation_scale.get_value()-1)
-	heatindex /= 2.0
 	child.color_two.set_value(Color(heatindex, 0, 0))
 	child.color_three.set_value(Color(heatindex, 0,0))
 	

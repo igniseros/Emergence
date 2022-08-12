@@ -99,12 +99,15 @@ func flush_grid():
 			Grid.grid[x].append(0)
 
 func insert_dot(dot : Dot):
+	#set check for things
 	if not good_pos(dot.position):
 		bad_pos_insert_since_last_report+=1
 		return
 	
-	#add dot to grid
+	if Grid.get_at(dot.position) is Dot:
+		Grid.remove_dot(Grid.get_at(dot.position))
 	
+	#add dot to grid
 	dot.ID = last_id
 	dot._active = true
 	dot_register[dot.ID] = dot
@@ -112,6 +115,7 @@ func insert_dot(dot : Dot):
 	last_id += 1
 	
 	if not dot._attributes_added: dot.add_attributes()
+	
 	#load dot to register
 	if(dot.will_tick()):
 		tick_registrer[dot.ID] = dot

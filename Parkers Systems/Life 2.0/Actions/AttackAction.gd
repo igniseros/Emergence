@@ -6,7 +6,7 @@ func _init(attributes = []).(attributes):
 
 func play(dot : LifePlusBaseDot):
 	for m in Utils.shuffleList(PDF.look_at_array(dot, PDF.box_around)):
-		dot.use_energy(.1)
+		dot.use_energy(.2)
 		if m is LifePlusBaseDot:
 			m.use_energy(4)
 			dot.use_energy(-2.5)

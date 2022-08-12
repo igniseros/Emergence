@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Action",
 "language": "GDScript",
-"path": "res://Parkers Systems/Life 2.0/Action.gd"
+"path": "res://Parkers Systems/Life 2.0/Action Types/Action.gd"
 }, {
 "base": "PushableDot",
 "class": "AttachableDot",
@@ -83,6 +83,16 @@ _global_script_classes=[ {
 "class": "CrawlFriendDot",
 "language": "GDScript",
 "path": "res://Dots/Parker/Crawl/crawl_friend_dot.gd"
+}, {
+"base": "DirectionalAction",
+"class": "CreateWallAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/CreateWallAction.gd"
+}, {
+"base": "Action",
+"class": "DirectionalAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Action Types/DirectionalAction.gd"
 }, {
 "base": "Reference",
 "class": "DisplayItem",
@@ -214,6 +224,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dots/Basic/phys_dot.gd"
 }, {
+"base": "DirectionalAction",
+"class": "PushAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/PushAction.gd"
+}, {
 "base": "PhysDot",
 "class": "PushableBaseDot",
 "language": "GDScript",
@@ -239,6 +254,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Parkers Systems/Life 2.0/Actions/RandomWalkAction.gd"
 }, {
+"base": "DirectionalAction",
+"class": "RemoveWallAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/RemoveWallAction.gd"
+}, {
 "base": "LifeDot",
 "class": "ReproducingLifeDot",
 "language": "GDScript",
@@ -253,6 +273,11 @@ _global_script_classes=[ {
 "class": "SimpleMemoryBrain",
 "language": "GDScript",
 "path": "res://Parkers Systems/Evolution/Brains/SimpleMemoryBrain.gd"
+}, {
+"base": "DirectionalAction",
+"class": "SpecificWalkAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/SpecificWalkAction.gd"
 }, {
 "base": "Reference",
 "class": "Step",
@@ -310,6 +335,8 @@ _global_script_class_icons={
 "ComplexMemoryBrain": "",
 "CrawlDot": "",
 "CrawlFriendDot": "",
+"CreateWallAction": "",
+"DirectionalAction": "",
 "DisplayItem": "",
 "DodgingBrainDot": "",
 "Dot": "",
@@ -336,14 +363,17 @@ _global_script_class_icons={
 "MutableFloatAttribute": "",
 "NativeLifeDot": "",
 "PhysDot": "",
+"PushAction": "",
 "PushableBaseDot": "",
 "PushableCrawlDot": "",
 "PushableDot": "",
 "PushableWallDot": "",
 "RandomWalkAction": "",
+"RemoveWallAction": "",
 "ReproducingLifeDot": "",
 "SimpleBrain": "",
 "SimpleMemoryBrain": "",
+"SpecificWalkAction": "",
 "Step": "",
 "StepAttack": "",
 "StepEat": "",

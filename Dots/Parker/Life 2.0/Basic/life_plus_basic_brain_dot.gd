@@ -9,12 +9,12 @@ var reproduction_chance : MutableFloatAttribute = MutableFloatAttribute.new("Rep
 var death_threshold : MutableFloatAttribute = MutableFloatAttribute.new("Death Threshold (energy)", 4, ALMOST_ZERO, LARGE_NUMBER)
 
 #--brain and habits--
-var input_count = 25
-var output_count = 5
+var input_count = 41
+var output_count = 16
 var brain : LifeBrainAttribute = LifeBrainAttribute.new("Brain", null, 1)
 
 var habits = []
-var allowed_actions = [EatAction, RandomWalkAction, AttackAction]
+var allowed_actions = [EatAction, RandomWalkAction, AttackAction, SpecificWalkAction, PushAction, RemoveWallAction, CreateWallAction]
 var default_habit = [EatAction.new(),RandomWalkAction.new()]
 var max_actions_per_habbit : IntAttribute = IntAttribute.new("Max Habbits", 25,0)
 
@@ -66,13 +66,23 @@ func gather_inputs() -> Vector:
 	#inputs here are the colors of the dots around the current dot
 	var inputs = []
 	for dot in PDF.look_at_array(self, PDF.box_around):
-		if dot is Dot:
-			inputs.append(dot.color_one.get_value().r)
-			inputs.append(dot.color_one.get_value().g)
-			inputs.append(dot.color_one.get_value().b)
+		#categories : 0 - wall, 1 - food, 2 - family life, 3 - unkown life , 4 - unknown dot
+		var category = [0,0,0,0,0]
+		if dot is PushableWallDot:
+			category[0] = 1
+		elif dot is FoodDot:
+			category[1] = 1
+		elif parent == dot or children.has(dot):
+			category[2] = 1
+		elif dot is LifePlusBaseDot:
+			category[3] = 1
 		else:
-			inputs.append_array([0,0,0])
-	inputs.append(energy.get_value()/reproduction_threshold.get_value())
+			category[4] = 1
+		inputs.append_array(category)
+	
+	#basically log( ((energy * e) / reproduction thresh) + 1)
+	inputs.append(
+		log(((energy.get_value()*exp(1)) / reproduction_threshold.get_value()) + 1))
 	return Vector.new(inputs)
 
 func assemble_child(child_energy):

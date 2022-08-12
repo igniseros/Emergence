@@ -40,6 +40,6 @@ func _on_tick():
 
 func _input(event):
 	if event is InputEventMouse:
-		UIMouse.mouse_pos = UIMouse.quantize(get_local_mouse_position())
+		UIMouse.mouse_pos = Utils.quantize(get_local_mouse_position())
 		update()
 
