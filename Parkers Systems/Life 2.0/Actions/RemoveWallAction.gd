@@ -1,13 +1,16 @@
-extends DirectionalAction
+extends Action
 class_name RemoveWallAction
 
 func _init(attributes = []).(attributes):
 	pass
 	
 func play(dot : LifePlusBaseDot):
-	var dir = Utils.quantize(direction)
-	if PDF.look_at(dot, dir) is PushableWallDot:
-		Grid.remove_dot(PDF.look_at(dot, dir))
+	for m in Utils.shuffleList(PDF.look_at_array(dot, PDF.box_around)):
+		dot.use_energy(.1)
+		if m is PushableWallDot:
+			dot.use_energy(1)
+			Grid.remove_dot(m)
+			return
 
 func get_color():
 	return Color(.2,.6,1)

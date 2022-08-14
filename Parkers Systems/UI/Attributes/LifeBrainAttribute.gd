@@ -2,9 +2,11 @@ extends MutableAttribute
 class_name LifeBrainAttribute
 
 var mutation_scale = 1
+var chance_for_new_brain = .001
 
-func _init(name : String, value : LifeBrain, mscale = 1).(name, value):
+func _init(name : String, value : LifeBrain, mscale = 1, cfnb = .0001).(name, value):
 	mutation_scale = mscale
+	chance_for_new_brain = cfnb
 
 func get_value():
 	return _value
@@ -24,7 +26,11 @@ func create_ui_node():
 	return ui_node
 
 func random_change(scale):
-	(get_value() as LifeBrain).mutate(mutation_scale * scale)
+	if randf() < chance_for_new_brain:
+		var size = get_value().weight_matrix.size()
+		set_value(LifeBrain.new(size[1], size[0]))
+	else:
+		(get_value() as LifeBrain).mutate(mutation_scale * scale)
 
 func copy():
 	var brain = LifeBrain.new(null,null,self.get_value())

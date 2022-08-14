@@ -254,7 +254,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Parkers Systems/Life 2.0/Actions/RandomWalkAction.gd"
 }, {
-"base": "DirectionalAction",
+"base": "Action",
 "class": "RemoveWallAction",
 "language": "GDScript",
 "path": "res://Parkers Systems/Life 2.0/Actions/RemoveWallAction.gd"

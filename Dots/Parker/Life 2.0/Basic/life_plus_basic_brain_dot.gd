@@ -10,7 +10,7 @@ var death_threshold : MutableFloatAttribute = MutableFloatAttribute.new("Death T
 
 #--brain and habits--
 var input_count = 41
-var output_count = 16
+var output_count = 12
 var brain : LifeBrainAttribute = LifeBrainAttribute.new("Brain", null, 1)
 
 var habits = []
@@ -71,8 +71,8 @@ func gather_inputs() -> Vector:
 		if dot is PushableWallDot:
 			category[0] = 1
 		elif dot is FoodDot:
-			category[1] = 1
-		elif parent == dot or children.has(dot):
+			category[1] = log(abs(dot.nutrition.get_value()) + 1)
+		elif dot is LifePlusBaseDot and (parent == dot or children.has(dot) or dot.parent == parent):
 			category[2] = 1
 		elif dot is LifePlusBaseDot:
 			category[3] = 1
