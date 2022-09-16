@@ -7,10 +7,11 @@ func _init(attributes = []).(attributes):
 func play(dot : LifePlusBaseDot):
 	var dir = Utils.quantize(direction)
 	if not PDF.look_at(dot, dir) is PhysDot:
-		dot.use_energy(10)
-		var new_wall = PushableWallDot.new()
-		new_wall.position = dot.position + dir
-		Grid.insert_dot(new_wall)
+		dot.use_energy(5)
+		if dot.alive.get_value():
+			var new_wall = PushableWallDot.new()
+			new_wall.position = dot.position + dir
+			Grid.insert_dot(new_wall)
 
 func get_color():
 	return Color(1,.6,.2)

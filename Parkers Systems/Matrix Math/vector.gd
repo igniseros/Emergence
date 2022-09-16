@@ -73,3 +73,15 @@ func empty(size : int) -> Vector:
 	for i in range(size):
 		crude_ret.append(0)
 	return get_script().new(crude_ret)
+
+func get_save_string():
+	var first = true
+	var s_string = ""
+	for e in elements:
+		if first: 
+			s_string += str(e)
+			first = false
+		else: s_string += "," + str(e)
+	return s_string
+
+

@@ -5,7 +5,7 @@ class_name PhysDot
 func isEmpty():
 	return false
 
-func move( direction : Vector2 ):
+func move(direction : Vector2 ):
 	var landing_spot = position + direction
 	if can_move_into(landing_spot):
 		set_position(landing_spot)

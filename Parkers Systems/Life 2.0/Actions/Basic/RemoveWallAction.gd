@@ -7,10 +7,11 @@ func _init(attributes = []).(attributes):
 func play(dot : LifePlusBaseDot):
 	for m in Utils.shuffleList(PDF.look_at_array(dot, PDF.box_around)):
 		dot.use_energy(.1)
-		if m is PushableWallDot:
-			dot.use_energy(1)
-			Grid.remove_dot(m)
-			return
+		if dot.alive.get_value():
+			if m is PushableWallDot:
+				dot.use_energy(10)
+				Grid.remove_dot(m)
+				return
 
 func get_color():
 	return Color(.2,.6,1)

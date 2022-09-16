@@ -5,9 +5,9 @@
 [node name="LifeBrainAttributeUI" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1268.0
+margin_right = -1060.0
 margin_bottom = -868.0
-rect_min_size = Vector2( 32, 32 )
+rect_min_size = Vector2( 240, 32 )
 script = ExtResource( 1 )
 
 [node name="Label" type="Label" parent="."]

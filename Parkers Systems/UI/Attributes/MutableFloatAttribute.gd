@@ -4,7 +4,7 @@ class_name MutableFloatAttribute
 var minimum = -1.79769e308
 var maximum = 1.79769e308
 
-func _init(name,value,mini = 1.79769e308, maxi = -1.79769e308).(name,value):
+func _init(name,value,mini = -1.79769e308, maxi = 1.79769e308).(name,value):
 	minimum = mini
 	maximum = maxi
 

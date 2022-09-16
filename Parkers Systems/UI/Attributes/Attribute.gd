@@ -27,3 +27,9 @@ func create_ui_node():
 
 func _to_string():
 	return str(get_value())
+
+func get_save_value():
+	return get_value()
+
+func load_value(v):
+	set_value(v)

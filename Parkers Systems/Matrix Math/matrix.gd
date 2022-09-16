@@ -57,3 +57,19 @@ func empty(rows : int, cols : int):
 
 func get_elem(x : int, y : int):
 	return rows[x].get_elem(y)
+
+
+func get_save_string():
+	var s_string = ""
+	var first = true
+	
+	for r in rows:
+		if first:
+			s_string += (r as Vector).get_save_string()
+			first = false
+		else:
+			s_string += "|" + (r as Vector).get_save_string()
+	
+	return s_string
+
+

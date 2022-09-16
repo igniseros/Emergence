@@ -17,22 +17,12 @@ _global_script_classes=[ {
 "base": "PushableDot",
 "class": "AttachableDot",
 "language": "GDScript",
-"path": "res://Dots/Parker/Structure/Attachables/attachable_dot.gd"
-}, {
-"base": "AttachableDot",
-"class": "AttachableFollowerDot",
-"language": "GDScript",
-"path": "res://Dots/Parker/Structure/Attachables/attachable_follower_dot.gd"
-}, {
-"base": "AttachableDot",
-"class": "AttachableMasterDot",
-"language": "GDScript",
-"path": "res://Dots/Parker/Structure/Attachables/attachable_master_dot.gd"
+"path": "res://Dots/Parker/Structure/Attachables/AttachableDot.gd"
 }, {
 "base": "Action",
 "class": "AttackAction",
 "language": "GDScript",
-"path": "res://Parkers Systems/Life 2.0/Actions/AttackAction.gd"
+"path": "res://Parkers Systems/Life 2.0/Actions/Basic/AttackAction.gd"
 }, {
 "base": "Reference",
 "class": "Attribute",
@@ -49,6 +39,26 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Parkers Systems/UI/Attributes/BooleanAttribute.gd"
 }, {
+"base": "InputStyle",
+"class": "CategoryInputStyle",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Input Styles/categories_input_style.gd"
+}, {
+"base": "Action",
+"class": "ChangeColorOneAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/Basic/ChangeColorOneAction.gd"
+}, {
+"base": "Action",
+"class": "ChangeColorThreeAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/Basic/ChangeColorThreeAction.gd"
+}, {
+"base": "Action",
+"class": "ChangeColorTwoAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/Basic/ChangeColorTwoAction.gd"
+}, {
 "base": "Attribute",
 "class": "ColorAttribute",
 "language": "GDScript",
@@ -58,6 +68,11 @@ _global_script_classes=[ {
 "class": "ColorDot",
 "language": "GDScript",
 "path": "res://Dots/Parker/Single Use/color_dot.gd"
+}, {
+"base": "InputStyle",
+"class": "ColorsInputStyle",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Input Styles/colors_input_style.gd"
 }, {
 "base": "ComplexMemoryBrain",
 "class": "ComplexBatchMemoryBrain",
@@ -87,12 +102,17 @@ _global_script_classes=[ {
 "base": "DirectionalAction",
 "class": "CreateWallAction",
 "language": "GDScript",
-"path": "res://Parkers Systems/Life 2.0/Actions/CreateWallAction.gd"
+"path": "res://Parkers Systems/Life 2.0/Actions/Basic/CreateWallAction.gd"
 }, {
 "base": "Action",
 "class": "DirectionalAction",
 "language": "GDScript",
 "path": "res://Parkers Systems/Life 2.0/Action Types/DirectionalAction.gd"
+}, {
+"base": "PushableDot",
+"class": "DirtDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Life 2.0/Plants and Herbivores/Dirt.gd"
 }, {
 "base": "Reference",
 "class": "DisplayItem",
@@ -109,10 +129,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dots/Basic/dot.gd"
 }, {
+"base": "DirectionalAction",
+"class": "DropFoodAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/Basic/DropFoodAction.gd"
+}, {
 "base": "Action",
 "class": "EatAction",
 "language": "GDScript",
-"path": "res://Parkers Systems/Life 2.0/Actions/EatAction.gd"
+"path": "res://Parkers Systems/Life 2.0/Actions/Basic/EatAction.gd"
 }, {
 "base": "LifeDot",
 "class": "EvolvingLifeDot",
@@ -139,15 +164,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dots/Parker/Environment/generator_food_dot.gd"
 }, {
-"base": "AttachableDot",
-"class": "GlueDot",
-"language": "GDScript",
-"path": "res://Dots/Parker/Structure/Attachables/glue_dot.gd"
-}, {
 "base": "Reference",
 "class": "Habit",
 "language": "GDScript",
 "path": "res://Parkers Systems/Life 2.0/Habit.gd"
+}, {
+"base": "Action",
+"class": "HerbavoreAccumulateAntidoteAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/Herbavore/HerbavoreAccumulateAntidoteAction.gd"
+}, {
+"base": "InputStyle",
+"class": "HerbavoreCategoriesInutStyle",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Input Styles/HerbivoreCategoriesInputStyle.gd"
+}, {
+"base": "Action",
+"class": "HerbavoreEatPlantAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/Herbavore/HerbavoreEatPlantAction.gd"
+}, {
+"base": "Reference",
+"class": "InputStyle",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Input Styles/input_style.gd"
 }, {
 "base": "Attribute",
 "class": "IntAttribute",
@@ -199,10 +239,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dots/Parker/Life 2.0/Basic/life_plus_basic_brain_dot.gd"
 }, {
+"base": "LifePlusBrainDot",
+"class": "LifePlusHerbavoreDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Life 2.0/Plants and Herbivores/LifePlusHerbavoreDot.gd"
+}, {
+"base": "LifePlusBrainDot",
+"class": "LifePlusPlantDot",
+"language": "GDScript",
+"path": "res://Dots/Parker/Life 2.0/Plants and Herbivores/LifePlusPlant.gd"
+}, {
 "base": "Reference",
 "class": "Matrix",
 "language": "GDScript",
 "path": "res://Parkers Systems/Matrix Math/matrix.gd"
+}, {
+"base": "Reference",
+"class": "Memory",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Memory.gd"
 }, {
 "base": "Attribute",
 "class": "MutableAttribute",
@@ -224,10 +279,40 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dots/Basic/phys_dot.gd"
 }, {
+"base": "Reference",
+"class": "Pile",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Pile.gd"
+}, {
+"base": "Action",
+"class": "PlantAccumulatePoisonAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/Plant/PlantAccumulatePoisonAction.gd"
+}, {
+"base": "InputStyle",
+"class": "PlantCategoriesInutStyle",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Input Styles/plant_categories_input_style.gd"
+}, {
+"base": "Action",
+"class": "PlantGainMoreEnergyAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/Plant/PlantGainMoreEnergyAction.gd"
+}, {
+"base": "Action",
+"class": "PlantShareEnergyAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/Plant/PlantShareEnergy.gd"
+}, {
+"base": "Action",
+"class": "PlantShareMineralsAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/Plant/PlantShareMinerals.gd"
+}, {
 "base": "DirectionalAction",
 "class": "PushAction",
 "language": "GDScript",
-"path": "res://Parkers Systems/Life 2.0/Actions/PushAction.gd"
+"path": "res://Parkers Systems/Life 2.0/Actions/Basic/PushAction.gd"
 }, {
 "base": "PhysDot",
 "class": "PushableBaseDot",
@@ -252,12 +337,12 @@ _global_script_classes=[ {
 "base": "Action",
 "class": "RandomWalkAction",
 "language": "GDScript",
-"path": "res://Parkers Systems/Life 2.0/Actions/RandomWalkAction.gd"
+"path": "res://Parkers Systems/Life 2.0/Actions/Basic/RandomWalkAction.gd"
 }, {
 "base": "Action",
 "class": "RemoveWallAction",
 "language": "GDScript",
-"path": "res://Parkers Systems/Life 2.0/Actions/RemoveWallAction.gd"
+"path": "res://Parkers Systems/Life 2.0/Actions/Basic/RemoveWallAction.gd"
 }, {
 "base": "LifeDot",
 "class": "ReproducingLifeDot",
@@ -277,7 +362,7 @@ _global_script_classes=[ {
 "base": "DirectionalAction",
 "class": "SpecificWalkAction",
 "language": "GDScript",
-"path": "res://Parkers Systems/Life 2.0/Actions/SpecificWalkAction.gd"
+"path": "res://Parkers Systems/Life 2.0/Actions/Basic/SpecificWalkAction.gd"
 }, {
 "base": "Reference",
 "class": "Step",
@@ -322,14 +407,17 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Action": "",
 "AttachableDot": "",
-"AttachableFollowerDot": "",
-"AttachableMasterDot": "",
 "AttackAction": "",
 "Attribute": "",
 "Behavior": "",
 "BooleanAttribute": "",
+"CategoryInputStyle": "",
+"ChangeColorOneAction": "",
+"ChangeColorThreeAction": "",
+"ChangeColorTwoAction": "",
 "ColorAttribute": "",
 "ColorDot": "",
+"ColorsInputStyle": "",
 "ComplexBatchMemoryBrain": "",
 "ComplexBrain": "",
 "ComplexMemoryBrain": "",
@@ -337,17 +425,22 @@ _global_script_class_icons={
 "CrawlFriendDot": "",
 "CreateWallAction": "",
 "DirectionalAction": "",
+"DirtDot": "",
 "DisplayItem": "",
 "DodgingBrainDot": "",
 "Dot": "",
+"DropFoodAction": "",
 "EatAction": "",
 "EvolvingLifeDot": "",
 "FloatAttribute": "",
 "FoodDot": "",
 "GeneratorFood2Dot": "",
 "GeneratorFoodDot": "",
-"GlueDot": "",
 "Habit": "",
+"HerbavoreAccumulateAntidoteAction": "",
+"HerbavoreCategoriesInutStyle": "",
+"HerbavoreEatPlantAction": "",
+"InputStyle": "",
 "IntAttribute": "",
 "KillerCrawlDot": "",
 "KillerCrawlFriendDot": "",
@@ -358,11 +451,20 @@ _global_script_class_icons={
 "LifePlusBaseDot": "",
 "LifePlusBasicDot": "",
 "LifePlusBrainDot": "",
+"LifePlusHerbavoreDot": "",
+"LifePlusPlantDot": "",
 "Matrix": "",
+"Memory": "",
 "MutableAttribute": "",
 "MutableFloatAttribute": "",
 "NativeLifeDot": "",
 "PhysDot": "",
+"Pile": "",
+"PlantAccumulatePoisonAction": "",
+"PlantCategoriesInutStyle": "",
+"PlantGainMoreEnergyAction": "",
+"PlantShareEnergyAction": "",
+"PlantShareMineralsAction": "",
 "PushAction": "",
 "PushableBaseDot": "",
 "PushableCrawlDot": "",

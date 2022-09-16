@@ -9,12 +9,15 @@ var reproduction_chance : MutableFloatAttribute = MutableFloatAttribute.new("Rep
 var death_threshold : MutableFloatAttribute = MutableFloatAttribute.new("Death Threshold (energy)", 4, ALMOST_ZERO, LARGE_NUMBER)
 
 #--brain and habits--
-var input_count = 41
-var output_count = 12
+var input_style = ColorsInputStyle
+var input_count = input_style.input_count()
+var output_count = 16
 var brain : LifeBrainAttribute = LifeBrainAttribute.new("Brain", null, 1)
+var mem = Memory.new(1)
 
 var habits = []
-var allowed_actions = [EatAction, RandomWalkAction, AttackAction, SpecificWalkAction, PushAction, RemoveWallAction, CreateWallAction]
+var allowed_actions = [EatAction, RandomWalkAction, AttackAction, SpecificWalkAction, PushAction, 
+RemoveWallAction, CreateWallAction, ChangeColorTwoAction, ChangeColorThreeAction, DropFoodAction]
 var default_habit = [EatAction.new(),RandomWalkAction.new()]
 var max_actions_per_habbit : IntAttribute = IntAttribute.new("Max Habbits", 25,0)
 
@@ -28,8 +31,6 @@ func _init(_is_child = false, _parent = null).(_is_child, _parent):
 
 func calibrate():
 	.calibrate()
-	energy.set_value(10)
-	color_one.set_value(calc_color())
 	
 	if not is_child:
 		build_habbits()
@@ -44,6 +45,7 @@ func calc_color() -> Color:
 	return c
 
 func build_habbits():
+	habits = []
 	for i in range(output_count):
 		habits.append(Habit.new(default_habit, max_actions_per_habbit.get_value()))
 
@@ -63,27 +65,7 @@ func mutate():
 		h.mutate(mutation_chance.get_value(), mutation_scale.get_value(), allowed_actions)
 
 func gather_inputs() -> Vector:
-	#inputs here are the colors of the dots around the current dot
-	var inputs = []
-	for dot in PDF.look_at_array(self, PDF.box_around):
-		#categories : 0 - wall, 1 - food, 2 - family life, 3 - unkown life , 4 - unknown dot
-		var category = [0,0,0,0,0]
-		if dot is PushableWallDot:
-			category[0] = 1
-		elif dot is FoodDot:
-			category[1] = log(abs(dot.nutrition.get_value()) + 1)
-		elif dot is LifePlusBaseDot and (parent == dot or children.has(dot) or dot.parent == parent):
-			category[2] = 1
-		elif dot is LifePlusBaseDot:
-			category[3] = 1
-		else:
-			category[4] = 1
-		inputs.append_array(category)
-	
-	#basically log( ((energy * e) / reproduction thresh) + 1)
-	inputs.append(
-		log(((energy.get_value()*exp(1)) / reproduction_threshold.get_value()) + 1))
-	return Vector.new(inputs)
+	return input_style.gather_inputs(self)
 
 func assemble_child(child_energy):
 	var child = .assemble_child(child_energy)
@@ -106,6 +88,9 @@ func life_tick():
 		reproduce(reproduction_gift.get_value())
 	else:
 		#chooses the habit to perform and executes on it
-		var chosen_habbit : Habit = habits[brain.get_habit_index(gather_inputs())]
+		var inputs = gather_inputs()
+		var index = brain.get_habit_index(inputs)
+		var chosen_habbit : Habit = habits[index]
 		chosen_habbit.execute(self)
+		mem.add_mem(chosen_habbit)
 		color_one.set_value(color_one.get_value() * .9 + chosen_habbit.get_color() * .1)

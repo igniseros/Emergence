@@ -76,10 +76,6 @@ func assemble_child(child_energy) -> LifePlusBaseDot:
 	child.energy.set_value(child_energy)
 	child.connect("died", self, "_on_child_died")
 	
-	var heatindex = child.mutation_chance.get_value() * abs(child.mutation_scale.get_value()-1)
-	child.color_two.set_value(Color(heatindex, 0, 0))
-	child.color_three.set_value(Color(heatindex, 0,0))
-	
 	return child
 
 func mutate():
@@ -92,10 +88,10 @@ func use_energy(amount : float):
 	if energy.get_value() <= 0:
 		die()
 
-func die():
+func die(drop_food = true):
 	alive.set_value(false)
 	Grid.remove_dot(self)
-	if energy.get_value() > 0:
+	if energy.get_value() > 0 and drop_food:
 		var newFood = FoodDot.new(energy.get_value())
 		newFood.position = position
 		Grid.insert_dot(newFood)

@@ -40,8 +40,8 @@ func assemble_child(child_energy):
 	child.color_one.set_value(Color(0, chance_to_eat.get_value(), 1 - chance_to_eat.get_value()))
 	return child
 
-func die():
-	.die()
+func die(drop_food = true):
+	.die(drop_food)
 	var food = FoodDot.new()
 	food.nutrition.set_value(2)
 	food.position = position

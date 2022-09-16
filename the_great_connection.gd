@@ -5,7 +5,10 @@ var COLOR : Dictionary = {Color("#757574") : WallDot, Color("#ffff00") : FoodDot
 Color("#ffb41e"): GeneratorFood2Dot, Color("ff0080") : KillerCrawlDot, Color("ff6c80"): KillerCrawlFriendDot,
 Color("#fffffe") : ColorDot, Color("#000000") : EvolvingLifeDot, Color("#111111") : PushableWallDot, Color("#AA00FF") : PushableCrawlDot,
 LifePlusBasicDot.new().color_one.get_value() : LifePlusBasicDot,
-LifePlusBrainDot.new().color_one.get_value() : LifePlusBrainDot}
+LifePlusBrainDot.new().color_one.get_value() : LifePlusBrainDot,
+DirtDot.new().color_one.get_value() : DirtDot, 
+LifePlusPlantDot.new().color_one.get_value() : LifePlusPlantDot,
+LifePlusHerbavoreDot.new().color_one.get_value() : LifePlusHerbavoreDot}
 
 var grid_has_path : bool = false
 

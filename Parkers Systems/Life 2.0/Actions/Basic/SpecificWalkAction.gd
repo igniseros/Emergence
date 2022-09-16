@@ -5,8 +5,8 @@ func _init(attributes = []).(attributes):
 	pass
 	
 func play(dot : LifePlusBaseDot):
-	if dot.move(Utils.quantize(direction)) : dot.use_energy(1)
-	else: dot.use_energy(.5)
+	if dot.move(Utils.quantize(direction)) : dot.use_energy(.15)
+	else: dot.use_energy(.015)
 
 func get_color():
 	return Color(0,.5,1)

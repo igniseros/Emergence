@@ -12,6 +12,9 @@ func set_value(value):
 	.set_value(clamp(float(value), minimum, maximum))
 	return true
 
+func affect_value(v : float):
+	set_value(get_value() + v)
+
 func create_ui_node():
 	var ui_node = load("res://Interface/FloatAttributeUI.tscn").instance()
 	ui_node.set_attribute(self)

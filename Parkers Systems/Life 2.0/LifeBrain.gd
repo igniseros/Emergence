@@ -3,6 +3,9 @@ class_name LifeBrain
 var weight_matrix : Matrix
 var bias_vector : Vector
 
+var last_answer = -1
+var last_input : Vector
+
 func _init(inputs, outputs, copyfrom = null):
 	if copyfrom != null:
 		copy_from_parent(copyfrom)
@@ -30,6 +33,7 @@ func make_new_brain(inputs, outputs):
 	weight_matrix = Matrix.new(weight_vector_array)
 
 func think(input : Vector) -> Vector:
+	last_input = input
 	return weight_matrix.multiply_vector(input).add(bias_vector)
 
 func condensed_think(input : Vector) -> float:
@@ -50,7 +54,8 @@ func condensed_think(input : Vector) -> float:
 			max_o_indexs = [i]
 		i += 1
 	
-	return max_o_indexs[floor(rand_range(0,max_o_indexs.size()))]
+	last_answer = max_o_indexs[floor(rand_range(0,max_o_indexs.size()))]
+	return last_answer
 
 func mutate(scale):
 	for vector in weight_matrix.rows:
@@ -61,3 +66,13 @@ func mutate(scale):
 	for i in range(len(bias_vector.elements)):
 			var bias_nudge = (randf()-.5) * 2 * scale
 			bias_vector.elements[i] += bias_nudge
+
+#splits:
+# elem,elem,elem
+# row|row|row
+# weight_matrix@bias_vector
+func get_save_string():
+	var s_string = weight_matrix.get_save_string() + "@" + bias_vector.get_save_string()
+	return s_string
+
+

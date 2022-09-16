@@ -59,15 +59,27 @@ func store_info(info : String):
 func save_dot() -> Array:
 	var value_index = TheGreatConnection.COLOR.values().find(get_script())
 	var key = TheGreatConnection.COLOR.keys()[value_index]
-	return [key, name, position]
+	var save_array = [key, position]
+	save_array.append_array(get_attribute_save_values())
+	return save_array
 
 func load_dot(package : Array) -> int:
-	name = package[1]
-	position = package[2]
-	return 3
+	position = package[1]
+	var i = 2 #the current index in the package
+	for a in attributes:
+		(a as Attribute).load_value(package[i])
+		i += 1
+	return i
+
+func get_attribute_save_values():
+	var values = []
+	for a in attributes:
+		values.append(a.get_save_value())
+	return values
 
 static func create_and_load(package):
 	var dot = TheGreatConnection.COLOR[package[0]].new() as Dot
+	dot.add_attributes()
 	dot.load_dot(package)
 	return dot
 
