@@ -104,7 +104,7 @@ func draw_mouse(from : Node2D):
 		from.draw_circle(line_start + Vector2(.5,.5), 1, Color(0,0,0,1))
 		from.draw_circle(line_end + Vector2(.5,.5), size, Color(0,0,0,.1))
 	
-	if selected_dot is Dot:
+	if is_instance_valid(selected_dot) and selected_dot is Dot:
 		if Grid.is_legit_dot(selected_dot):
 			from.draw_circle(selected_dot.position + Vector2(.5,.5), 1.25, Color(0,0,0,.1))
 			from.draw_circle(selected_dot.position + Vector2(.5,.5), .1, Color(0,0,0,.1))

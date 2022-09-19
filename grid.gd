@@ -3,6 +3,7 @@ extends Node
 var grid = []
 var dot_register : Dictionary = {} #all dots
 var tick_registrer : Dictionary = {} #dots that tick
+var delete_list = [] #dots to delete soon
 var time = 0
 var size_x = 2024
 var size_y = 2024
@@ -142,9 +143,15 @@ func remove_dot(dot : Dot):
 		illegit_since_last_report += 1
 	
 	dot._active = false
-
+	delete_list.append(dot)
+	
 #ticks the grid
 func tick():
+	for dot in delete_list:
+		if is_instance_valid(dot):
+			dot.free()
+	delete_list = []
+	
 	time += 1
 	for dot in tick_registrer.values():
 		(dot as Dot).tick_wrap()

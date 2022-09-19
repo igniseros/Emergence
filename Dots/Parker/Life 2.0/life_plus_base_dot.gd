@@ -103,12 +103,13 @@ func life_tick():
 func tick():
 	if not alive.get_value():
 		die()
-	life_tick()
+	elif is_instance_valid(self):
+		life_tick()
 
 func draw_children(from : Node2D, alpha : float, depth_left : int):
 	if depth_left == 0: return
 	for child in children:
-		if child.alive.get_value():
+		if is_instance_valid(child) and child.alive.get_value():
 				from.draw_line(position + Vector2(.5,.5), child.position + Vector2(.5,.5), Color(1,0,.8,alpha))
 				from.draw_circle(child.position + Vector2(.5,.5), .1, Color(1,0,.4,alpha))
 				from.draw_rect(Rect2(child.position, Vector2(1,1)), Color(.5,.5,0,alpha/1.25), false)
