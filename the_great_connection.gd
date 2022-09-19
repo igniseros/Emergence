@@ -29,8 +29,11 @@ func save_data(file_path : String):
 	file.close()
 
 func save_sim(file_path : String):
+	if file_path.split(".")[-1] != "grid":
+		file_path += ".grid"
+	print("saving grid to: " + file_path)
 	var file = File.new()
-	file.open(file_path, File.WRITE)
+	file.open_compressed(file_path, File.WRITE, File.COMPRESSION_ZSTD)
 	file.store_var("START OF GRID")
 	file.store_var(Grid.time)
 	file.store_var(Grid.size_x)
@@ -45,9 +48,9 @@ func save_sim(file_path : String):
 	file.close()
 
 func load_sim(file_path : String):
-	print("loading grid")
+	print("loading grid from: " + file_path)
 	var file = File.new()
-	file.open(file_path, File.READ)
+	file.open_compressed(file_path, File.READ, File.COMPRESSION_ZSTD)
 	print(file.get_var())
 	Grid.flush_grid()
 	Grid.time = file.get_var()

@@ -18,3 +18,10 @@ func random_change(scale :float):
 
 func _to_string():
 	return "[Change Color One Action]"
+
+func get_save_value():
+	return .get_save_value() + "~" + str(color_change.r) + "~" + str(color_change.g) + "~" + str(color_change.b)
+
+func load_value(v : String):
+	var action_data = v.split("~")
+	color_change = Color(float(action_data[1]), float(action_data[2]), float(action_data[3]))

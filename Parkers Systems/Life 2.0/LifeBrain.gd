@@ -76,3 +76,7 @@ func get_save_string():
 	return s_string
 
 
+func stunt():
+	bias_vector = bias_vector.normalize()
+	for row in weight_matrix.rows:
+		row = row.normalize()

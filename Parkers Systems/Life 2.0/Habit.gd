@@ -61,3 +61,23 @@ func get_color() -> Color:
 
 func _to_string():
 	return str(actions)
+
+func get_save_value():
+	var s_string = ""
+	var first = true
+	for a in actions:
+		if first:
+			first =false
+			s_string += a.get_save_value()
+		else:
+			s_string += "," + a.get_save_value()
+	return s_string
+
+func load_value(v : String):
+	actions = []
+	var action_data = v.split(",")
+	for action_pack_string in action_data:
+		var action_pack = (action_pack_string as String).split("~")
+		var new_action = load(action_pack[0]).new() as Action
+		new_action.load_value(action_pack_string)
+		actions.append(new_action)

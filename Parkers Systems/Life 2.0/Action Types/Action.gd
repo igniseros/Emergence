@@ -26,3 +26,9 @@ func random_change(scale : float):
 
 func _to_string():
 	return "[Unnamed Action]"
+
+func get_save_value():
+	return self.get_script().resource_path
+
+func load_value(v):
+	return

@@ -43,7 +43,7 @@ func calibrate():
 	.calibrate()
 	
 	if not is_child:
-		build_habbits()
+		build_habits()
 		brain.set_value(LifeBrain.new(input_count, output_count))
 
 func add_attributes():

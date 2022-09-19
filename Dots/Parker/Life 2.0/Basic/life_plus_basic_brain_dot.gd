@@ -15,7 +15,7 @@ var output_count = 16
 var brain : LifeBrainAttribute = LifeBrainAttribute.new("Brain", null, 1)
 var mem = Memory.new(1)
 
-var habits = []
+var habits = HabbitAttribute.new("Habits")
 var allowed_actions = [EatAction, RandomWalkAction, AttackAction, SpecificWalkAction, PushAction, 
 RemoveWallAction, CreateWallAction, ChangeColorTwoAction, ChangeColorThreeAction, DropFoodAction]
 var default_habit = [EatAction.new(),RandomWalkAction.new()]
@@ -33,25 +33,25 @@ func calibrate():
 	.calibrate()
 	
 	if not is_child:
-		build_habbits()
+		build_habits()
 		brain.set_value(LifeBrain.new(input_count, output_count))
 
 func calc_color() -> Color:
 	var c = Color(0,0,0,0)
 	
-	for h in habits:
-		c += h.get_color() * (1 / float(habits.size()))
+	for h in habits.get_value():
+		c += h.get_color() * (1 / float(habits.get_value().size()))
 	
 	return c
 
-func build_habbits():
-	habits = []
+func build_habits():
+	habits.set_value([])
 	for i in range(output_count):
-		habits.append(Habit.new(default_habit, max_actions_per_habbit.get_value()))
+		habits.get_value().append(Habit.new(default_habit, max_actions_per_habbit.get_value()))
 
 func add_attributes():
 	.add_attributes()
-	attributes.append_array([basel_metabolic_rate, max_actions_per_habbit])
+	attributes.append_array([basel_metabolic_rate, max_actions_per_habbit, habits])
 
 func add_mutable_attributes():
 	.add_mutable_attributes()
@@ -61,7 +61,7 @@ func add_mutable_attributes():
 func mutate():
 	.mutate()
 	brain.mutate(mutation_chance.get_value(), mutation_scale.get_value())
-	for h in habits:
+	for h in habits.get_value():
 		h.mutate(mutation_chance.get_value(), mutation_scale.get_value(), allowed_actions)
 
 func gather_inputs() -> Vector:
@@ -70,9 +70,9 @@ func gather_inputs() -> Vector:
 func assemble_child(child_energy):
 	var child = .assemble_child(child_energy)
 	child.brain.set_value(brain.copy().get_value())
-	child.habits = []
-	for h in habits:
-		child.habits.append(h.copy())
+	child.habits.set_value([])
+	for h in habits.get_value():
+		child.habits.get_value().append(h.copy())
 	child.color_one.set_value(calc_color())
 	return child
 
@@ -90,7 +90,7 @@ func life_tick():
 		#chooses the habit to perform and executes on it
 		var inputs = gather_inputs()
 		var index = brain.get_habit_index(inputs)
-		var chosen_habbit : Habit = habits[index]
+		var chosen_habbit : Habit = habits.get_value()[index]
 		chosen_habbit.execute(self)
 		mem.add_mem(chosen_habbit)
 		color_one.set_value(color_one.get_value() * .9 + chosen_habbit.get_color() * .1)

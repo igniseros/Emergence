@@ -1,7 +1,7 @@
 extends Attribute
 class_name BooleanAttribute
 
-func _init(name : String, value).(name, value):
+func _init(name : String, value, ui_read_only = false).(name, value, ui_read_only):
 	pass
 
 func set_value(value):

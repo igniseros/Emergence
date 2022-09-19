@@ -10,7 +10,7 @@ func play(dot : LifePlusBaseDot):
 	var dir = Utils.quantize(direction)
 	var dot2push = PDF.look_at(dot, dir)
 	if dot2push is PushableDot and dot.try_to_push(dot2push,dir,4):
-		dot.use_energy(2)
+		dot.use_energy(8)
 	else:
 		dot.use_energy(.2)
 

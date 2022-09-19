@@ -23,3 +23,11 @@ func play(dot : LifePlusBaseDot):
 
 func get_color():
 	return Color(0,0,0)
+
+func get_save_value():
+	return .get_save_value() + "~" + str(nutrition_amount)
+
+func load_value(v : String):
+	var action_data = v.split("~")
+	.load_value(v)
+	nutrition_amount = float(action_data[3])

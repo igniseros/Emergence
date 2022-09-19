@@ -2,12 +2,14 @@ class_name Attribute
 
 var _value
 var _name : String
+var _ui_read_only
 
 signal value_changed(old_value, new_value)
 
-func _init(name : String,value):
+func _init(name : String,value, ui_read_only = false):
 	set_name(name)
 	set_value(value)
+	_ui_read_only = ui_read_only
 
 func get_value():
 	return _value

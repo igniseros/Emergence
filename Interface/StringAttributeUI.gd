@@ -6,6 +6,7 @@ var height = 27
 func set_attribute(a : Attribute):
 	attribute = a
 	$LineEdit.text = str(a.get_value())
+	$LineEdit.editable = not a._ui_read_only
 	$Label.text = a.get_name()
 	a.connect("value_changed", self, "_on_value_changed")
 

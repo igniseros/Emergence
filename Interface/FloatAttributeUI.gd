@@ -7,6 +7,7 @@ func set_attribute(a : Attribute):
 	attribute = a
 	$SpinBox.min_value = a.minimum
 	$SpinBox.max_value = a.maximum
+	$SpinBox.editable = not a._ui_read_only
 	$SpinBox.value = a.get_value()
 	$Label.text = a.get_name()
 	a.connect("value_changed", self, "_on_value_changed")

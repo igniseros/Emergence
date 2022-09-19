@@ -68,7 +68,7 @@ func _input(event):
 				$"Save and load/LoadButton"._on_LoadButton_pressed()
 			if event.is_action_pressed("save as"):
 				$"Save and load/SaveAsButton"._on_SaveAsButton_pressed()
-			if event.is_action_pressed("save"):
+			elif event.is_action_pressed("save"):
 				$"Save and load/SaveButton"._on_SaveButton_pressed()
 			if event.is_action_pressed("linetime"):
 				UIMouse.line_time = true

@@ -14,7 +14,7 @@ var ID : int = -1
 var attributes : Array = []
 
 func add_attributes():
-	attributes.append_array([name])
+	attributes.append_array([name, color_one, color_two, color_three])
 	_attributes_added = true
 
 func copy_attribute_values_from(dot : Dot):
@@ -58,8 +58,8 @@ func store_info(info : String):
 
 func save_dot() -> Array:
 	var value_index = TheGreatConnection.COLOR.values().find(get_script())
-	var key = TheGreatConnection.COLOR.keys()[value_index]
-	var save_array = [key, position]
+	var path = self.get_script().resource_path
+	var save_array = [path, position]
 	save_array.append_array(get_attribute_save_values())
 	return save_array
 
@@ -78,7 +78,7 @@ func get_attribute_save_values():
 	return values
 
 static func create_and_load(package):
-	var dot = TheGreatConnection.COLOR[package[0]].new() as Dot
+	var dot = load(package[0]).new() as Dot
 	dot.add_attributes()
 	dot.load_dot(package)
 	return dot

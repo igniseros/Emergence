@@ -4,7 +4,7 @@ class_name FloatAttribute
 var minimum= -1.79769e308
 var maximum= 1.79769e308
 
-func _init(name : String, value, mini = -1.79769e308, maxi = 1.79769e308).(name, value):
+func _init(name : String, value, mini = -1.79769e308, maxi = 1.79769e308, ui_read_only = false).(name, value, ui_read_only):
 	minimum = mini
 	maximum = maxi
 

@@ -37,3 +37,10 @@ func get_color():
 func _to_string():
 	return "[Gain More Energy Action]"
 
+func get_save_value():
+	return .get_save_value() + "~" + str(scale)
+	
+func load_value(v : String):
+	var action_data = v.split("~")
+	scale = float(action_data[1])
+

@@ -1,7 +1,7 @@
 extends LifePlusBrainDot
 class_name LifePlusHerbavoreDot
 
-const MAX_ENERGY = 2000
+const MAX_ENERGY = 4000
 const MAX_MINERALS = 1000
 var minerals : FloatAttribute = FloatAttribute.new("Minerals", 0, 0, MAX_MINERALS)
 var antidote : FloatAttribute = FloatAttribute.new("Antidote", 0, 0, MAX_ENERGY)
@@ -16,8 +16,8 @@ func _init(_is_child = false, _parent = null).(_is_child, _parent):
 	
 	energy = FloatAttribute.new("Energy", 30, 0, MAX_ENERGY)
 	#--variables--
-	basel_metabolic_rate.set_value(.1)
-	reproduction_threshold = MutableFloatAttribute.new("Reproducton threshold", 40, .5)
+	basel_metabolic_rate.set_value(.25)
+	reproduction_threshold = MutableFloatAttribute.new("Reproducton threshold", 40, .5, MAX_ENERGY - 1)
 	reproduction_gift.set_value(.5)
 	reproduction_chance.set_value(.25)
 	death_threshold = MutableFloatAttribute.new("Death Threshold (energy)", 0, 0, 0)
@@ -30,7 +30,7 @@ func _init(_is_child = false, _parent = null).(_is_child, _parent):
 
 	allowed_actions = [RandomWalkAction, SpecificWalkAction, HerbavoreEatPlantAction, HerbavoreAccumulateAntidoteAction,
 	PlantShareEnergyAction, PlantShareMineralsAction, CreateWallAction, RemoveWallAction, PushAction] #TODO
-	default_habit = [HerbavoreEatPlantAction.new()]
+	default_habit = [HerbavoreEatPlantAction.new(), RandomWalkAction.new()]
 	max_actions_per_habbit.set_value(15)
 	calibrate()
 
@@ -38,7 +38,7 @@ func calibrate():
 	.calibrate()
 	
 	if not is_child:
-		build_habbits()
+		build_habits()
 		brain.set_value(LifeBrain.new(input_count, output_count))
 
 func add_attributes():

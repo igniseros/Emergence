@@ -21,3 +21,9 @@ func get_color():
 func _to_string():
 	return "[Accumulate Poison Action]"
 
+func get_save_value():
+	return .get_save_value() + "~" + str(energy_cost.get_value())
+	
+func load_value(v : String):
+	var action_data = v.split("~")
+	energy_cost.set_value(action_data[1])

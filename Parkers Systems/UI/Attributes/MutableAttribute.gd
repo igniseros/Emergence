@@ -1,7 +1,7 @@
 extends Attribute
 class_name MutableAttribute
 
-func _init(name,value).(name,value):
+func _init(name,value, ui_read_only = false).(name,value, ui_read_only):
 	pass
 
 func mutate(chance : float, scale : float):
