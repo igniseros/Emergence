@@ -21,7 +21,7 @@ func _init():
 
 func tick():
 	use_energy(basil_metabolic_rate)
-	if(time > max_age):
+	if(age.get_value() > max_age):
 		die()
 	if(alive):
 		life_tick()

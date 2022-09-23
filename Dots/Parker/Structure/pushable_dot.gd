@@ -19,7 +19,7 @@ func recieve_push(direction : Vector2, strength_left : int):
 			return true
 
 func try_to_push(dot : Dot, direction : Vector2, strength : int):
-	if dot is PushableBaseDot:
+	if dot is PushableBaseDot and dot.is_pushable():
 		return dot.recieve_push(direction, strength)
 	
 	return false

@@ -14,23 +14,23 @@ func _init(_is_child = false, _parent = null).(_is_child, _parent):
 	color_two.set_value(Color(1,0,0))
 	color_three.set_value(Color(1,0,0))
 	
-	energy = FloatAttribute.new("Energy", 30, 0, MAX_ENERGY)
+	energy = FloatAttribute.new("Energy", 300, 0, MAX_ENERGY)
 	#--variables--
-	basel_metabolic_rate.set_value(.25)
-	reproduction_threshold = MutableFloatAttribute.new("Reproducton threshold", 40, .5, MAX_ENERGY - 1)
-	reproduction_gift.set_value(.5)
-	reproduction_chance.set_value(.25)
+	basel_metabolic_rate.set_value(.1)
+	reproduction_threshold = MutableFloatAttribute.new("Reproducton threshold", 800, .5, MAX_ENERGY - 1)
+	reproduction_gift.set_value(.75)
 	death_threshold = MutableFloatAttribute.new("Death Threshold (energy)", 0, 0, 0)
 
 	#--brain and habits--
 	input_style = HerbavoreCategoriesInutStyle
 	input_count = input_style.input_count()
-	output_count = 12
+	output_count = 8
 	brain = LifeBrainAttribute.new("Brain", null, 1)
 
-	allowed_actions = [RandomWalkAction, SpecificWalkAction, HerbavoreEatPlantAction, HerbavoreAccumulateAntidoteAction,
+	allowed_actions = [DieAction, RandomWalkAction, SpecificWalkAction, HerbavoreEatPlantAction, HerbavoreAccumulateAntidoteAction,
 	PlantShareEnergyAction, PlantShareMineralsAction, CreateWallAction, RemoveWallAction, PushAction] #TODO
-	default_habit = [HerbavoreEatPlantAction.new(), RandomWalkAction.new()]
+	default_habit = [ HerbavoreEatPlantAction.new(), HerbavoreAccumulateAntidoteAction.new()]
+	habits = HabbitAttribute.new("Habits", allowed_actions)
 	max_actions_per_habbit.set_value(15)
 	calibrate()
 
@@ -59,6 +59,9 @@ func life_tick():
 	if ratio == 0: ratio = .0001
 	var mineral_color_scale = log(minerals.get_value() + exp(1) - 1) / 10 
 	var mineral_color = energy_color.linear_interpolate(Color(1,1,1) * mineral_color_scale, clamp(1.0/ratio,0,.7))
+	var reproduce_ratio = clamp(energy.get_value() / reproduction_threshold.get_value(),.25,1)
+	mineral_color *= reproduce_ratio
+	mineral_color.a = 1
 	color_two.set_value(mineral_color)
 	color_one.set_value(mineral_color)
 

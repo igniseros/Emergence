@@ -11,7 +11,7 @@ func set_attribute(a : Attribute):
 	a.connect("value_changed", self, "_on_value_changed")
 
 func _on_value_changed(old_val, new_val):
-	$LineEdit.text = new_val
+	$LineEdit.text = str(new_val)
 
 func _on_LineEdit_text_entered(new_text):
 	attribute.set_value(new_text)

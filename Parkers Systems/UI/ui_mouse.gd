@@ -46,6 +46,7 @@ func _ready():
 	queued_dot.add_attributes()
 	tracked_dots_font.font_data = load("res://Fonts/CREAMPUF.TTF")
 	tracked_dots_font.size = 16
+	Grid.connect("_on_tick", self, "_on_tick")
 
 func switch_to_select():
 	if mode != MODE.SELECT:

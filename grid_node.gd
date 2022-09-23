@@ -13,7 +13,6 @@ func _ready():
 	
 #draws the grid
 func _draw():
-	
 	if not draw:
 		return
 	

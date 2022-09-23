@@ -3,8 +3,8 @@ class_name PlantGainMoreEnergyAction
 
 var mineral_cost = 1
 var energy_cost = 1
-var energy_gain_per_open_square = 10
-var starting_energy_gain = -30
+var energy_gain_per_open_square = 6
+var starting_energy_gain = -12
 
 var scale = 1
 
@@ -24,8 +24,7 @@ func play(dot : LifePlusBaseDot):
 			if spot is DirtDot:
 				dirt_found += 1
 		
-		if dirt_found > 0: dot.use_energy(-6 + dirt_found)
-		else : dot.use_energy(-energy_gain * scale)
+		dot.use_energy(-energy_gain * scale)
 
 func random_change(scale : float):
 	scale += rand_range(-scale, scale)

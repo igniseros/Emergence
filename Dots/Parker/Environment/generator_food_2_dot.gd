@@ -24,7 +24,7 @@ func will_tick():
 	return true
 
 func tick():
-	if time == 1:
+	if age.get_value() == 1:
 		makefood(production_chance.get_value() * preproduce.get_value())
 	
 	if actively_producing.get_value():

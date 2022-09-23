@@ -2,11 +2,11 @@ extends Object
 class_name Dot
 
 var name : StringAttribute = StringAttribute.new("Name","Dot")
+var age : IntAttribute = IntAttribute.new("Age", 0, 0)
 var position : Vector2
 var color_one : ColorAttribute = ColorAttribute.new("Color 1", Color(1,1,1))
 var color_two : ColorAttribute = ColorAttribute.new("Color 2", Color(0,0,0))
 var color_three : ColorAttribute = ColorAttribute.new("Color 3", Color(0,0,0))
-var time = 0 #should sync between everyone
 var _first_time = true
 var _attributes_added = false
 var _active = false
@@ -15,7 +15,7 @@ var ID : int = -1
 var attributes : Array = []
 
 func add_attributes():
-	attributes.append_array([name, color_one, color_two, color_three])
+	attributes.append_array([name,age, color_one, color_two, color_three])
 	_attributes_added = true
 
 func copy_attribute_values_from(dot : Dot):
@@ -34,7 +34,7 @@ func isEmpty():
 	return true
 
 func tick_wrap():
-	time+=1
+	age.affect_value(1)
 	
 	if not Grid.is_legit_dot(self):
 		Grid.remove_dot(self)
@@ -55,7 +55,7 @@ func _on_click():
 
 func store_info(info : String):
 	TheGreatConnection.store_data("DOT_DATA," + str(ID) + "," + str(position.x) + "," + str(position.y) + \
-	"," + str(time) +  "," + info)
+	"," + str(age.get_value()) +  "," + info)
 
 func save_dot() -> Array:
 	var value_index = TheGreatConnection.COLOR.values().find(get_script())

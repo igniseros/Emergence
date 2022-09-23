@@ -1,24 +1,30 @@
 extends Action
 class_name PlantShareMineralsAction
 
-var mineral_cost = .1
-var energy_cost = .1
+var mineral_cost = .01
+var energy_cost = .01
 var minerals_shared_per_dot : MutableFloatAttribute = \
-MutableFloatAttribute.new("Energy shared per dot", .5, 0, 1)
+MutableFloatAttribute.new("Energy shared per dot", .2, 0, 1)
 
 func _init(attributes = []).(attributes):
 	pass
 
 func play(dot : LifePlusBaseDot):
-	dot.minerals.set_value(dot.minerals.get_value() - mineral_cost)
-	dot.use_energy(energy_cost)
+	if dot.minerals.get_value() > mineral_cost and dot.energy.get_value() > energy_cost:
+		dot.minerals.set_value(dot.minerals.get_value() - mineral_cost)
+		dot.use_energy(energy_cost)
+	else:
+		return
 	
 	for spot in PDF.look_at_array(dot, PDF.box_around):
 		if spot is LifePlusBaseDot and spot.name.get_value() == dot.name.get_value():
-			var gift = dot.minerals.get_value() * minerals_shared_per_dot.get_value()
-			if dot.minerals.get_value() > gift:
-				dot.minerals.affect_value(-gift)
-				spot.minerals.affect_value(gift)
+			var giver = spot if spot.minerals.get_value() > dot.minerals.get_value() else dot
+			var reciever = spot if giver == dot else dot
+			var gift = giver.minerals.get_value() * minerals_shared_per_dot.get_value()
+			gift = clamp(gift,0,giver.minerals.get_value() - reciever.minerals.get_value())
+			if giver.minerals.get_value() > gift:
+				giver.minerals.affect_value(-gift)
+				reciever.minerals.affect_value(gift)
 				
 
 func random_change(scale):

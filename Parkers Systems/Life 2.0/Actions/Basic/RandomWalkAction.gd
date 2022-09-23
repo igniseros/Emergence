@@ -5,8 +5,8 @@ func _init(attributes = []).(attributes):
 	pass
 
 func play(dot : LifePlusBaseDot):
-	if dot.move(Utils.shuffleList(PDF.box_around)[0]) : dot.use_energy(.1)
-	else: dot.use_energy(.01)
+	if dot.move(Utils.shuffleList(PDF.box_around)[0]) : dot.use_energy(.5)
+	else: dot.use_energy(.5)
 
 func get_color():
 	return Color(0,0,1)

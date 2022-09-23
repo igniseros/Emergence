@@ -4,7 +4,8 @@ var weight_matrix : Matrix
 var bias_vector : Vector
 
 var last_answer = -1
-var last_input : Vector
+var last_input : Vector = Vector.new([1,0])
+var last_output : Vector = Vector.new([1,0])
 
 func _init(inputs, outputs, copyfrom = null):
 	if copyfrom != null:
@@ -34,7 +35,8 @@ func make_new_brain(inputs, outputs):
 
 func think(input : Vector) -> Vector:
 	last_input = input
-	return weight_matrix.multiply_vector(input).add(bias_vector)
+	last_output = weight_matrix.multiply_vector(input).add(bias_vector)
+	return last_output
 
 func condensed_think(input : Vector) -> float:
 	var output = think(input)

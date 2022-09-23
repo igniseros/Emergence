@@ -12,8 +12,10 @@ var alive : BooleanAttribute = BooleanAttribute.new("Alive", true)
 
 #mutations
 var mutable_attributes = []
-var mutation_chance : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Chance", 2, .5, 15)
-var mutation_scale : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Scale", 2, 1.01, 10)
+var mutation_chance : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Chance", 4, .5, 15)
+var mutation_scale : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Scale", 1.05, 1.01, 10)
+
+var max_age : MutableFloatAttribute = MutableFloatAttribute.new("Max Age", 1000, 0, 20000)
 
 #children
 var parent : LifePlusBaseDot
@@ -49,24 +51,29 @@ func add_attributes():
 
 #define what attributes will mutate
 func add_mutable_attributes():
-	mutable_attributes = [mutation_chance, mutation_scale]
+	mutable_attributes = [mutation_chance, mutation_scale, max_age]
 
 #reproduce
-func reproduce(child_energy_ratio : float = .5):
-	#randomize the list
-	var spots_to_check = Utils.shuffleList(PDF.box_around)
-	
+func reproduce(child_energy_ratio : float = .5, direction = -1):
 	#for each dot in a cirlce around this dot
-	for spot in spots_to_check:
-		if not Grid.is_legit_dot(PDF.look_at(self, spot)):
-			use_energy(energy.get_value() * child_energy_ratio)
-			var child = assemble_child(energy.get_value() * child_energy_ratio) as LifePlusBaseDot
-			child.mutate()
-			child.position = position + spot
-			children.append(child)
-			Grid.insert_dot(child)
-			return true
-		return false
+	if direction == -1:
+		#randomize the list
+		var spots_to_check = Utils.shuffleList(PDF.box_around)
+		for spot in spots_to_check:
+			return shoot_it_out(child_energy_ratio, spot)
+	else:
+		return shoot_it_out(child_energy_ratio, PDF.box_around[direction])
+
+func shoot_it_out(child_energy_ratio : float, spot):
+	if not Grid.is_legit_dot(PDF.look_at(self, spot)):
+		use_energy(energy.get_value() * child_energy_ratio)
+		var child = assemble_child(energy.get_value() * child_energy_ratio) as LifePlusBaseDot
+		child.mutate()
+		child.position = position + spot
+		children.append(child)
+		Grid.insert_dot(child)
+		return true
+	return false
 
 #creates a child
 func assemble_child(child_energy) -> LifePlusBaseDot:
@@ -101,7 +108,7 @@ func life_tick():
 	pass
 
 func tick():
-	if not alive.get_value():
+	if not alive.get_value() or age.get_value() > max_age.get_value():
 		die()
 	elif is_instance_valid(self):
 		life_tick()
@@ -117,7 +124,7 @@ func draw_children(from : Node2D, alpha : float, depth_left : int):
 
 func draw_parents(from : Node2D, alpha : float, depth_left : int):
 	if depth_left == 0: return
-	if is_child and parent != null and parent.alive.get_value():
+	if is_child and is_instance_valid(parent) and parent.alive.get_value():
 			from.draw_line(position + Vector2(.5,.5), parent.position + Vector2(.5,.5), Color(.8,0,1,alpha))
 			from.draw_circle(parent.position + Vector2(.5,.5), .1, Color(.4,0,1,alpha))
 			from.draw_rect(Rect2(parent.position, Vector2(1,1)), Color(.5,.5,0,alpha/1.25), false)

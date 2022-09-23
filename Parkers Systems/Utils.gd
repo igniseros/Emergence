@@ -29,6 +29,11 @@ func draw_vector(from : CanvasItem, vector : Vector, scale : float, offset : Vec
 		var color = calc_color(vector.get_elem(x))
 		draw_square(from,Vector2(x,0), color, scale, offset)
 
+func draw_vector_vertically(from : CanvasItem, vector : Vector, scale : float, offset : Vector2 = Vector2(0,0)):
+	for x in range(vector.size()):
+		var color = calc_color(vector.get_elem(x))
+		draw_square(from,Vector2(0,x), color, scale, offset)
+
 #expects numbers between -1 and 1
 func draw_matrix(from : CanvasItem, matrix : Matrix, scale : float, offset : Vector2):
 	for x in range(matrix.size()[0]):

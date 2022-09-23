@@ -105,6 +105,11 @@ _global_script_classes=[ {
 "path": "res://Parkers Systems/Life 2.0/Actions/Basic/CreateWallAction.gd"
 }, {
 "base": "Action",
+"class": "DieAction",
+"language": "GDScript",
+"path": "res://Parkers Systems/Life 2.0/Actions/Basic/DieAction.gd"
+}, {
+"base": "Action",
 "class": "DirectionalAction",
 "language": "GDScript",
 "path": "res://Parkers Systems/Life 2.0/Action Types/DirectionalAction.gd"
@@ -429,6 +434,7 @@ _global_script_class_icons={
 "CrawlDot": "",
 "CrawlFriendDot": "",
 "CreateWallAction": "",
+"DieAction": "",
 "DirectionalAction": "",
 "DirtDot": "",
 "DisplayItem": "",
