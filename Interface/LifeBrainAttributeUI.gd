@@ -11,7 +11,7 @@ func set_attribute(a : LifeBrainAttribute):
 	Grid.connect("_on_tick", self, "_on_tick")
 	attribute = a
 	var size = attribute.get_value().weight_matrix.size()
-	rect_min_size = Vector2(Scale * (size[0]), clamp(Scale * (size[1] + 6),240,2<<60)) + Offset
+	rect_min_size = Vector2(Scale * (size[0]), clamp(Scale * (size[1] + 7),240,2<<60)) + Offset
 	bv_n = a.get_value().bias_vector.normalize()
 	wm_n = a.get_value().weight_matrix.copy()
 	
@@ -28,7 +28,7 @@ func _draw():
 		choice_arr.append(0)
 	choice_arr[attribute.get_value().last_answer] = 1
 	var choice_vec = Vector.new(choice_arr)
-	Utils.draw_vector(self, choice_vec, Scale, Offset + Vector2(2* Scale, (Scale * wm_n.size()[1] )+ (4*Scale)))
+	Utils.draw_vector(self, choice_vec, Scale, Offset + Vector2(2* Scale, (Scale * wm_n.size()[1] )+ (5*Scale)))
 	
 #	for x in range(wm_n.size()[0]):
 #		for y in range(wm_n.size()[1]):

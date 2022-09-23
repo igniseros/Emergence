@@ -15,7 +15,7 @@ var mutable_attributes = []
 var mutation_chance : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Chance", 4, .5, 15)
 var mutation_scale : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Scale", 1.05, 1.01, 10)
 
-var max_age : MutableFloatAttribute = MutableFloatAttribute.new("Max Age", 1000, 0, 20000)
+var max_age : MutableFloatAttribute = MutableFloatAttribute.new("Max Age", 10000, 0, 20000)
 
 #children
 var parent : LifePlusBaseDot
