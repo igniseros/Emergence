@@ -9,14 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "CrawlDot",
-"class": "BugDot",
-"language": "GDScript",
-"path": "res://Dots/Sandys_Dots/bug_dot.gd"
 "base": "Reference",
 "class": "Behavior",
 "language": "GDScript",
 "path": "res://Parkers Systems/Evolution/Behavioral/Behavior.gd"
+}, {
+"base": "CrawlDot",
+"class": "BugDot",
+"language": "GDScript",
+"path": "res://Dots/Sandys_Dots/bug_dot.gd"
 }, {
 "base": "EvolvingLifeDot",
 "class": "CarnivoreEvolvingLifeDot",
@@ -83,10 +84,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Dots/Parker/Life/Basic/life_dot.gd"
 }, {
+"base": "PhysDot",
+"class": "LifeGuy",
+"language": "GDScript",
+"path": "res://Dots/Sandys_Dots/life_guy.gd"
+}, {
 "base": "LifeDot",
 "class": "NativeLifeDot",
 "language": "GDScript",
 "path": "res://Dots/Parker/Life/Basic/native__life_dot.gd"
+}, {
+"base": "LifeGuy",
+"class": "NativeLifeGuy",
+"language": "GDScript",
+"path": "res://Dots/Sandys_Dots/native_life_guy.gd"
+}, {
+"base": "NativeLifeDot",
+"class": "ParasiteDot",
+"language": "GDScript",
+"path": "res://Dots/Sandys_Dots/parasite_guy.gd"
 }, {
 "base": "Dot",
 "class": "PhysDot",
@@ -129,8 +145,8 @@ _global_script_classes=[ {
 "path": "res://Dots/Basic/wall_dot.gd"
 } ]
 _global_script_class_icons={
-"BugDot": "",
 "Behavior": "",
+"BugDot": "",
 "CarnivoreEvolvingLifeDot": "",
 "CrawlDot": "",
 "CrawlFriendDot": "",
@@ -144,7 +160,10 @@ _global_script_class_icons={
 "KillerCrawlFriendDot": "",
 "KillerWallDot": "",
 "LifeDot": "",
+"LifeGuy": "",
 "NativeLifeDot": "",
+"NativeLifeGuy": "",
+"ParasiteDot": "",
 "PhysDot": "",
 "Step": "",
 "StepAttack": "",

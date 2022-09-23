@@ -25,6 +25,7 @@ texture = ExtResource( 1 )
 centered = false
 script = ExtResource( 5 )
 grid_node = NodePath("../GridNode")
+stats = NodePath("../CanvasLayer/Stats")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 57, 67 )
@@ -38,5 +39,18 @@ speed = 256
 [node name="TickTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Stats" type="Label" parent="CanvasLayer"]
+margin_right = 54.0
+margin_bottom = 14.0
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+text = "<Name>"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="timeout" from="TickTimer" to="." method="_on_TickTimer_timeout"]
