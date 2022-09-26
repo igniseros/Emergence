@@ -12,8 +12,8 @@ var alive : BooleanAttribute = BooleanAttribute.new("Alive", true)
 
 #mutations
 var mutable_attributes = []
-var mutation_chance : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Chance", 4, .5, 15)
-var mutation_scale : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Scale", 1.05, 1.01, 10)
+var mutation_chance : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Chance", 8, .5, 15)
+var mutation_scale : MutableFloatAttribute = MutableFloatAttribute.new("Mutation Scale", 1.5, 1.01, 10)
 
 var max_age : MutableFloatAttribute = MutableFloatAttribute.new("Max Age", 10000, 0, 20000)
 
@@ -66,8 +66,8 @@ func reproduce(child_energy_ratio : float = .5, direction = -1):
 
 func shoot_it_out(child_energy_ratio : float, spot):
 	if not Grid.is_legit_dot(PDF.look_at(self, spot)):
-		use_energy(energy.get_value() * child_energy_ratio)
 		var child = assemble_child(energy.get_value() * child_energy_ratio) as LifePlusBaseDot
+		use_energy(energy.get_value() * child_energy_ratio)
 		child.mutate()
 		child.position = position + spot
 		children.append(child)

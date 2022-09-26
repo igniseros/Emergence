@@ -29,12 +29,15 @@ func create_ui_node():
 
 func random_change(scale):
 	if randf() < chance_for_new_brain:
-		var size = get_value().weight_matrix.size()
-		set_value(LifeBrain.new(size[1], size[0]))
+		new_brain()
 	elif randf() < chance_for_stunted_brain:
 		(get_value() as LifeBrain).stunt()
 	else:
 		(get_value() as LifeBrain).mutate(mutation_scale * scale)
+
+func new_brain():
+	var size = get_value().weight_matrix.size()
+	set_value(LifeBrain.new(size[1], size[0]))
 
 func copy():
 	var brain = LifeBrain.new(null,null,self.get_value())

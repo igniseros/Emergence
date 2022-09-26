@@ -2,7 +2,7 @@ extends Object
 class_name Dot
 
 var name : StringAttribute = StringAttribute.new("Name","Dot")
-var age : IntAttribute = IntAttribute.new("Age", 0, 0)
+var age : IntAttribute = IntAttribute.new("Age", 0, 0, 2)
 var position : Vector2
 var color_one : ColorAttribute = ColorAttribute.new("Color 1", Color(1,1,1))
 var color_two : ColorAttribute = ColorAttribute.new("Color 2", Color(0,0,0))
@@ -91,4 +91,13 @@ func is_this_class(obj):
 		return false
 
 func draw_on_selected(from : Node2D):
+	pass
+
+func _on_ui_insert():
+	pass
+
+func _on_ui_delete():
+	pass
+	
+func _on_ui_select():
 	pass

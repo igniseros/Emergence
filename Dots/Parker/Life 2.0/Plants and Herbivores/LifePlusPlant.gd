@@ -10,7 +10,6 @@ var life_seen_recently = Pile.new(.1)
 var dirt_seen_recently = Pile.new(.1)
 var plants_seen_recently = Pile.new(.1)
 
-
 func _init(_is_child = false, _parent = null).(_is_child, _parent):
 	#basics
 	name.set_value("Life Plus Plant")
@@ -22,14 +21,14 @@ func _init(_is_child = false, _parent = null).(_is_child, _parent):
 	energy = FloatAttribute.new("Energy", 30, 0, MAX_ENERGY)
 	#--variables--
 	basel_metabolic_rate.set_value(0.1)
-	reproduction_threshold = MutableFloatAttribute.new("Reproducton threshold", 60, .5, MAX_ENERGY - .1)
+	reproduction_threshold = MutableFloatAttribute.new("Reproducton threshold", 60, 20, MAX_ENERGY - .1)
 	reproduction_gift.set_value(.75)
 	death_threshold = MutableFloatAttribute.new("Death Threshold (energy)", 0, 0, 0)
 
 	#--brain and habits--
 	input_style = PlantCategoriesInutStyle
 	input_count = input_style.input_count()
-	output_count = 2
+	output_count = 6
 	brain = LifeBrainAttribute.new("Brain", null, 1)
 
 	allowed_actions = [DieAction, RandomWalkAction, SpecificWalkAction, PlantGainMoreEnergyAction, PlantShareEnergyAction, 
@@ -58,7 +57,6 @@ func life_tick():
 	var g = clamp(energv_vs_poison, 0, 1)
 	var b = clamp(-energv_vs_poison, 0, 1)
 	var energy_color = Color(r,g,b)
-	
 	
 	var ratio = energy.get_value() / (minerals.get_value() if minerals.get_value() else .000001)
 	if ratio == 0: ratio = .0001

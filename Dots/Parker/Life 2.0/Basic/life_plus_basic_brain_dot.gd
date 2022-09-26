@@ -12,6 +12,7 @@ var input_style = ColorsInputStyle
 var input_count = input_style.input_count()
 var output_count = 8
 var brain : LifeBrainAttribute = LifeBrainAttribute.new("Brain", null, 1)
+var rand_brain_on_ui_insert : BooleanAttribute = BooleanAttribute.new("Random brain on UI insert", true)
 var mem = Memory.new(1)
 var last_input : Vector
 
@@ -58,7 +59,7 @@ func build_habits():
 
 func add_attributes():
 	.add_attributes()
-	attributes.append_array([basel_metabolic_rate, max_actions_per_habbit])
+	attributes.append_array([rand_brain_on_ui_insert,basel_metabolic_rate, max_actions_per_habbit])
 
 func add_mutable_attributes():
 	.add_mutable_attributes()
@@ -99,3 +100,9 @@ func life_tick():
 			chosen_habbit.execute(self)
 			mem.add_mem(chosen_habbit)
 			color_one.set_value(color_one.get_value() * .9 + chosen_habbit.get_color() * .1)
+
+func _on_ui_insert():
+	if rand_brain_on_ui_insert.get_value():
+		brain.new_brain()
+		reproduction_brain.new_brain()
+		reproduction_direction_brain.new_brain()

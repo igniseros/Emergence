@@ -216,6 +216,7 @@ func select():
 		selected_dot = dots[0]
 		display_attributes(selected_dot)
 		emit_signal("on_selection_made", selected_dot)
+		selected_dot._on_ui_select()
 
 func insert():
 	for spot in get_spots_at_mouse():
@@ -236,11 +237,13 @@ func _ui_insert_at(spot):
 	babydot.add_attributes()
 	babydot.copy_attribute_values_from(queued_dot)
 	Grid.insert_dot(babydot)
+	babydot._on_ui_insert()
 
 func delete():
 	for spot in get_spots_at_mouse():
 		var dotatspot = Grid.get_at(spot)
 		if (dotatspot is Dot and not mask) or dotatspot is dot_class:
+			dotatspot._on_ui_delete()
 			Grid.remove_dot(dotatspot)
 
 func set_attribute_spawn_spot(ss):

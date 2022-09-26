@@ -14,10 +14,10 @@ func _init(_is_child = false, _parent = null).(_is_child, _parent):
 	color_two.set_value(Color(1,0,0))
 	color_three.set_value(Color(1,0,0))
 	
-	energy = FloatAttribute.new("Energy", 300, 0, MAX_ENERGY)
+	energy = FloatAttribute.new("Energy", 125, 0, MAX_ENERGY)
 	#--variables--
 	basel_metabolic_rate.set_value(.1)
-	reproduction_threshold = MutableFloatAttribute.new("Reproducton threshold", 800, .5, MAX_ENERGY - 1)
+	reproduction_threshold = MutableFloatAttribute.new("Reproducton threshold", 150, .5, MAX_ENERGY - 1)
 	reproduction_gift.set_value(.75)
 	death_threshold = MutableFloatAttribute.new("Death Threshold (energy)", 0, 0, 0)
 

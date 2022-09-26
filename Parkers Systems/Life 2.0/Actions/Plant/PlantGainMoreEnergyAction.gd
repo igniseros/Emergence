@@ -6,7 +6,7 @@ var energy_cost = 1
 var energy_gain_per_open_square = 6
 var starting_energy_gain = -12
 
-var scale = 1
+var scale = .125
 
 func _init(attributes = []).(attributes):
 	pass

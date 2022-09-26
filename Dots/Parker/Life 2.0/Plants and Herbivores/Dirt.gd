@@ -49,7 +49,7 @@ func gain_minerlas():
 
 func share_minerals():
 	if randf() < share_chance.get_value():
-		var random_choice = floor(randf() * 8)
+		var random_choice = floor(randf() * 7.999999)
 		var random_look_dot = PDF.look_at(self, PDF.box_around[random_choice])
 		if random_look_dot is Dot and random_look_dot.name.get_value() == name.get_value():
 			var big_dot = self

@@ -19,7 +19,7 @@ static func gather_inputs(dot : LifePlusBaseDot):
 		if not seen_dot is Dot:
 			pass
 		else:
-			if seen_dot.name.get_value() == dot.name.get_value():
+			if dot.is_this_class(seen_dot):
 				plants_seen += 1
 				slot[0] = 1
 			elif seen_dot is LifePlusBaseDot:
